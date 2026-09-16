@@ -4,6 +4,17 @@ import { caseStudies } from "@/data/caseStudies";
 import { caseStudyDetails } from "@/data/caseStudyDetails";
 import { createPageMetadata } from "@/lib/seo";
 
+// Static exports can only include routes whose dynamic segments are known at
+// build time. Keep this in the server layout because the page is a Client
+// Component.
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return caseStudyDetails.map((caseStudy) => ({
+    slug: caseStudy.id,
+  }));
+}
+
 type CaseStudyLayoutProps = {
   children: React.ReactNode;
   params: Promise<{

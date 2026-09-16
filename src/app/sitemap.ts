@@ -14,6 +14,10 @@ import {
 } from "@/data/seo";
 import { absoluteUrl } from "@/lib/seo";
 
+// Metadata routes are route handlers; explicitly prerender this one for the
+// static export.
+export const dynamic = "force-static";
+
 function createSitemapEntry(path: string): MetadataRoute.Sitemap[number] {
   return {
     url: absoluteUrl(path),

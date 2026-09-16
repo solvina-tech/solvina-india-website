@@ -10,6 +10,8 @@ type Props = {
   }>;
 };
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return expertisePages.map((expertise) => ({
     slug: expertise.slug,

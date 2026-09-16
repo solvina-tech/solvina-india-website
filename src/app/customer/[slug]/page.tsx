@@ -17,6 +17,8 @@ type PageProps = {
   }>;
 };
 
+export const dynamicParams = false;
+
 
 function getCustomerBySlug(slug: string): Customer | null {
   return (

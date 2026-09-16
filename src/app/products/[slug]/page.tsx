@@ -11,6 +11,8 @@ interface ProductPageProps {
   }>;
 }
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return products.map((product) => ({
     slug: product.id,
