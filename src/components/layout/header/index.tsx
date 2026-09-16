@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Menu, ArrowRight } from "lucide-react";
+import { assetPath } from "@/lib/assets";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -72,7 +73,7 @@ export default function Header() {
           >
             {/* Negative logo - hero */}
             <Image
-              src="./images/solvina-logo-negative.png"
+              src={assetPath("/images/solvina-logo-negative.png")}
               alt="Solvina India"
               width={180}
               height={48}
@@ -84,7 +85,7 @@ export default function Header() {
 
             {/* Regular logo - scrolled */}
             <Image
-              src="./images/solvina-logo.png"
+              src={assetPath("/images/solvina-logo.png")}
               alt="Solvina India"
               width={180}
               height={48}
@@ -168,7 +169,7 @@ export default function Header() {
               <SheetHeader className="border-b border-black/10 pb-5 px-0">
                 <SheetTitle className="text-left">
                   <Image
-                    src="./images/solvina-logo.png"
+                    src={assetPath("/images/solvina-logo.png")}
                     alt="Solvina India"
                     width={160}
                     height={43}

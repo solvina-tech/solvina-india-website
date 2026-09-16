@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { globalProof } from "@/data/homepage";
+import { assetPath } from "@/lib/assets";
 
 function ProofCard({
   item,
@@ -193,7 +194,7 @@ export default function GlobalPresenceSection() {
               {/* Map image */}
 
               <Image
-                src="./images/global-presence.png"
+                src={assetPath("/images/global-presence.png")}
                 alt="Solvina global presence showing Sweden and Noida, India"
                 fill
                 priority={false}

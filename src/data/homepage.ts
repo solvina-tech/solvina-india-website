@@ -1,4 +1,5 @@
 import type { LucideIcon } from "lucide-react";
+import { assetPath } from "@/lib/assets";
 import {
   Cog,
   Gauge,
@@ -56,103 +57,108 @@ export type Customer = {
   logo?: string;
 };
 
-export const customers: Customer[] = [
+const customerDefinitions: Customer[] = [
   {
     id: "ntpc",
     name: "NTPC",
-    logo: "/images/customers/ntpc.jpg",
+    logo: "./images/customers/ntpc.jpg",
   },
   {
     id: "grid-india",
     name: "Grid-India",
-    logo: "/images/customers/grid-india.jpg",
+    logo: "./images/customers/grid-india.jpg",
   },
   {
     id: "nhpc",
     name: "NHPC",
-    logo: "/images/customers/nhpc.jpg",
+    logo: "./images/customers/nhpc.jpg",
   },
   {
     id: "sjvn",
     name: "SJVN",
-    logo: "/images/customers/sjvn.jpg",
+    logo: "./images/customers/sjvn.jpg",
   },
   {
     id: "thdc-india",
     name: "THDC India",
-    logo: "/images/customers/thdc-india.jpg",
+    logo: "./images/customers/thdc-india.jpg",
   },
   {
     id: "neepco",
     name: "NEEPCO",
-    logo: "/images/customers/neepco.jpg",
+    logo: "./images/customers/neepco.jpg",
   },
   {
     id: "tata-power",
     name: "Tata Power",
-    logo: "/images/customers/tata-power.jpg",
+    logo: "./images/customers/tata-power.jpg",
   },
   {
     id: "tata-steel",
     name: "Tata Steel",
-    logo: "/images/customers/tata-steel.jpg",
+    logo: "./images/customers/tata-steel.jpg",
   },
   {
     id: "adani",
     name: "Adani",
-    logo: "/images/customers/adani.jpg",
+    logo: "./images/customers/adani.jpg",
   },
   {
     id: "reliance-industries",
     name: "Reliance Industries",
-    logo: "/images/customers/reliance-industries.png",
+    logo: "./images/customers/reliance-industries.png",
   },
   {
     id: "jsw",
     name: "JSW",
-    logo: "/images/customers/jsw.jpg",
+    logo: "./images/customers/jsw.jpg",
   },
   {
     id: "jindal-power",
     name: "Jindal Power",
-    logo: "/images/customers/jindal-power.jpg",
+    logo: "./images/customers/jindal-power.jpg",
   },
   {
     id: "vedanta",
     name: "Vedanta",
-    logo: "/images/customers/vedanta.jpg",
+    logo: "./images/customers/vedanta.jpg",
   },
   {
     id: "balco",
     name: "BALCO",
-    logo: "/images/customers/balco.jpg",
+    logo: "./images/customers/balco.jpg",
   },
   {
     id: "indianoil",
     name: "IndianOil",
-    logo: "/images/customers/indianoil.jpeg",
+    logo: "./images/customers/indianoil.jpeg",
   },
   {
     id: "cesc",
     name: "CESC",
-    logo: "/images/customers/cesc.jpg",
+    logo: "./images/customers/cesc.jpg",
   },
   {
     id: "nlc-india",
     name: "NLC India",
-    logo: "/images/customers/nlc-india.jpg",
+    logo: "./images/customers/nlc-india.jpg",
   },
   {
     id: "uprvunl",
     name: "UPRVUNL",
-    logo: "/images/customers/uprvunl.jpg",
+    logo: "./images/customers/uprvunl.jpg",
   },
   {
     id: "iffco",
     name: "IFFCO",
-    logo: "/images/customers/iffco.jpg",
+    logo: "./images/customers/iffco.jpg",
   },
 ];
+
+export const customers = customerDefinitions.map((customer) => ({
+  ...customer,
+  logo: customer.logo ? assetPath(customer.logo) : undefined,
+}));
 
 export const customerChallenges = [
   {
@@ -215,7 +221,7 @@ export const homepageAbout = {
   },
 
   image: {
-    src: "/images/about-engineer-plant.png",
+    src: assetPath("/images/about-engineer-plant.png"),
     alt: "Engineer working with industrial power and process systems",
   },
 };
@@ -441,14 +447,14 @@ export const modelToPlantMethods = [
   },
 ];
 
-export const industriesServed = [
+const industryDefinitions = [
   {
     number: "01",
     title: "Power Generation & Utilities",
     description:
       "Grid response, stability, compliance and coordinated generation controls.",
     href: "/industries/power-generation-utilities/",
-    image: "/images/power-generation-utilities.jpeg",
+    image: "./images/power-generation-utilities.jpeg",
   },
   {
     number: "02",
@@ -456,7 +462,7 @@ export const industriesServed = [
     description:
       "Captive generation, large dynamic loads and interconnected process utilities.",
     href: "/industries/steel-metals-mining/",
-    image: "/images/steel-metals-mining.jpeg",
+    image: "./images/steel-metals-mining.jpeg",
   },
   {
     number: "03",
@@ -464,7 +470,7 @@ export const industriesServed = [
     description:
       "Tightly coupled steam, power, process and electrical networks.",
     href: "/industries/refining-petrochemicals/",
-    image: "/images/refining-petrochemicals.jpeg",
+    image: "./images/refining-petrochemicals.jpeg",
   },
   {
     number: "04",
@@ -472,7 +478,7 @@ export const industriesServed = [
     description:
       "Utility disturbances and control interactions that can affect production.",
     href: "/industries/chemicals-fertilizers/",
-    image: "/images/chemicals-fertilizers.png",
+    image: "./images/chemicals-fertilizers.png",
   },
   {
     number: "05",
@@ -480,7 +486,7 @@ export const industriesServed = [
     description:
       "Steam/power integration, production continuity and island-operation behaviour.",
     href: "/industries/pulp-paper/",
-    image: "/images/pulp-paper.png",
+    image: "./images/pulp-paper.png",
   },
   {
     number: "06",
@@ -488,7 +494,7 @@ export const industriesServed = [
     description:
       "Specialist analysis and validation at technically critical project interfaces.",
     href: "/industries/epc-project-organizations/",
-    image: "/images/epc-project-organizations.png",
+    image: "./images/epc-project-organizations.png",
   },
 ] as const;
 
@@ -542,6 +548,11 @@ export const solutions = [
     icon: Cpu,
   },
 ];
+
+export const industriesServed = industryDefinitions.map((industry) => ({
+  ...industry,
+  image: assetPath(industry.image),
+}));
 
 export const softwareTools = [
   {

@@ -13,6 +13,7 @@ import {
   Boxes,
   Activity,
 } from "lucide-react";
+import { assetPath } from "@/lib/assets";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -95,7 +96,7 @@ export default function MegaMenuHeader() {
             aria-label="Solvina India"
           >
             <Image
-              src="./images/solvina-logo.png"
+              src={assetPath("/images/solvina-logo.png")}
               alt="Solvina India"
               width={180}
               height={48}
@@ -176,7 +177,7 @@ export default function MegaMenuHeader() {
               <SheetHeader className="border-b border-black/10 px-6 py-5">
                 <SheetTitle className="text-left">
                   <Image
-                    src="./images/solvina-logo.png"
+                    src={assetPath("/images/solvina-logo.png")}
                     alt="Solvina India"
                     width={170}
                     height={46}

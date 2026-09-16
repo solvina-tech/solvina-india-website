@@ -16,7 +16,9 @@ export type CaseStudyDetail = {
   sections: CaseStudySection[];
 };
 
-export const caseStudyDetails: CaseStudyDetail[] = [
+import { assetPath } from "@/lib/assets";
+
+const caseStudyDetailDefinitions: CaseStudyDetail[] = [
   {
     id: "reliance-integrated-steam-power",
     number: "01",
@@ -317,3 +319,8 @@ export const caseStudyDetails: CaseStudyDetail[] = [
     ],
   },
 ];
+
+export const caseStudyDetails = caseStudyDetailDefinitions.map((caseStudy) => ({
+  ...caseStudy,
+  image: assetPath(caseStudy.image),
+}));

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { assetPath } from "@/lib/assets";
 
 /* -------------------------------------------------------------------------- */
 /*                                   TYPES                                    */
@@ -235,7 +236,7 @@ export default function AboutPage() {
       <section className="relative min-h-[92vh] bg-[#101514] text-white">
         <div className="absolute inset-0">
           <ImagePanel
-            src="./images/about/about-hero.jpg"
+            src={assetPath("/images/about/about-hero.jpg")}
             alt="Industrial energy and power engineering environment"
             className="h-full rounded-none"
             overlay
@@ -375,7 +376,7 @@ export default function AboutPage() {
 
             <div className="relative min-h-[520px] overflow-hidden lg:min-h-[650px]">
               <img
-                src="./images/about/engineering-challenge.png"
+                src={assetPath("/images/about/engineering-challenge.png")}
                 alt="Industrial power and process engineering systems"
                 className="absolute inset-0 h-full w-full object-cover"
               />
@@ -786,7 +787,7 @@ export default function AboutPage() {
         <div className="mx-auto max-w-[1280px]">
           <div className="grid gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-20">
             <ImagePanel
-              src="./images/about/engineering-heritage.jpg"
+              src={assetPath("/images/about/engineering-heritage.jpg")}
               alt="Industrial engineering environment"
               className="min-h-[520px]"
             />
@@ -936,7 +937,7 @@ export default function AboutPage() {
 
           <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
             <ImagePanel
-              src="./images/about/shahzad-alam.png"
+              src={assetPath("/images/about/shahzad-alam.png")}
               alt="Shahzad Alam, Managing Director of Solvina India"
               className="min-h-[580px]"
             />
@@ -1048,7 +1049,7 @@ export default function AboutPage() {
 
             <div>
               <ImagePanel
-                src="./images/global-presence.png"
+                src={assetPath("/images/global-presence.png")}
                 alt="Solvina engineering presence and project regions"
               />
 

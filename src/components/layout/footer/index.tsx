@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Mail, Phone } from "lucide-react";
 import { footerNavigation } from "@/data/footerNavigation";
+import { assetPath } from "@/lib/assets";
 
 const legalLinks = [
   {
@@ -78,7 +79,7 @@ export default function Footer() {
           <div className="flex items-center gap-6">
             <Link href="/" aria-label="Solvina India home">
               <Image
-                src="./images/solvina-logo-negative.png"
+                src={assetPath("/images/solvina-logo-negative.png")}
                 alt="Solvina India"
                 width={150}
                 height={40}

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
+import { assetPath } from "@/lib/assets";
 import HeroExpertSection from "./HeroExpertiseSection";
 import EnquiryCTA from "../forms/EnquiryCTA";
 
@@ -15,7 +16,7 @@ export default function HeroSection() {
       ============================================================ */}
 
       <Image
-        src="./images/hero-industrial.jpg"
+        src={assetPath("/images/hero-industrial.jpg")}
         alt="Industrial energy and engineering systems"
         fill
         priority

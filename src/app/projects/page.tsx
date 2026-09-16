@@ -11,6 +11,7 @@ import {
 } from "@/data/projects";
 import { caseStudies } from "@/data/caseStudies";
 import Image from "next/image";
+import { assetPath } from "@/lib/assets";
 
 const PROJECTS_PER_LOAD = 3;
 
@@ -653,7 +654,7 @@ export default function ProjectsPage() {
         />
 
         <Image
-          src="./images/projects/projects-hero.jpg"
+          src={assetPath("/images/projects/projects-hero.jpg")}
           alt="Industrial power system and engineering environment"
           fill
           priority

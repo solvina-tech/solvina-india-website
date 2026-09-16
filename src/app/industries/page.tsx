@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { assetPath } from "@/lib/assets";
 
 /* ==========================================================================
    ICONS
@@ -142,7 +143,7 @@ const industries = [
     shortName: "Power & Utilities",
     slug: "power-generation-utilities",
     type: "power",
-    image: "/images/power-generation-utilities.png",
+    image: assetPath("/images/power-generation-utilities.png"),
     description:
       "Grid response, stability, compliance, generator controls and changing operating conditions.",
     detail:
@@ -160,7 +161,7 @@ const industries = [
     shortName: "Steel & Metals",
     slug: "steel-metals-mining",
     type: "steel",
-    image: "/images/steel-metals-mining.jpeg",
+    image: assetPath("/images/steel-metals-mining.jpeg"),
     description:
       "Captive generation, large dynamic loads and tightly interconnected process utilities.",
     detail:
@@ -178,7 +179,7 @@ const industries = [
     shortName: "Refining & Petrochemicals",
     slug: "refining-petrochemicals",
     type: "refining",
-    image: "/images/refining-petrochemicals.jpeg",
+    image: assetPath("/images/refining-petrochemicals.jpeg"),
     description:
       "Tightly coupled steam, power, process and electrical systems.",
     detail:
@@ -196,7 +197,7 @@ const industries = [
     shortName: "Chemicals & Fertilizers",
     slug: "chemicals-fertilizers",
     type: "chemical",
-    image: "/images/chemicals-fertilizers.png",
+    image: assetPath("/images/chemicals-fertilizers.png"),
     description:
       "Utility and process interactions where continuity directly affects production.",
     detail:
@@ -214,7 +215,7 @@ const industries = [
     shortName: "Pulp & Paper",
     slug: "pulp-paper",
     type: "paper",
-    image: "/images/pulp-paper.png",
+    image: assetPath("/images/pulp-paper.png"),
     description:
       "Steam/power integration, captive generation and island-operation relevance.",
     detail:
@@ -232,7 +233,7 @@ const industries = [
     shortName: "EPC & Projects",
     slug: "epc-project-organizations",
     type: "epc",
-    image: "/images/epc-project-organizations.png",
+    image: assetPath("/images/epc-project-organizations.png"),
     description:
       "Specialist engineering support at high-risk technical interfaces.",
     detail:
@@ -287,7 +288,7 @@ export default function IndustriesPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-[#101514] via-transparent to-transparent" />
 
           <img
-            src="./images/industries/industries-hero.jpg"
+            src={assetPath("/images/industries/industries-hero.jpg")}
             alt=""
             className="h-full w-full object-cover"
           />

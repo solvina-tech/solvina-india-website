@@ -9,13 +9,14 @@ import {
   SearchCode,
 } from "lucide-react";
 import Image from "next/image";
+import { assetPath } from "@/lib/assets";
 
 const challenges = [
   {
     id: "interconnected-systems",
     number: "01",
     theme: "Interconnected Systems",
-    image: "/images/interconnected-systems.png",
+    image: assetPath("/images/interconnected-systems.png"),
     narrative:
       "A change in one part of an industrial energy system can propagate through generation, steam networks, process loads, controls and protection.",
     icon: Network,

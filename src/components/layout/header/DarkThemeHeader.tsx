@@ -13,6 +13,7 @@ import {
   ChevronRight,
   Menu,
 } from "lucide-react";
+import { assetPath } from "@/lib/assets";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -110,7 +111,7 @@ export default function DarkThemeHeader() {
             aria-label="Solvina India"
           >
             <Image
-              src="./images/solvina-logo-negative.png"
+              src={assetPath("/images/solvina-logo-negative.png")}
               alt="Solvina India"
               width={180}
               height={48}
@@ -197,7 +198,7 @@ export default function DarkThemeHeader() {
               <SheetHeader className="border-b border-white/[0.08] px-6 py-5">
                 <SheetTitle className="text-left">
                   <Image
-                    src="./images/solvina-logo-negative.png"
+                    src={assetPath("/images/solvina-logo-negative.png")}
                     alt="Solvina India"
                     width={170}
                     height={46}

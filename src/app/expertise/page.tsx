@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { assetPath } from "@/lib/assets";
 
 /* ==========================================================================
    ICONS
@@ -62,7 +63,7 @@ const expertiseAreas = [
       "Power Systems",
       "System Studies",
     ],
-    image: "/images/expertise/integrated-steam-power.jpg",
+    image: assetPath("/images/expertise/integrated-steam-power.jpg"),
   },
   {
     number: "02",
@@ -76,7 +77,7 @@ const expertiseAreas = [
       "Transient Studies",
       "System Dynamics",
     ],
-    image: "/images/expertise/dynamic-simulation.jpg",
+    image: assetPath("/images/expertise/dynamic-simulation.jpg"),
   },
   {
     number: "03",
@@ -85,7 +86,7 @@ const expertiseAreas = [
     short:
       "Assessing plant behaviour against grid requirements through simulation, testing and engineering validation.",
     tags: ["Grid Code", "Compliance", "PFR", "Model Validation"],
-    image: "/images/expertise/grid-code.jpg",
+    image: assetPath("/images/expertise/grid-code.jpg"),
   },
   {
     number: "04",
@@ -99,7 +100,7 @@ const expertiseAreas = [
       "Resilience",
       "Protection",
     ],
-    image: "/images/expertise/island-operation.jpg",
+    image: assetPath("/images/expertise/island-operation.jpg"),
   },
   {
     number: "05",
@@ -108,7 +109,7 @@ const expertiseAreas = [
     short:
       "Engineering analysis and testing of control systems that determine how generating units and industrial systems respond.",
     tags: ["Controls", "Governor", "AVR", "Tuning"],
-    image: "/images/expertise/controls-governors-avr.jpg",
+    image: assetPath("/images/expertise/controls-governors-avr.jpg"),
   },
   {
     number: "06",
@@ -122,7 +123,7 @@ const expertiseAreas = [
       "Power Quality",
       "Fault Studies",
     ],
-    image: "/images/expertise/protection-power-quality.jpg",
+    image: assetPath("/images/expertise/protection-power-quality.jpg"),
   },
   {
     number: "07",
@@ -131,7 +132,7 @@ const expertiseAreas = [
     short:
       "Connecting engineering models and analysis with measurements, controlled tests and real plant behaviour.",
     tags: ["Plant Testing", "Measurements", "Validation", "Field Engineering"],
-    image: "/images/expertise/testing-validation.jpg",
+    image: assetPath("/images/expertise/testing-validation.jpg"),
   },
 ];
 
@@ -793,7 +794,7 @@ export default function ExpertisePage() {
               <div className="relative overflow-hidden rounded-[24px] border border-black/[0.08] bg-white">
                 <div className="aspect-[4/3]">
                   <img
-                    src="./images/expertise/expertise-evidence.jpg"
+                    src={assetPath("/images/expertise/expertise-evidence.jpg")}
                     alt=""
                     className="h-full w-full object-cover opacity-65 grayscale"
                   />

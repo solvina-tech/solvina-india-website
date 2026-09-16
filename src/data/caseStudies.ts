@@ -9,7 +9,9 @@ export type CaseStudy = {
   expertise: string[];
 };
 
-export const caseStudies: CaseStudy[] = [
+import { assetPath } from "@/lib/assets";
+
+const caseStudyDefinitions: CaseStudy[] = [
   {
     id: "reliance-integrated-steam-power",
     number: "01",
@@ -99,3 +101,8 @@ export const caseStudies: CaseStudy[] = [
     ],
   },
 ];
+
+export const caseStudies = caseStudyDefinitions.map((caseStudy) => ({
+  ...caseStudy,
+  image: assetPath(caseStudy.image),
+}));
