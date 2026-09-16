@@ -50,33 +50,6 @@ export default function CaseStudyDetailPage({ params }: PageProps) {
 
         <div className="relative mx-auto max-w-[1440px] px-6 sm:px-8 lg:px-12 xl:px-16">
           {/* =====================================================
-              BREADCRUMB
-
-              IMPORTANT:
-              The top padding deliberately creates space below
-              the fixed navigation bar.
-          ===================================================== */}
-          <div className="relative z-10 pt-28 sm:pt-32">
-            <Link
-              href="/projects#case-studies"
-              className="group inline-flex items-center gap-2 text-sm font-medium text-black/50 transition-colors hover:text-black"
-            >
-              <ArrowLeft
-                size={16}
-                className="transition-transform duration-300 group-hover:-translate-x-1"
-              />
-
-              <span>Case Studies</span>
-
-              <span className="text-black/20">/</span>
-
-              <span className="max-w-[220px] truncate text-black/70">
-                {caseStudy.client}
-              </span>
-            </Link>
-          </div>
-
-          {/* =====================================================
               HERO CONTENT
           ===================================================== */}
           <div className="relative z-10 max-w-[1120px] pb-20 pt-16 sm:pb-24 sm:pt-20 lg:pb-32 lg:pt-24">

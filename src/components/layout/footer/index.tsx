@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Mail, Phone } from "lucide-react";
 import { footerNavigation } from "@/data/footerNavigation";
 import { assetPath } from "@/lib/assets";
+import EnquiryCTA from "@/components/forms/EnquiryCTA";
 
 const legalLinks = [
   {
@@ -112,16 +113,12 @@ export default function Footer() {
             </svg>
           </a>
 
-          <Link
-            href="/contact/"
-            className="group inline-flex w-fit items-center gap-2 bg-[#B41448] px-4 py-2.5 text-[11px] font-semibold text-white transition-colors duration-200 hover:bg-[#9F103F]"
-          >
-            Talk to an Engineer
-            <ArrowRight
-              size={14}
-              className="transition-transform duration-200 group-hover:translate-x-1"
+          <div className="hidden lg:block">
+            <EnquiryCTA
+              label="Talk to Our Engineers"
+              type="Technical Enquiry"
             />
-          </Link>
+          </div>
         </div>
 
         {/* =====================================================
@@ -161,7 +158,7 @@ export default function Footer() {
                 className="mt-1.5 flex items-center gap-2 text-[10px] text-white/35 transition-colors hover:text-white"
               >
                 <Phone size={11} />
-                +91 98733 02435 
+                +91 98733 02435
               </a>
               <a
                 href="tel:+919540728444"

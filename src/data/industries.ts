@@ -74,6 +74,11 @@ export const industriesOverview = {
       "description": "Steam/power integration, captive generation and island-operation relevance."
     },
     {
+      "slug": "solar-wind-bess",
+      "title": "Solar, Wind & BESS",
+      "description": "Grid integration, controller testing and dynamic model validation for renewable generation and energy storage."
+    },
+    {
       "slug": "epc-project-organizations",
       "title": "EPC & Project Organisations",
       "description": "Specialist engineering support at high-risk technical interfaces."
@@ -85,12 +90,6 @@ export const industriesOverview = {
       "title": "Cement & Manufacturing",
       "status": "conditional",
       "reason": "Standalone publication requires sufficient validated evidence and dedicated content depth."
-    },
-    {
-      "slug": "renewable-evolving-energy",
-      "title": "Renewable & Evolving Energy Systems",
-      "status": "conditional",
-      "reason": "Standalone publication requires validated capabilities and references."
     }
   ],
   "ctas": {
@@ -381,6 +380,52 @@ export const industryPages: IndustryPage[] = [
     "ctas": {
       "primary": "Explore Relevant Expertise",
       "secondary": "Discuss Your Engineering Challenge"
+    },
+    "publicationStatus": "approved-draft"
+  },
+  {
+    "slug": "solar-wind-bess",
+    "title": "Solar, Wind & BESS",
+    "seo": {
+      "title": "Solar, Wind & BESS Engineering | Solvina India",
+      "description": "Grid code compliance, controller testing and dynamic model validation for solar PV, wind power and battery energy storage systems.",
+      "keyword": "solar wind BESS grid integration testing",
+      "url": "/industries/solar-wind-bess/"
+    },
+    "hero": {
+      "heading": "Engineering for Renewable Generation and Energy Storage Integration",
+      "intro": "Solar PV, wind power and battery energy storage systems bring new grid integration challenges — fast inverter dynamics, grid-forming requirements, and hybrid plant coordination. Solvina supports testing, model validation and grid compliance for these evolving technologies."
+    },
+    "challenge": "Renewable generation and storage systems are often required to demonstrate grid code compliance and dynamic performance capabilities that differ significantly from conventional generation. Inverter-based resources, grid-forming controllers and hybrid plant coordination require specialised testing and validation approaches that go beyond traditional power plant methodologies.",
+    "whereSolvinaAddsValue": [
+      {
+        "title": "Solar, Wind & BESS",
+        "description": "grid code compliance and controller testing for renewable generation and storage"
+      },
+      {
+        "title": "Grid Code Compliance & Generator Testing",
+        "description": "renewable-specific compliance requirements and validation"
+      },
+      {
+        "title": "Dynamic Simulation & System Modelling",
+        "description": "inverter-based resource modelling and validation"
+      }
+    ],
+    "typicalApplications": [
+      "Solar PV plant controller testing and model validation",
+      "Wind turbine generator communication and performance verification",
+      "BESS controller testing and grid-forming/following validation",
+      "Hybrid renewable plant integration studies and coordination"
+    ],
+    "relevantEvidence": "Solvina's renewable energy work extends our established grid code compliance and dynamic modelling capabilities to inverter-based resources. This includes PPC and SCADA testing for solar PV, WTG communication and frequency response testing for wind power, and BESS controller testing with grid-forming/following validation — all integrated with dynamic model validation to support grid connection applications.",
+    "relatedPages": [
+      "Solar, Wind & BESS",
+      "Grid Code Compliance & Generator Testing",
+      "Dynamic Simulation & System Modelling"
+    ],
+    "ctas": {
+      "primary": "Explore Relevant Expertise",
+      "secondary": "Discuss Your Renewable Challenge"
     },
     "publicationStatus": "approved-draft"
   }

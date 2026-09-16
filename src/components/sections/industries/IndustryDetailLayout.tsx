@@ -88,25 +88,6 @@ export function IndustryDetailLayout({ industry }: Props) {
         <div className="absolute bottom-0 left-[12%] -z-10 h-[260px] w-[260px] rounded-full bg-[#B41448]/6 blur-3xl" />
 
         <div className="mx-auto max-w-7xl px-6 pb-20 pt-8 lg:px-8 lg:pb-28 lg:pt-10">
-          <Reveal>
-            <nav
-              aria-label="Breadcrumb"
-              className="mb-16 flex flex-wrap items-center gap-2 text-sm text-black/50"
-            >
-              <Link href="/" className="transition hover:text-[#B41448]">
-                Home
-              </Link>
-              <span>/</span>
-              <Link
-                href="/industries/"
-                className="transition hover:text-[#B41448]"
-              >
-                Industries
-              </Link>
-              <span>/</span>
-              <span className="text-black/75">{industry.title}</span>
-            </nav>
-          </Reveal>
 
           <div className="grid items-end gap-12 lg:grid-cols-[minmax(0,1fr)_300px]">
             <Reveal>

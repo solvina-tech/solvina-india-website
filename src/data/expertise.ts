@@ -71,7 +71,8 @@ export const expertiseOverview = {
       "items": [
         "Power System Studies",
         "Grid Code Compliance & Generator Testing",
-        "Island Operation"
+        "Island Operation",
+        "Solar, Wind & BESS"
       ]
     },
     {
@@ -790,6 +791,54 @@ export const expertisePages: ExpertisePage[] = [
     "ctas": {
       "primary": "Talk to Our Engineers",
       "secondary": "Review Your Study Scope"
+    },
+    "publicationStatus": "approved-draft"
+  },
+  {
+    "slug": "solar-wind-bess",
+    "title": "Solar, Wind & BESS",
+    "category": "Power Systems & Grid",
+    "seo": {
+      "title": "Solar, Wind & BESS Engineering | Solvina India",
+      "description": "Grid code compliance, controller testing, dynamic model validation and grid integration studies for solar PV, wind power and battery energy storage systems.",
+      "keyword": "solar wind BESS grid compliance testing",
+      "url": "/expertise/solar-wind-bess/"
+    },
+    "hero": {
+      "heading": "Engineering for Renewable Generation and Energy Storage Integration",
+      "intro": "Solar PV, wind power and battery energy storage systems bring new grid integration challenges — fast inverter dynamics, grid-forming requirements, and hybrid plant coordination. Solvina supports testing, model validation and grid compliance for these evolving technologies."
+    },
+    "challenge": "Renewable generation and storage systems are often required to demonstrate grid code compliance and dynamic performance capabilities that differ significantly from conventional generation. Inverter-based resources, grid-forming controllers and hybrid plant coordination require specialised testing and validation approaches that go beyond traditional power plant methodologies.",
+    "scope": [
+      "Solar PV: PPC & SCADA Testing, Inverter Communication Testing, Active & Reactive Power Control Verification, LVRT / HVRT Testing, Ramp Rate Verification, Power Quality Assessment, Dynamic Model Validation",
+      "Wind Power: WTG Communication Testing, PPC Verification, Frequency Response Testing, Reactive Power Capability, Voltage Control Testing, Dynamic Performance Studies, Grid Integration Studies",
+      "Battery Energy Storage Systems (BESS): BESS Controller Testing, EMS / PPC Communication, Charge / Discharge Performance Testing, Grid Forming / Grid Following Validation, Frequency Regulation Studies, Dynamic Stability Studies, Hybrid Plant Integration Studies"
+    ],
+    "methodAndDeliverables": "Testing and validation scope is defined around the specific grid code requirements and operational challenges for each technology. For solar PV, we focus on inverter-level and plant-level controller response and communication verification. For wind power, we address turbine-level performance and plant coordination. For BESS, we cover controller behaviour, grid-forming/following modes and hybrid plant integration. Testing is combined with dynamic model validation where required to support grid connection applications.",
+    "value": [
+      "Demonstrated compliance with renewable-specific grid code requirements",
+      "Validated controller settings for inverter-based resources and storage systems",
+      "Evidence of dynamic performance for grid connection applications",
+      "Reduced risk of integration issues in hybrid renewable plants"
+    ],
+    "faqs": [
+      {
+        "question": "Do you test individual inverters or the entire solar plant?",
+        "answer": "Both are possible depending on the requirement. Plant-level testing focuses on the overall response to grid events, while inverter-level testing can be used for type certification or detailed model validation."
+      },
+      {
+        "question": "How does BESS testing differ from conventional generator testing?",
+        "answer": "BESS systems have unique modes — grid-forming versus grid-following, charge/discharge transitions, and hybrid coordination — that require specialised test sequences beyond what's used for synchronous generators."
+      }
+    ],
+    "relatedPages": [
+      "Grid Code Compliance & Generator Testing",
+      "Power System Studies",
+      "Dynamic Simulation & System Modelling"
+    ],
+    "ctas": {
+      "primary": "Talk to Our Engineers",
+      "secondary": "Review Your Testing Scope"
     },
     "publicationStatus": "approved-draft"
   }

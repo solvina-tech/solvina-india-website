@@ -11,6 +11,7 @@ import {
   Phone,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { getRouteHref } from "@/lib/utils";
 
 const contactRoutes = [
   {
@@ -37,11 +38,6 @@ const contactRoutes = [
 
 export default function FinalCTASection() {
   const pathname = usePathname();
-
-  const getRouteHref = (type: string) =>
-    `/form?type=${encodeURIComponent(
-      type,
-    )}&from=${encodeURIComponent(pathname)}`;
 
   return (
     <section className="relative overflow-hidden bg-[#0B1520] text-white">
@@ -110,9 +106,7 @@ export default function FinalCTASection() {
 
             <div className="mt-9">
               <Link
-                href={`/form?type=${encodeURIComponent(
-                  "Engineering Challenge",
-                )}&from=${encodeURIComponent(pathname)}`}
+                href={getRouteHref("Engineering Challenge", pathname)}
                 className="group inline-flex items-center gap-3 bg-[#B41448] px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-black/20 transition-all duration-300 hover:bg-[#9F103F] hover:shadow-xl"
               >
                 Discuss Your Engineering Challenge
@@ -278,7 +272,7 @@ export default function FinalCTASection() {
             {contactRoutes.map((route, index) => (
               <Link
                 key={route.title}
-                href={getRouteHref(route.type)}
+                href={getRouteHref(route.type, pathname)}
                 className="group relative border-b border-white/[0.08] p-5 transition-colors duration-300 hover:bg-white/[0.025] sm:p-6 lg:border-r lg:border-b-0 lg:last:border-r-0"
               >
                 <div className="mt-5 flex items-start justify-between gap-4">

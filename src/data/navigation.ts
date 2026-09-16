@@ -17,6 +17,9 @@ import {
   Leaf,
   HardHat,
   CircuitBoard,
+  Sun,
+  Wind,
+  Battery,
 } from "lucide-react";
 
 export const expertiseMenu: MegaMenuData = {
@@ -63,6 +66,11 @@ export const expertiseMenu: MegaMenuData = {
           href: "/expertise/island-operation/",
           title: "Island Operation Studies, Testing & Optimization",
           description: "Island transition, balance, controls and resilience.",
+        },
+        {
+          href: "/expertise/solar-wind-bess/",
+          title: "Solar, Wind & BESS",
+          description: "Grid integration, controller testing and model validation for renewables and storage.",
         },
       ],
     },
@@ -188,19 +196,18 @@ export const industriesMenu: MegaMenuData = {
       icon: Waves,
     },
     {
+      href: "/industries/solar-wind-bess/",
+      title: "Solar, Wind & BESS",
+      description:
+        "Grid integration, controller testing and dynamic model validation for renewable generation and energy storage.",
+      icon: Sun,
+    },
+    {
       href: "/industries/cement-manufacturing/",
       title: "Cement & Manufacturing",
       description:
         "Industrial applications presented where sufficient validated evidence supports the scope.",
       icon: HardHat,
-      badge: "Conditional",
-    },
-    {
-      href: "/industries/renewable-evolving-energy/",
-      title: "Renewable & Evolving Energy Systems",
-      description:
-        "Grid integration, stability, model validation and related engineering applications.",
-      icon: Leaf,
       badge: "Conditional",
     },
     {
@@ -307,22 +314,22 @@ export const aboutMenu: MegaMenuData = {
     "The people, philosophy, heritage and governance behind Solvina's engineering approach.",
   items: [
     {
-      href: "/about#company",
-      title: "Company",
+      href: "/about#who-we-are",
+      title: "Who We Are",
       description:
         "Who Solvina is and how the engineering organization is positioned.",
     },
     {
-      href: "/about#engineering-intelligence",
-      title: "Engineering Intelligence",
+      href: "/about#engineering-challenge",
+      title: "Engineering Challenge",
       description:
         "Integrated systems thinking and the model-to-plant engineering approach.",
     },
     {
-      href: "/about#history-heritage",
-      title: "History & Heritage",
+      href: "/about#engineering-heritage",
+      title: "Engineering Heritage",
       description:
-        "Swedish engineering heritage presented through approved corporate language.",
+        "Sweden engineering heritage presented through approved corporate language.",
     },
     {
       href: "/about#leadership-experts",

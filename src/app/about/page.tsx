@@ -27,6 +27,15 @@ type Value = {
   text: string;
 };
 
+type LeadershipMember = {
+  name: string;
+  role: string;
+  image: string;
+  linkedin: string;
+  bio?: string[];
+  expertise?: string[];
+};
+
 /* -------------------------------------------------------------------------- */
 /*                              IMAGE COMPONENT                               */
 /* -------------------------------------------------------------------------- */
@@ -45,25 +54,19 @@ function ImagePanel({
         className={`relative flex min-h-[320px] items-center justify-center overflow-hidden rounded-[2rem] bg-[#101514] ${className}`}
       >
         <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-[20%] left-[15%] h-px w-[70%] bg-[#E3A526]" />
-          <div className="absolute top-[40%] left-[30%] h-px w-[45%] rotate-90 bg-[#E3A526]" />
-          <div className="absolute bottom-[25%] left-[10%] h-px w-[80%] bg-white/20" />
-          <div className="absolute right-[20%] bottom-[35%] h-3 w-3 rounded-full bg-[#E3A526]" />
-          <div className="absolute top-[35%] left-[25%] h-2 w-2 rounded-full bg-white/50" />
         </div>
 
         <div className="relative text-center">
           <span className="mb-3 block text-[10px] font-medium tracking-[0.28em] text-[#E3A526] uppercase">
-            Solvina Engineering
+            Solvina Engineer
           </span>
-          <span className="block text-sm text-white/40">Image placeholder</span>
         </div>
       </div>
     );
   }
 
   return (
-    <div className={`relative overflow-hidden rounded-[2rem] ${className}`}>
+    <div className={`relative overflow-hidden rounded-[1rem] ${className}`}>
       <img
         src={src}
         alt={alt}
@@ -118,6 +121,116 @@ function PlusIcon({ open }: { open: boolean }) {
         }`}
       />
     </span>
+  );
+}
+
+function LeadershipCard({ member }: { member: LeadershipMember }) {
+  return (
+    <div className="group flex flex-col gap-8 overflow-hidden rounded-2xl border border-[#c5cbc3] bg-white p-8 transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(17,22,20,0.08)] sm:flex-row">
+      <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl sm:w-[280px] sm:flex-shrink-0">
+        <ImagePanel
+          src={assetPath(member.image)}
+          alt={`${member.name}, ${member.role}`}
+          className="h-full"
+        />
+      </div>
+
+      <div className="flex flex-1 flex-col justify-center">
+        <span className="text-xs font-semibold tracking-[0.16em] text-[#707970] uppercase">
+          {member.role}
+        </span>
+
+        <h3 className="mt-4 text-3xl font-medium tracking-[-0.02em] sm:text-4xl">
+          {member.name}
+        </h3>
+
+        {member.bio && member.bio.length > 0 && (
+          <div className="mt-6 max-w-2xl space-y-4">
+            {member.bio.map((paragraph, index) => (
+              <p key={index} className="text-base leading-7 text-[#596159]">
+                {paragraph}
+              </p>
+            ))}
+          </div>
+        )}
+
+        <div className="mt-8 flex flex-wrap items-center gap-8">
+          <a
+            href={member.linkedin}
+            target="_blank"
+            rel="noreferrer"
+            className="group/link inline-flex items-center gap-2 text-sm font-semibold text-[#111614] transition group-hover/link:text-[#b41448]"
+          >
+            LinkedIn
+            <ArrowUpRight />
+          </a>
+
+          {member.expertise && member.expertise.length > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {member.expertise.map((item) => (
+                <span
+                  key={item}
+                  className="rounded-full border border-[#c5cbc3] bg-[#f4f5f2] px-4 py-2 text-xs font-semibold tracking-[0.12em] text-[#697169] uppercase"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SimpleProfileCard({ member }: { member: LeadershipMember }) {
+  return (
+    <div className="group flex flex-col overflow-hidden rounded-2xl border border-[#c5cbc3] bg-white transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(17,22,20,0.08)]">
+      <div className="relative aspect-[3/4] overflow-hidden">
+        <ImagePanel
+          src={assetPath(member.image)}
+          alt={`${member.name}, ${member.role}`}
+          className="h-full"
+        />
+
+        {/* Hover overlay */}
+        {(member.bio || member.expertise) && (
+          <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/85 via-black/50 to-black/0 p-5 opacity-0 transition-all duration-300 group-hover:opacity-100">
+            <div className="translate-y-4 transition-transform duration-300 group-hover:translate-y-0">
+              {member.bio && member.bio.length > 0 && (
+                <p className="text-sm leading-6 text-white/85 line-clamp-5">
+                  {member.bio[0]}
+                </p>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div className="flex flex-1 flex-col p-6">
+        <h3 className="text-xl font-medium tracking-[-0.02em]">
+          {member.name}
+        </h3>
+
+        {member.role && (
+          <span className="mt-2 text-xs font-semibold tracking-[0.16em] text-[#707970] uppercase">
+            {member.role}
+          </span>
+        )}
+
+        <div className="mt-4 pt-4 border-t border-[#e8ebe7]">
+          <a
+            href={member.linkedin}
+            target="_blank"
+            rel="noreferrer"
+            className="group/link inline-flex items-center gap-2 text-sm font-semibold text-[#111614] transition group-hover/link:text-[#b41448]"
+          >
+            LinkedIn
+            <ArrowUpRight />
+          </a>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -220,6 +333,106 @@ const faqs = [
   },
 ];
 
+const boardOfDirectors: LeadershipMember[] = [
+  {
+    name: "Mohammad Shahzad Alam",
+    role: "Managing Director",
+    image: "/images/about/shahzad-alam.png",
+    linkedin: "https://in.linkedin.com/in/shahzad-alam-551598a",
+    bio: [
+      "Shahzad Alam leads Solvina India as Managing Director, supporting the company's engineering delivery and engagement with customers in India.",
+      "His role brings together customer requirements, technical capabilities and practical project delivery around complex engineering challenges.",
+      "Solvina India combines multidisciplinary engineering with a systems-focused approach, helping customers move from difficult technical questions toward clear and actionable engineering decisions.",
+    ],
+    expertise: ["Power", "Process", "Controls", "Operations"],
+  },
+  {
+    name: "Niclas Krantz",
+    role: "Board Member",
+    image: "/images/about/niclas-krantz.jpg",
+    linkedin: "https://www.linkedin.com/in/niclas-krantz-2a00089/",
+    bio: [
+      "Niclas Krantz brings extensive strategic leadership experience to the Solvina board, with a focus on business development and operational excellence.",
+      "His expertise spans engineering services, international business expansion, and organizational growth in the industrial sector.",
+    ],
+  },
+  {
+    name: "Peter Dahlström",
+    role: "Board Member",
+    image: "/images/about/peter-dahlstrom.jpg",
+    linkedin: "https://www.linkedin.com/in/peterdahlstrom/",
+    bio: [
+      "Peter Dahlström contributes deep technical knowledge and industry insight to the board, with particular expertise in power systems and engineering consulting.",
+      "His background includes leadership roles in engineering organizations and a strong track record of delivering complex technical projects.",
+    ],
+  },
+  {
+    name: "Pontus Ryd",
+    role: "Board Member",
+    image: "/images/about/pontus-ryd.jpg",
+    linkedin: "https://www.linkedin.com/in/pontus-ryd-a9a86579/",
+    bio: [
+      "Pontus Ryd brings valuable expertise in corporate governance and strategic planning to the Solvina board.",
+      "His experience encompasses financial management, business strategy, and organizational development in engineering-focused companies.",
+    ],
+  },
+];
+
+const leadershipManagement: LeadershipMember[] = [
+  {
+    name: "Mohammad Shahzad Alam",
+    role: "Managing Director",
+    image: "/images/about/shahzad-alam.png",
+    linkedin: "https://in.linkedin.com/in/shahzad-alam-551598a",
+    bio: [
+      "Shahzad Alam leads Solvina India as Managing Director, supporting the company's engineering delivery and engagement with customers in India.",
+      "His role brings together customer requirements, technical capabilities and practical project delivery around complex engineering challenges.",
+      "Solvina India combines multidisciplinary engineering with a systems-focused approach, helping customers move from difficult technical questions toward clear and actionable engineering decisions.",
+    ],
+    expertise: ["Power", "Process", "Controls", "Operations"],
+  },
+  {
+    name: "Deepesh Yadav",
+    role: "Leadership Team",
+    image: "/images/about/deepesh-yadav.jpg",
+    linkedin: "https://www.linkedin.com/in/deepesh-yadav-730b7454/",
+    bio: [
+      "Deepesh Yadav is a key member of the leadership team, bringing extensive experience in engineering project management and technical delivery.",
+      "His expertise spans across power systems, process engineering, and control systems, with a focus on delivering complex engineering solutions.",
+    ],
+  },
+  {
+    name: "Saurabh Tripathi",
+    role: "Leadership Team",
+    image: "/images/about/saurabh-tripathi.jpg",
+    linkedin: "https://www.linkedin.com/in/saurabh-tripathi225/",
+    bio: [
+      "Saurabh Tripathi contributes strong technical leadership to the team, with particular expertise in control systems and automation engineering.",
+      "His background includes working on large-scale industrial projects and implementing advanced control strategies.",
+    ],
+  },
+  {
+    name: "Ashish Mishra",
+    role: "Leadership Team",
+    image: "/images/about/ashish-mishra.jpg",
+    linkedin: "https://www.linkedin.com/in/ashish-mishra-7a70a42b/",
+    bio: [
+      "Ashish Mishra brings valuable expertise in process engineering and thermodynamics to the leadership team.",
+      "His experience includes working on complex process optimization projects and delivering engineering solutions across various industries.",
+    ],
+  },
+  {
+    name: "Vineet Saxena",
+    role: "Leadership Team",
+    image: "/images/about/vineet-saxena.png",
+    linkedin: "https://linkedin.com/in/vineet-saxena",
+    bio: [
+      "Vineet Saxena contributes operational expertise and project management experience to the leadership team.",
+      "His background includes leadership roles in engineering organizations and a focus on delivering practical, results-driven solutions.",
+    ],
+  },
+];
+
 /* -------------------------------------------------------------------------- */
 /*                                  PAGE                                      */
 /* -------------------------------------------------------------------------- */
@@ -298,7 +511,7 @@ export default function AboutPage() {
       {/* INTRO / WHO WE ARE                                                 */}
       {/* ================================================================== */}
 
-      <section className="bg-[#f4f5f2] px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
+      <section id="who-we-are" className="bg-[#f4f5f2] px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
         <div className="mx-auto max-w-[1280px]">
           <div className="grid gap-14 lg:grid-cols-[0.75fr_1.25fr] lg:gap-24">
             <div>
@@ -367,7 +580,7 @@ export default function AboutPage() {
       {/* THE ENGINEERING CHALLENGE                                         */}
       {/* ================================================================== */}
 
-      <section className="bg-[#111614] px-6 py-24 text-white sm:px-10 lg:px-16 lg:py-32">
+      <section id="engineering-challenge" className="bg-[#111614] px-6 py-24 text-white sm:px-10 lg:px-16 lg:py-32">
         <div className="mx-auto max-w-[1280px]">
           <div className="grid gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20">
             {/* ============================================================ */}
@@ -783,7 +996,7 @@ export default function AboutPage() {
       {/* ENGINEERING HERITAGE                                               */}
       {/* ================================================================== */}
 
-      <section className="bg-[#111614] px-6 py-24 text-white sm:px-10 lg:px-16 lg:py-32">
+      <section id="engineering-heritage" className="bg-[#111614] px-6 py-24 text-white sm:px-10 lg:px-16 lg:py-32">
         <div className="mx-auto max-w-[1280px]">
           <div className="grid gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-20">
             <ImagePanel
@@ -913,110 +1126,57 @@ export default function AboutPage() {
 
       <section id="leadership-experts" className="bg-[#e7ebe4] px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
         <div className="mx-auto max-w-[1280px]">
-          <div className="mb-14 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
-            <div>
-              <span className="text-xs font-semibold tracking-[0.25em] text-[#6f786f] uppercase">
-                Leadership & experts
-              </span>
+          <div className="mb-14">
+            <span className="text-xs font-semibold tracking-[0.25em] text-[#6f786f] uppercase">
+              Leadership & experts
+            </span>
 
-              <h2 className="mt-7 text-[clamp(2.7rem,5vw,5.5rem)] leading-[0.94] font-medium tracking-[-0.06em]">
-                People behind
-                <br />
-                the engineering.
-              </h2>
-            </div>
-
-            <Link
-              href="/contact/"
-              className="group inline-flex w-fit items-center gap-3 rounded-full border border-[#b9c0b7] px-5 py-3 text-sm font-medium transition hover:border-[#111614] hover:bg-[#111614] hover:text-white"
-            >
-              Meet Our Experts
-              <ArrowUpRight />
-            </Link>
+            <h2 className="mt-7 text-[clamp(2.7rem,5vw,5.5rem)] leading-[0.94] font-medium tracking-[-0.06em]">
+              People behind
+              <br />
+              the engineering.
+            </h2>
           </div>
 
-          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
-            <ImagePanel
-              src={assetPath("/images/about/shahzad-alam.png")}
-              alt="Shahzad Alam, Managing Director of Solvina India"
-              className="min-h-[580px]"
-            />
-
-            <div className="flex flex-col justify-center">
-              <span className="text-xs font-semibold tracking-[0.2em] text-[#707970] uppercase">
-                Solvina India
-              </span>
-
-              <h3 className="mt-5 text-4xl font-medium tracking-[-0.045em] sm:text-5xl">
-                Shahzad Alam
+          {/* Board of Directors */}
+          <div className="mb-24">
+            <div className="mb-10 flex items-center gap-4">
+              <span className="h-px w-12 bg-[#111614]" />
+              <h3 className="text-2xl font-medium tracking-[-0.03em]">
+                Board of Directors
               </h3>
+            </div>
 
-              <p className="mt-3 text-sm font-medium tracking-[0.16em] text-[#707970] uppercase">
-                Managing Director
-              </p>
-
-              <div className="mt-10 max-w-2xl space-y-6 text-base leading-8 text-[#596159]">
-                <p>
-                  Shahzad Alam leads Solvina India as Managing Director,
-                  supporting the company's engineering delivery and engagement
-                  with customers in India.
-                </p>
-
-                <p>
-                  His role brings together customer requirements, technical
-                  capabilities and practical project delivery around complex
-                  engineering challenges.
-                </p>
-
-                <p>
-                  Solvina India combines multidisciplinary engineering with a
-                  systems-focused approach, helping customers move from
-                  difficult technical questions toward clear and actionable
-                  engineering decisions.
-                </p>
-              </div>
-
-              <div className="mt-10">
-                <a
-                  href="https://in.linkedin.com/in/shahzad-alam-551598a"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group inline-flex items-center gap-3 border-b border-[#111614] pb-2 text-sm font-semibold"
-                >
-                  View LinkedIn profile
-                  <ArrowUpRight />
-                </a>
-              </div>
-
-              <div className="mt-14 grid max-w-xl grid-cols-2 gap-px overflow-hidden rounded-2xl border border-[#c5cbc3] bg-[#c5cbc3] sm:grid-cols-4">
-                {["Power", "Process", "Controls", "Operations"].map((item) => (
-                  <div
-                    key={item}
-                    className="bg-[#e7ebe4] px-3 py-5 text-center text-[10px] font-semibold tracking-[0.13em] text-[#697169] uppercase"
-                  >
-                    {item}
-                  </div>
-                ))}
-              </div>
+            {/* <div className="flex flex-col gap-8">
+              {boardOfDirectors.map((member) => (
+                <LeadershipCard key={member.name} member={member} />
+              ))}
+            </div> */}
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {boardOfDirectors.map((member) => (
+                <SimpleProfileCard key={`${member.name}-${member.role}`} member={member} />
+              ))}
             </div>
           </div>
 
-          {/* Future expert grid */}
-          <div className="mt-20 border-t border-[#c6ccc4] pt-8">
-            <div className="flex flex-col justify-between gap-4 sm:flex-row">
-              <div>
-                <span className="text-xs font-semibold tracking-[0.2em] text-[#7b837b] uppercase">
-                  Subject-matter expertise
-                </span>
-                <p className="mt-2 text-sm text-[#697169]">
-                  Additional expert profiles can be added here as they are
-                  approved for publication.
-                </p>
-              </div>
+          {/* Leadership & Management */}
+          <div className="mb-24">
+            <div className="mb-10 flex items-center gap-4">
+              <span className="h-px w-12 bg-[#111614]" />
+              <h3 className="text-2xl font-medium tracking-[-0.03em]">
+                Leadership & Management
+              </h3>
+            </div>
 
-              <span className="text-xs text-[#899189]">
-                Technical authorship · Experience · Disciplines
-              </span>
+            {/* <div className="flex flex-col gap-8">
+              {leadershipManagement.map((member) => (
+                <LeadershipCard key={member.name} member={member} />
+              ))}
+            </div> */}
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {leadershipManagement.map((member) => (
+                <SimpleProfileCard key={`${member.name}-${member.role}`} member={member} />
+              ))}
             </div>
           </div>
         </div>

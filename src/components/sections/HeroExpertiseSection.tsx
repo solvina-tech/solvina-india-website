@@ -2,16 +2,11 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 
 const EXPERTISE = [
-  // { angle: -90, label: "Island Operation Testing & Optimization" },
-  // { angle: -18, label: "Integrated Steam, Power & Control Systems" },
-  // { angle: 54, label: "Solar, Wind & BESS" },
-  // { angle: 126, label: "Industrial Automation & Digitization" },
-  // { angle: 198, label: "Grid Code Compliance" },
   { angle: -90, label: "Island Operation Testing & Optimization", href: "/expertise/island-operation/" },
-  { angle: 0, label: "Integrated Steam, Power & Control Systems",href: "/expertise/integrated-steam-power-systems/" },
-  // { angle: 54, label: "Solar, Wind & BESS" },
-  { angle: 90, label: "Industrial Automation & Digitization", href: "/expertise/industrial-automation-digital-engineering/", },
-  { angle: 180, label: "Grid Code Compliance", href: "/expertise/grid-code-compliance/" },
+  { angle: -18, label: "Integrated Steam, Power & Control Systems", href: "/expertise/integrated-steam-power-systems/" },
+  { angle: 54, label: "Solar, Wind & BESS", href: "/expertise/solar-wind-bess/" },
+  { angle: 126, label: "Industrial Automation & Digitization", href: "/expertise/industrial-automation-digital-engineering/", },
+  { angle: 198, label: "Grid Code Compliance", href: "/expertise/grid-code-compliance/" },
 ] as const;
 
 export default function HeroExpertSection() {

@@ -42,8 +42,8 @@ export default function Home() {
       {/* <SoftwareToolsLightTheme /> */}
       <GlobalPresenceSection />
       <ProjectsSection />
-      <CustomerVoiceSection />
-      <KnowledgeCentreSection />
+      {/* <CustomerVoiceSection /> */}
+      {/* <KnowledgeCentreSection /> */}
       <FinalCTASection />
     </div>
   );

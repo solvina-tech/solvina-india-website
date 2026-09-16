@@ -36,7 +36,7 @@ export default function ExpertisePage({
           HERO
       ================================================================ */}
 
-      <section className="relative flex min-h-[78vh] items-center border-b border-[#DDE1DC] bg-white pt-32 pb-24">
+      <section className="relative flex min-h-[78vh] items-center border-b border-[#DDE1DC] bg-white pt-10 pb-24">
         {/* subtle technical grid */}
 
         <div
@@ -59,37 +59,6 @@ export default function ExpertisePage({
         <div className="pointer-events-none absolute right-24 top-72 hidden h-3 w-3 rounded-full bg-[#E3A526] lg:block" />
 
         <div className="relative mx-auto w-full max-w-7xl px-6 lg:px-10">
-          {/* breadcrumb */}
-
-          <motion.nav
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45 }}
-            aria-label="Breadcrumb"
-            className="mb-14 flex flex-wrap items-center gap-2 text-sm text-black/45"
-          >
-            <Link
-              href="/"
-              className="transition-colors hover:text-[#B41448]"
-            >
-              Home
-            </Link>
-
-            <span>/</span>
-
-            <Link
-              href="/expertise/"
-              className="transition-colors hover:text-[#B41448]"
-            >
-              Expertise
-            </Link>
-
-            <span>/</span>
-
-            <span className="text-black/70">
-              {expertise.title}
-            </span>
-          </motion.nav>
 
           <div className="grid items-end gap-16 lg:grid-cols-[1.25fr_0.75fr] lg:gap-24">
             {/* heading */}

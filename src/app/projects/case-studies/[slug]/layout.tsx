@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { caseStudies } from "@/data/caseStudies";
 import { caseStudyDetails } from "@/data/caseStudyDetails";
 import { createPageMetadata } from "@/lib/seo";
+import Breadcrumbs from "@/components/layout/Breadcrumbs";
 
 // Static exports can only include routes whose dynamic segments are known at
 // build time. Keep this in the server layout because the page is a Client
@@ -59,5 +60,5 @@ export default function CaseStudyLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return <><Breadcrumbs />{children}</>;
 }

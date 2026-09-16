@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { getRouteHref } from "@/lib/utils";
 
 interface EnquiryCTAProps {
   label?: string;
@@ -18,14 +19,10 @@ export default function EnquiryCTA({
 }: EnquiryCTAProps) {
   const pathname = usePathname();
 
-  const href = `/form?type=${encodeURIComponent(
-    type
-  )}&from=${encodeURIComponent(pathname)}`;
-
   return (
-    <Link href={href}>
+    <Link href={getRouteHref(type, pathname)}>
       <Button
-        className={`h-11 rounded-md bg-[#B41448] px-5 font-semibold text-white shadow-sm transition-all duration-300 hover:bg-[#9F103F] hover:shadow-md ${className}`}
+        className={`h-11 cursor-pointer rounded-md bg-[#B41448] px-5 font-semibold text-white shadow-sm transition-all duration-300 hover:bg-[#9F103F] hover:shadow-md ${className}`}
       >
         {label}
 

@@ -134,6 +134,21 @@ const expertiseAreas = [
     tags: ["Plant Testing", "Measurements", "Validation", "Field Engineering"],
     image: assetPath("/images/expertise/testing-validation.jpg"),
   },
+  {
+    number: "08",
+    title: "Solar, Wind & BESS",
+    slug: "solar-wind-bess",
+    short:
+      "Grid code compliance, controller testing and dynamic model validation for solar PV, wind power and battery energy storage systems.",
+    tags: [
+      "Solar PV",
+      "Wind Power",
+      "BESS",
+      "Grid Integration",
+      "Inverter Testing",
+    ],
+    image: assetPath("/images/expertise/solar-wind-bess.jpg"),
+  },
 ];
 
 /* ==========================================================================
