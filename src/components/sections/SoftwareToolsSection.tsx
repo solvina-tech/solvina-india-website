@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { MonitorPlay, ChevronLeft, ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { assetPath } from "@/lib/assets";
 
 const tools = [
   // {
@@ -104,7 +105,7 @@ function ImageCarousel({
                 </div>
               ) : (
                 <img
-                  src={src}
+                  src={assetPath(src)}
                   alt=""
                   onError={() =>
                     setFailedMap((current) => ({ ...current, [i]: true }))
