@@ -1,7 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Activity, Zap, MonitorPlay, Radio } from "lucide-react";
+import { MonitorPlay, ChevronLeft, ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 const tools = [
@@ -28,7 +29,12 @@ const tools = [
       "Browser-based, physics-driven operator training simulator with scenario and fault-injection libraries.",
     icon: MonitorPlay,
     href: "/products/operator-training-simulator",
-    frame: "schematic", // SCADA/schematic mockup
+    images: [
+      "/images/products/ots/ots-1.png",
+      "/images/products/ots/ots-2.png",
+      "/images/products/ots/ots-3.png",
+      "/images/products/ots/ots-4.png",
+    ],
   },
   // {
   //   id: "solvit",
@@ -40,64 +46,122 @@ const tools = [
   // },
 ];
 
-/** Minimal, generic device-frame mockup — abstract, not a real screenshot. */
-function DeviceMock({ frame, href }: { frame: string, href: string }) {
+/** Bounded image carousel — no wraparound, rounded arrow controls, dot indicators. */
+function ImageCarousel({
+  images,
+  href,
+}: {
+  images: string[];
+  href: string;
+}) {
   const router = useRouter();
+  const [index, setIndex] = useState(0);
+  const [failedMap, setFailedMap] = useState<Record<number, boolean>>({});
+
+  const canGoPrev = index > 0;
+  const canGoNext = index < images.length - 1;
+
+  function goPrev(event: React.MouseEvent) {
+    event.stopPropagation();
+    if (canGoPrev) setIndex((current) => current - 1);
+  }
+
+  function goNext(event: React.MouseEvent) {
+    event.stopPropagation();
+    if (canGoNext) setIndex((current) => current + 1);
+  }
 
   return (
-    <div className="relative aspect-[16/10] cursor-pointer w-full overflow-hidden rounded-lg border border-white/10 bg-[#12131A]" onClick={() => router.push(href)}>
+    <div
+      className="group/carousel relative aspect-[16/10] w-full cursor-pointer overflow-hidden rounded-lg border border-white/10 bg-[#12131A]"
+      onClick={() => router.push(href)}
+    >
       {/* faux browser chrome */}
-      <div className="flex items-center gap-1.5 border-b border-white/[0.06] px-3 py-2">
+      <div className="relative z-10 flex items-center gap-1.5 border-b border-white/[0.06] bg-[#12131A] px-3 py-2">
         <span className="h-1.5 w-1.5 rounded-full bg-white/15" />
         <span className="h-1.5 w-1.5 rounded-full bg-white/15" />
         <span className="h-1.5 w-1.5 rounded-full bg-white/15" />
       </div>
 
-      <div className="grid h-[calc(100%-28px)] grid-cols-3 gap-1.5 p-2.5">
-        {frame === "dashboard" && (
-          <>
-            <div className="col-span-4 grid grid-cols-3 gap-1.5">
-              {[0, 1, 2].map((i) => (
-                <div key={i} className="h-8 rounded bg-white/[0.05]" />
-              ))}
+      {/* slides */}
+      <div className="relative h-[calc(100%-28px)] w-full overflow-hidden">
+        <div
+          className="flex h-full transition-transform duration-400 ease-out"
+          style={{
+            width: `${images.length * 100}%`,
+            transform: `translateX(-${index * (100 / images.length)}%)`,
+          }}
+        >
+          {images.map((src, i) => (
+            <div
+              key={src + i}
+              className="relative h-full shrink-0"
+              style={{ width: `${100 / images.length}%` }}
+            >
+              {failedMap[i] ? (
+                <div className="flex h-full w-full items-center justify-center bg-white/[0.03]">
+                  <span className="text-[11px] text-white/25">Image placeholder</span>
+                </div>
+              ) : (
+                <img
+                  src={src}
+                  alt=""
+                  onError={() =>
+                    setFailedMap((current) => ({ ...current, [i]: true }))
+                  }
+                  className="h-full w-full object-fill"
+                />
+              )}
             </div>
-            <div className="col-span-4 mt-1 rounded bg-white/[0.04]" />
-          </>
-        )}
-        {frame === "chart" && (
-          <div className="col-span-4 flex h-full items-end gap-1 rounded bg-white/[0.03] p-3">
-            {[40, 65, 30, 80, 55, 70, 45, 60].map((h, i) => (
-              <div
+          ))}
+        </div>
+      </div>
+
+      {/* vignette so the mock never competes with real content */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0A0B0F]/40 via-transparent to-transparent" />
+
+      {/* prev / next arrows */}
+      {images.length > 1 && (
+        <>
+          <button
+            type="button"
+            onClick={goPrev}
+            disabled={!canGoPrev}
+            aria-label="Previous image"
+            className="absolute top-1/2 left-2.5 z-20 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/50 text-white/80 opacity-0 backdrop-blur-sm transition-all duration-200 group-hover/carousel:opacity-100 hover:bg-black/70 disabled:pointer-events-none disabled:opacity-0"
+          >
+            <ChevronLeft size={15} />
+          </button>
+
+          <button
+            type="button"
+            onClick={goNext}
+            disabled={!canGoNext}
+            aria-label="Next image"
+            className="absolute top-1/2 right-2.5 z-20 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/50 text-white/80 opacity-0 backdrop-blur-sm transition-all duration-200 group-hover/carousel:opacity-100 hover:bg-black/70 disabled:pointer-events-none disabled:opacity-0"
+          >
+            <ChevronRight size={15} />
+          </button>
+
+          {/* dot indicators */}
+          <div className="absolute bottom-2.5 left-1/2 z-20 flex -translate-x-1/2 items-center gap-1.5">
+            {images.map((_, i) => (
+              <button
                 key={i}
-                style={{ height: `${h}%` }}
-                className="flex-1 rounded-sm bg-[#B41448]/30"
+                type="button"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  setIndex(i);
+                }}
+                aria-label={`Go to image ${i + 1}`}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  i === index ? "w-4 bg-white/85" : "w-1.5 bg-white/30 hover:bg-white/50"
+                }`}
               />
             ))}
           </div>
-        )}
-        {frame === "schematic" && (
-          <div className="col-span-4 h-full rounded bg-white/[0.03] p-3">
-            <div className="flex h-full items-center justify-around">
-              {[0, 1, 2].map((i) => (
-                <div
-                  key={i}
-                  className="h-8 w-8 rounded-full border border-[#E3A526]/40"
-                />
-              ))}
-            </div>
-          </div>
-        )}
-        {frame === "grid" && (
-          <>
-            {Array.from({ length: 8 }).map((_, i) => (
-              <div key={i} className="rounded bg-white/[0.05]" />
-            ))}
-          </>
-        )}
-      </div>
-
-      {/* subtle vignette so the mock never competes with real content */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0A0B0F]/40 via-transparent to-transparent" />
+        </>
+      )}
     </div>
   );
 }
@@ -118,7 +182,7 @@ function ToolCard({
       transition={{ duration: 0.45, delay: index * 0.07, ease: "easeOut" }}
       className="group rounded-2xl border border-white/[0.08] bg-white/[0.02] p-4 transition-colors duration-300 hover:border-white/[0.16]"
     >
-      <DeviceMock frame={tool.frame} href={tool.href} />
+      <ImageCarousel images={tool.images} href={tool.href} />
       <div className="mt-4 flex items-start gap-3" onClick={() => window.open(tool.href)}>
         <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/[0.06]">
           <Icon strokeWidth={1.5} className="h-4 w-4 text-white/60" />
