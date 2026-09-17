@@ -19,7 +19,7 @@ const caseStudyDefinitions: CaseStudy[] = [
     category: "Integrated Steam & Power",
     description:
       "A comprehensive study of the integrated steam and power systems at Reliance Industries' Hazira and Dahej sites, covering islanded and grid-connected operation, network studies, transient stability, PSS validation, plant testing and safeguarding island operation capability.",
-    image: "/images/case-studies/reliance-integrated-steam-power.jpg",
+    image: "/images/projects/reliance-integrated-steam-power.png",
     href: "/projects/case-studies/reliance-integrated-steam-power/",
     expertise: [
       "Integrated Steam & Power Studies",
@@ -37,7 +37,7 @@ const caseStudyDefinitions: CaseStudy[] = [
     category: "Dynamic Studies & Control",
     description:
       "Dynamic simulation and control-system development for Borealis' cracker steam network, investigating the impact of an LD5 plant trip and developing control strategies to maintain acceptable steam pressures during transients.",
-    image: "/images/case-studies/borealis-dynamic-studies.jpg",
+    image: "/images/projects/borealis-dynamic-studies.png",
     href: "/projects/case-studies/borealis-dynamic-studies/",
     expertise: [
       "Dynamic Simulation",
@@ -54,7 +54,7 @@ const caseStudyDefinitions: CaseStudy[] = [
     category: "Control Design & Tuning",
     description:
       "Dynamic modelling, control design and tuning for Iggesund Paperboard's complex steam network ahead of the installation of a new recovery boiler and turbine, including transient simulations, operator training and island-operation testing.",
-    image: "/images/case-studies/iggesund-dynamic-control-design.jpg",
+    image: "/images/projects/iggesund-dynamic-control-design.png",
     href: "/projects/case-studies/iggesund-dynamic-control-design/",
     expertise: [
       "Steam Net Control",
@@ -71,7 +71,7 @@ const caseStudyDefinitions: CaseStudy[] = [
     category: "Power System Reliability",
     description:
       "A holistic dynamic study of Tata Steel Kalinganagar's tightly coupled power, steam and gas systems, addressing disturbance and island operation, transient stability, short-circuit conditions, control strategy and design gaps affecting plant reliability and stability.",
-    image: "/images/case-studies/tata-steel-kalinganagar.jpg",
+    image: "/images/projects/tata-steel-kalinganagar.png",
     href: "/projects/case-studies/tata-steel-kalinganagar-dynamic-study/",
     expertise: [
       "Power System Studies",
@@ -89,7 +89,7 @@ const caseStudyDefinitions: CaseStudy[] = [
     category: "Power Plant Testing & Tuning",
     description:
       "Global power plant testing and tuning experience covering more than 350 generators, with tests for voltage and frequency control, island-operation stability, PSS verification, load rejection, active power and reactive power control using Solvina's SolvSim Power Station Hardware-in-the-Loop method.",
-    image: "/images/case-studies/power-plant-tests.jpg",
+    image: "/images/projects/power-plant-tests.png",
     href: "/projects/case-studies/power-plant-tests-350-generators/",
     expertise: [
       "Power Plant Testing",

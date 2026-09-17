@@ -350,16 +350,10 @@ function CaseStudiesSection() {
                 <img
                   src={caseStudy.image}
                   alt=""
-                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
+                  className="h-full w-full object-fill transition-transform duration-700 ease-out group-hover:scale-[1.035]"
                 />
 
                 <div className="absolute inset-0 bg-gradient-to-t from-[#101310] via-[#101310]/25 to-transparent" />
-
-                <div className="absolute top-5 left-5 flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-black/20 backdrop-blur-sm">
-                  <span className="font-mono text-[9px] tracking-[0.12em] text-white/70">
-                    {caseStudy.number}
-                  </span>
-                </div>
 
                 <div className="absolute bottom-5 left-5">
                   <span className="rounded-full border border-[#E3A526]/35 bg-black/30 px-3 py-1.5 text-[9px] tracking-[0.15em] text-[#E3A526] uppercase backdrop-blur-sm">

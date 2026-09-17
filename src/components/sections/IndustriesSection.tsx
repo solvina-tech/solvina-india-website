@@ -114,13 +114,6 @@ export default function IndustriesSection() {
                   {/* Bottom gradient */}
                   <div className="absolute inset-x-0 bottom-0 h-[75%] bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
 
-                  {/* Number */}
-                  <div className="absolute top-5 left-5 z-10 sm:top-6 sm:left-6">
-                    <span className="text-[10px] font-semibold tracking-[0.18em] text-white/70 tabular-nums">
-                      {industry.number}
-                    </span>
-                  </div>
-
                   {/* Arrow */}
                   <div className="absolute top-5 right-5 z-10 flex h-9 w-9 items-center justify-center border border-white/25 bg-black/10 text-white/70 backdrop-blur-sm transition-all duration-300 group-hover:border-[#E3A526] group-hover:bg-[#E3A526] group-hover:text-black sm:top-6 sm:right-6">
                     <ArrowUpRight

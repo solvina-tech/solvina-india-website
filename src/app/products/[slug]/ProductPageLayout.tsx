@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 
 import type { Product } from "@/data/product_details";
+import EnquiryCTA from "@/components/forms/EnquiryCTA";
 
 interface ProductPageLayoutProps {
   product: Product;
@@ -40,9 +41,7 @@ const stagger = {
   },
 };
 
-export default function ProductPageLayout({
-  product,
-}: ProductPageLayoutProps) {
+export default function ProductPageLayout({ product }: ProductPageLayoutProps) {
   return (
     <main className="relative overflow-hidden bg-[#f6f7f5] text-[#102033] dark:bg-[#09131f] dark:text-white">
       {/* =========================================================
@@ -53,7 +52,7 @@ export default function ProductPageLayout({
         <div className="absolute inset-0 -z-10">
           <div className="absolute inset-0 bg-[#f6f7f5] dark:bg-[#09131f]" />
 
-          <div className="absolute right-[-10%] top-[-15%] h-[520px] w-[520px] rounded-full bg-[#e7ece9] blur-3xl dark:bg-[#112638]" />
+          <div className="absolute top-[-15%] right-[-10%] h-[520px] w-[520px] rounded-full bg-[#e7ece9] blur-3xl dark:bg-[#112638]" />
 
           <div className="absolute bottom-[-20%] left-[-10%] h-[450px] w-[450px] rounded-full bg-[#edf0ee] blur-3xl dark:bg-[#0e2434]" />
 
@@ -103,7 +102,7 @@ export default function ProductPageLayout({
             {/* Headline */}
             <motion.h1
               variants={fadeUp}
-              className="max-w-4xl text-5xl font-semibold leading-[1.04] tracking-[-0.035em] sm:text-6xl lg:text-7xl"
+              className="max-w-4xl text-5xl leading-[1.04] font-semibold tracking-[-0.035em] sm:text-6xl lg:text-7xl"
             >
               {product.hero.headline}
             </motion.h1>
@@ -111,7 +110,7 @@ export default function ProductPageLayout({
             {/* Supporting copy */}
             <motion.p
               variants={fadeUp}
-              className="mt-8 max-w-2xl text-lg leading-8 text-[#53616d] dark:text-[#aab6c0] sm:text-xl"
+              className="mt-8 max-w-2xl text-lg leading-8 text-[#53616d] sm:text-xl dark:text-[#aab6c0]"
             >
               {product.hero.supportingCopy}
             </motion.p>
@@ -147,17 +146,15 @@ export default function ProductPageLayout({
               className="mt-16 flex flex-wrap gap-x-8 gap-y-4 border-t border-[#dfe4e1] pt-6 dark:border-white/10"
             >
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#7a8791]">
+                <p className="text-xs font-semibold tracking-[0.16em] text-[#7a8791] uppercase">
                   Product
                 </p>
 
-                <p className="mt-1 text-sm font-medium">
-                  {product.shortName}
-                </p>
+                <p className="mt-1 text-sm font-medium">{product.shortName}</p>
               </div>
 
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#7a8791]">
+                <p className="text-xs font-semibold tracking-[0.16em] text-[#7a8791] uppercase">
                   Scope
                 </p>
 
@@ -179,7 +176,6 @@ export default function ProductPageLayout({
       >
         <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
           <SectionHeading
-            number="01"
             eyebrow="THE ENGINEERING PROBLEM"
             title={product.engineeringProblem.title}
             lead={product.engineeringProblem.lead}
@@ -187,20 +183,18 @@ export default function ProductPageLayout({
 
           {product.engineeringProblem.paragraphs && (
             <div className="mt-12 grid gap-8 lg:grid-cols-2 lg:gap-16">
-              {product.engineeringProblem.paragraphs.map(
-                (paragraph, index) => (
-                  <motion.p
-                    key={index}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.2 }}
-                    variants={fadeUp}
-                    className="text-base leading-8 text-[#5b6873] dark:text-[#aebac4]"
-                  >
-                    {paragraph}
-                  </motion.p>
-                )
-              )}
+              {product.engineeringProblem.paragraphs.map((paragraph, index) => (
+                <motion.p
+                  key={index}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.2 }}
+                  variants={fadeUp}
+                  className="text-base leading-8 text-[#5b6873] dark:text-[#aebac4]"
+                >
+                  {paragraph}
+                </motion.p>
+              ))}
             </div>
           )}
         </div>
@@ -210,20 +204,18 @@ export default function ProductPageLayout({
           ENGINEERING PURPOSE
       ========================================================= */}
       <section className="relative overflow-hidden bg-[#102033] py-24 text-white dark:bg-[#07111c]">
-        <div className="absolute right-0 top-0 h-full w-1/2 opacity-20">
+        <div className="absolute top-0 right-0 h-full opacity-20">
           <div
             className="h-full w-full"
             style={{
               backgroundImage:
                 "linear-gradient(rgba(255,255,255,.12) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.12) 1px, transparent 1px)",
-              backgroundSize: "48px 48px",
             }}
           />
         </div>
 
         <div className="relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
           <SectionHeading
-            number="02"
             eyebrow="ENGINEERING PURPOSE"
             title={product.engineeringPurpose.title}
             lead={product.engineeringPurpose.lead}
@@ -232,22 +224,20 @@ export default function ProductPageLayout({
 
           {product.engineeringPurpose.paragraphs && (
             <div className="mt-14 grid gap-8 lg:grid-cols-2 lg:gap-16">
-              {product.engineeringPurpose.paragraphs.map(
-                (paragraph, index) => (
-                  <motion.div
-                    key={index}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.2 }}
-                    variants={fadeUp}
-                    className="border-l border-white/20 pl-6"
-                  >
-                    <p className="text-base leading-8 text-[#b9c5ce]">
-                      {paragraph}
-                    </p>
-                  </motion.div>
-                )
-              )}
+              {product.engineeringPurpose.paragraphs.map((paragraph, index) => (
+                <motion.div
+                  key={index}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.2 }}
+                  variants={fadeUp}
+                  className="border-l border-white/20 pl-6"
+                >
+                  <p className="text-base leading-8 text-[#b9c5ce]">
+                    {paragraph}
+                  </p>
+                </motion.div>
+              ))}
             </div>
           )}
 
@@ -274,20 +264,7 @@ export default function ProductPageLayout({
                   variants={fadeUp}
                   className="group bg-[#14283a] p-7 transition-colors duration-300 hover:bg-[#193147] dark:bg-[#0d1e2d] dark:hover:bg-[#12283a]"
                 >
-                  <div className="mb-5 flex items-start justify-between gap-4">
-                    <span className="text-sm font-semibold text-[#e56b2f]">
-                      0{index + 1}
-                    </span>
-
-                    <ArrowRight
-                      size={18}
-                      className="text-white/30 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white"
-                    />
-                  </div>
-
-                  <h4 className="text-lg font-semibold">
-                    {capability.title}
-                  </h4>
+                  <h4 className="text-lg font-semibold">{capability.title}</h4>
 
                   <p className="mt-3 text-sm leading-7 text-[#aebbc5]">
                     {capability.description}
@@ -305,7 +282,6 @@ export default function ProductPageLayout({
       <section className="bg-[#f6f7f5] py-24 dark:bg-[#09131f]">
         <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
           <SectionHeading
-            number="03"
             eyebrow="TYPICAL WORKFLOW"
             title={product.workflow.title}
             lead="A structured engineering workflow keeps simulation activity connected to the question being investigated."
@@ -322,13 +298,13 @@ export default function ProductPageLayout({
               <motion.div
                 key={item}
                 variants={fadeUp}
-                className="group grid border-t border-[#d7ddda] py-7 dark:border-white/10 md:grid-cols-[100px_1fr_auto] md:items-center md:gap-8"
+                className="group grid border-t border-[#d7ddda] py-7 md:grid-cols-[100px_1fr_auto] md:items-center md:gap-8 dark:border-white/10"
               >
                 <span className="text-sm font-semibold tracking-[0.15em] text-[#e56b2f]">
                   0{index + 1}
                 </span>
 
-                <h3 className="mt-3 text-xl font-medium tracking-tight text-[#203343] dark:text-[#dce4e9] md:mt-0 md:text-2xl">
+                <h3 className="mt-3 text-xl font-medium tracking-tight text-[#203343] md:mt-0 md:text-2xl dark:text-[#dce4e9]">
                   {item}
                 </h3>
 
@@ -349,7 +325,6 @@ export default function ProductPageLayout({
         <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
           <div className="grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-24">
             <SectionHeading
-              number="04"
               eyebrow="TECHNICAL SCOPE"
               title={product.technicalScope.title}
               lead="The scope should make clear what the tool addresses and where engineering validation remains necessary."
@@ -383,7 +358,7 @@ export default function ProductPageLayout({
           {/* Advantage */}
           <div className="mt-24">
             <div className="mb-10 flex items-center gap-5">
-              <h3 className="whitespace-nowrap text-2xl font-semibold tracking-tight">
+              <h3 className="text-2xl font-semibold tracking-tight whitespace-nowrap">
                 The {product.shortName} Advantage
               </h3>
 
@@ -403,11 +378,6 @@ export default function ProductPageLayout({
                   variants={fadeUp}
                   className="rounded-2xl border border-[#dfe4e1] bg-[#f8f9f8] p-6 dark:border-white/10 dark:bg-[#101f2d]"
                 >
-                  <Check
-                    size={19}
-                    className="mb-5 text-[#e56b2f]"
-                  />
-
                   <p className="text-sm leading-6 text-[#53616d] dark:text-[#b2bec7]">
                     {item}
                   </p>
@@ -428,7 +398,7 @@ export default function ProductPageLayout({
               PRODUCT DEVELOPMENT
             </span>
 
-            <h2 className="mt-4 text-4xl font-semibold tracking-[-0.025em] text-[#102033] dark:text-white sm:text-5xl">
+            <h2 className="mt-4 text-4xl font-semibold tracking-[-0.025em] text-[#102033] sm:text-5xl dark:text-white">
               Current scope and roadmap
             </h2>
           </div>
@@ -460,10 +430,7 @@ export default function ProductPageLayout({
 
                 <div className="mt-7 space-y-4">
                   {phase.items.map((item) => (
-                    <div
-                      key={item}
-                      className="flex items-start gap-3"
-                    >
+                    <div key={item} className="flex items-start gap-3">
                       <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#e56b2f]" />
 
                       <p className="text-sm leading-6 text-[#53616d] dark:text-[#aebac4]">
@@ -481,11 +448,10 @@ export default function ProductPageLayout({
       {/* =========================================================
           EVIDENCE & GOVERNANCE
       ========================================================= */}
-      <section className="bg-white py-24 dark:bg-[#0c1824]">
+      {/* <section className="bg-white py-24 dark:bg-[#0c1824]">
         <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
           <div className="grid gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
             <SectionHeading
-              number="05"
               eyebrow="EVIDENCE & GOVERNANCE"
               title={product.governance.title}
               lead={product.governance.lead}
@@ -517,17 +483,11 @@ export default function ProductPageLayout({
                 ))}
               </motion.div>
 
-              {/* Validation panel */}
               <div className="mt-10 rounded-2xl border border-[#e1e5e3] bg-[#f8f9f8] p-7 dark:border-white/10 dark:bg-[#101f2d]">
                 <div className="mb-6 flex items-center gap-3">
-                  <CircleAlert
-                    size={19}
-                    className="text-[#e56b2f]"
-                  />
+                  <CircleAlert size={19} className="text-[#e56b2f]" />
 
-                  <h3 className="font-semibold">
-                    Current validation status
-                  </h3>
+                  <h3 className="font-semibold">Current validation status</h3>
                 </div>
 
                 <div className="space-y-5">
@@ -560,7 +520,7 @@ export default function ProductPageLayout({
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* =========================================================
           ENGINEERING QUESTION CTA
@@ -592,10 +552,7 @@ export default function ProductPageLayout({
               className="mx-auto mb-7 flex justify-center"
             >
               <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/15 bg-white/5">
-                <FlaskConical
-                  size={24}
-                  className="text-[#e56b2f]"
-                />
+                <FlaskConical size={24} className="text-[#e56b2f]" />
               </div>
             </motion.div>
 
@@ -620,33 +577,26 @@ export default function ProductPageLayout({
               {product.engineeringQuestionCta.lead}
             </motion.p>
 
-            {product.engineeringQuestionCta.paragraphs?.map(
-              (paragraph) => (
-                <motion.p
-                  key={paragraph}
-                  variants={fadeUp}
-                  className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-[#8f9da8]"
-                >
-                  {paragraph}
-                </motion.p>
-              )
-            )}
+            {product.engineeringQuestionCta.paragraphs?.map((paragraph) => (
+              <motion.p
+                key={paragraph}
+                variants={fadeUp}
+                className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-[#8f9da8]"
+              >
+                {paragraph}
+              </motion.p>
+            ))}
 
             <motion.div
               variants={fadeUp}
               className="mt-10 flex flex-col justify-center gap-4 sm:flex-row"
             >
-              <a
-                href="/contact"
-                className="group inline-flex items-center justify-center gap-3 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-[#102033] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#eef1f3]"
-              >
-                {product.hero.primaryCta}
 
-                <ArrowRight
-                  size={17}
-                  className="transition-transform duration-300 group-hover:translate-x-1"
-                />
-              </a>
+              <EnquiryCTA
+                label="Book a Demo"
+                type="Book a Demo"
+                className="group inline-flex items-center justify-center gap-3 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-[#102033] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#eef1f3]"
+              />  
 
               <a
                 href="/contact"
@@ -669,7 +619,6 @@ export default function ProductPageLayout({
 ========================================================= */
 
 interface SectionHeadingProps {
-  number: string;
   eyebrow: string;
   title: string;
   lead?: string;
@@ -677,7 +626,6 @@ interface SectionHeadingProps {
 }
 
 function SectionHeading({
-  number,
   eyebrow,
   title,
   lead,
@@ -691,27 +639,12 @@ function SectionHeading({
       variants={stagger}
       className="max-w-4xl"
     >
-      <motion.div
-        variants={fadeUp}
-        className="mb-5 flex items-center gap-4"
-      >
-        <span
-          className={`text-xs font-bold tracking-[0.18em] ${
-            dark ? "text-[#e56b2f]" : "text-[#e56b2f]"
-          }`}
-        >
-          {number}
-        </span>
-
-        <span
-          className={`h-px w-8 ${
-            dark ? "bg-white/20" : "bg-[#cfd6d2]"
-          }`}
-        />
+      <motion.div variants={fadeUp} className="mb-5 flex items-center gap-4">
+        <span className="h-px w-8 bg-[#E3A526]" />
 
         <span
           className={`text-xs font-semibold tracking-[0.2em] ${
-            dark ? "text-[#aebbc4]" : "text-[#6c7983]"
+            dark ? "text-[#E3A526]" : "text-[#B41448]"
           }`}
         >
           {eyebrow}
@@ -731,9 +664,7 @@ function SectionHeading({
         <motion.p
           variants={fadeUp}
           className={`mt-6 max-w-3xl text-lg leading-8 ${
-            dark
-              ? "text-[#aebbc4]"
-              : "text-[#5b6873] dark:text-[#aebac4]"
+            dark ? "text-[#aebbc4]" : "text-[#5b6873] dark:text-[#aebac4]"
           }`}
         >
           {lead}
@@ -752,13 +683,10 @@ interface ValidationRowProps {
   value: string;
 }
 
-function ValidationRow({
-  label,
-  value,
-}: ValidationRowProps) {
+function ValidationRow({ label, value }: ValidationRowProps) {
   return (
-    <div className="grid gap-1 border-b border-[#e1e5e3] pb-4 last:border-0 last:pb-0 dark:border-white/10 sm:grid-cols-[190px_1fr] sm:gap-5">
-      <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#7b8790]">
+    <div className="grid gap-1 border-b border-[#e1e5e3] pb-4 last:border-0 last:pb-0 sm:grid-cols-[190px_1fr] sm:gap-5 dark:border-white/10">
+      <p className="text-xs font-semibold tracking-[0.12em] text-[#7b8790] uppercase">
         {label}
       </p>
 

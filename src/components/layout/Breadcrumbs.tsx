@@ -29,7 +29,7 @@ export default function Breadcrumbs() {
   return (
     <nav
       aria-label="Breadcrumb"
-      className="mt-[76px] border-b border-black/10 bg-white text-sm text-black/55"
+      className="sticky top-[76px] mt-[76px] z-10 border-b border-black/10 bg-white text-sm text-black/55"
     >
       <ol className="mx-auto flex max-w-[1440px] items-center gap-2 overflow-hidden px-6 py-4 sm:px-8 lg:px-12 xl:px-16">
         <li className="shrink-0">

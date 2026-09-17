@@ -24,7 +24,6 @@ type Props = {
   customerProjects: Project[];
 };
 
-
 /* ========================================================================== */
 /* FILTER OPTIONS                                                             */
 /* ========================================================================== */
@@ -36,7 +35,6 @@ function uniqueSorted(values: string[]) {
     .filter(Boolean)
     .sort((a, b) => a.localeCompare(b));
 }
-
 
 /* ========================================================================== */
 /* CUSTOMER LOGO                                                              */
@@ -55,7 +53,7 @@ function CustomerLogo({
     return (
       <div
         className={`flex shrink-0 items-center justify-center border border-black/[0.07] bg-white font-bold text-[#B41448] dark:border-white/[0.08] dark:bg-[#111111] dark:text-[#E3A526] ${
-          small ? "h-9 w-9 text-[9px]" : "h-20 w-20 text-sm"
+          small ? "h-20 w-20 text-[9px]" : "h-50 w-50 text-sm"
         }`}
       >
         {customer.name.slice(0, 2).toUpperCase()}
@@ -66,7 +64,7 @@ function CustomerLogo({
   return (
     <div
       className={`flex shrink-0 items-center justify-center border border-black/[0.07] bg-white dark:border-white/[0.08] ${
-        small ? "h-9 w-9 p-1.5" : "h-20 w-20 p-3"
+        small ? "h-20 w-20 p-1.5" : "h-50 w-50 p-3"
       }`}
     >
       <img
@@ -78,7 +76,6 @@ function CustomerLogo({
     </div>
   );
 }
-
 
 /* ========================================================================== */
 /* FILTER SELECT                                                              */
@@ -105,7 +102,7 @@ function FilterSelect({
         <select
           value={value}
           onChange={(event) => onChange(event.target.value)}
-          className="w-full appearance-none border border-black/[0.08] bg-white px-4 py-3 pr-10 text-xs font-medium text-[#202020] outline-none transition-all duration-200 hover:border-[#E3A526]/50 focus:border-[#B41448] dark:border-white/[0.09] dark:bg-[#171717] dark:text-white dark:focus:border-[#E3A526]"
+          className="w-full appearance-none border border-black/[0.08] bg-white px-4 py-3 pr-10 text-xs font-medium text-[#202020] transition-all duration-200 outline-none hover:border-[#E3A526]/50 focus:border-[#B41448] dark:border-white/[0.09] dark:bg-[#171717] dark:text-white dark:focus:border-[#E3A526]"
         >
           <option value={ALL_VALUE}>All {label}</option>
 
@@ -125,18 +122,11 @@ function FilterSelect({
   );
 }
 
-
 /* ========================================================================== */
 /* PROJECT CARD                                                               */
 /* ========================================================================== */
 
-function ProjectCard({
-  project,
-  index,
-}: {
-  project: Project;
-  index: number;
-}) {
+function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
     <motion.article
       initial={{
@@ -161,7 +151,6 @@ function ProjectCard({
       <div className="h-[2px] w-full bg-gradient-to-r from-[#B41448] via-[#E3A526] to-transparent opacity-70" />
 
       <div className="p-6 sm:p-7 lg:p-8">
-
         {/* Header */}
         <div className="mb-7 flex items-start justify-between gap-4">
           <div className="flex items-center gap-2">
@@ -180,16 +169,13 @@ function ProjectCard({
           </div>
         </div>
 
-
         {/* Title */}
         <h2 className="max-w-2xl text-xl leading-[1.2] font-semibold tracking-[-0.025em] text-[#202020] transition-colors duration-300 group-hover:text-[#B41448] sm:text-2xl dark:text-white dark:group-hover:text-[#E3A526]">
           {project.publicTitle}
         </h2>
 
-
         {/* Customer + Location */}
         <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-xs text-black/45 dark:text-white/45">
-
           <span className="font-semibold text-black/65 dark:text-white/65">
             {project.publicCustomer}
           </span>
@@ -200,30 +186,25 @@ function ProjectCard({
               {project.location}
             </span>
           )}
-
         </div>
-
 
         {/* Description */}
         <p className="mt-6 text-sm leading-7 text-black/55 dark:text-white/55">
           {project.description}
         </p>
 
-
         {/* Metadata */}
         <div className="mt-7 grid gap-4 border-t border-black/[0.07] pt-6 sm:grid-cols-2 dark:border-white/[0.08]">
-
           <div>
             <div className="mb-1.5 flex items-center gap-2 text-[9px] font-bold tracking-[0.16em] text-black/35 uppercase dark:text-white/35">
               <Settings2 size={12} />
               Project Type
             </div>
 
-            <p className="text-xs font-medium leading-5 text-black/70 dark:text-white/70">
+            <p className="text-xs leading-5 font-medium text-black/70 dark:text-white/70">
               {project.projectType}
             </p>
           </div>
-
 
           <div>
             <div className="mb-1.5 flex items-center gap-2 text-[9px] font-bold tracking-[0.16em] text-black/35 uppercase dark:text-white/35">
@@ -231,24 +212,20 @@ function ProjectCard({
               Service
             </div>
 
-            <p className="text-xs font-medium leading-5 text-black/70 dark:text-white/70">
+            <p className="text-xs leading-5 font-medium text-black/70 dark:text-white/70">
               {project.serviceFamily}
             </p>
           </div>
-
         </div>
-
 
         {/* Expertise */}
         {project.expertise.length > 0 && (
           <div className="mt-6">
-
             <div className="mb-3 text-[9px] font-bold tracking-[0.16em] text-black/35 uppercase dark:text-white/35">
               Expertise
             </div>
 
             <div className="flex flex-wrap gap-2">
-
               {project.expertise.map((item) => (
                 <span
                   key={item}
@@ -257,12 +234,9 @@ function ProjectCard({
                   {item}
                 </span>
               ))}
-
             </div>
-
           </div>
         )}
-
 
         {/* Ongoing */}
         {project.ongoing && (
@@ -271,9 +245,7 @@ function ProjectCard({
             Ongoing
           </div>
         )}
-
       </div>
-
 
       {/* Hover line */}
       <div className="absolute right-0 bottom-0 left-0 h-px origin-left scale-x-0 bg-[#E3A526] transition-transform duration-500 group-hover:scale-x-100" />
@@ -281,30 +253,21 @@ function ProjectCard({
   );
 }
 
-
 /* ========================================================================== */
 /* OTHER CUSTOMERS                                                            */
 /* ========================================================================== */
 
-function OtherCustomers({
-  currentCustomerId,
-}: {
-  currentCustomerId: string;
-}) {
+function OtherCustomers({ currentCustomerId }: { currentCustomerId: string }) {
   const otherCustomers = customers.filter(
     (customer) => customer.id !== currentCustomerId,
   );
 
   return (
     <section className="border-t border-black/[0.07] bg-white dark:border-white/[0.08] dark:bg-[#111111]">
-
       <div className="mx-auto w-full px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24 xl:px-16 2xl:px-20">
-
         <div className="mb-10">
-
           <div className="mb-4 flex items-center gap-3">
             <span className="h-px w-8 bg-[#E3A526]" />
-
             <span className="text-[10px] font-bold tracking-[0.2em] text-[#B41448] uppercase dark:text-[#E3A526]">
               Explore Customers
             </span>
@@ -313,52 +276,35 @@ function OtherCustomers({
           <h2 className="max-w-2xl text-2xl font-semibold tracking-[-0.03em] text-[#202020] sm:text-3xl dark:text-white">
             Explore our work with other
             <span className="text-black/35 dark:text-white/35">
-              {" "}customers.
+              {" "}
+              customers.
             </span>
           </h2>
-
         </div>
 
-
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
           {otherCustomers.map((customer) => (
             <Link
               key={customer.id}
               href={`/customer/${customer.id}`}
-              className="group flex min-h-[92px] items-center justify-between gap-4 border border-black/[0.07] bg-[#F7F7F4] px-5 py-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#E3A526]/50 hover:bg-white hover:shadow-[0_10px_30px_rgba(0,0,0,0.05)] dark:border-white/[0.08] dark:bg-[#171717] dark:hover:bg-[#1c1c1c]"
+              className="group relative flex items-center gap-5 overflow-hidden border border-black/[0.07] bg-[#F7F7F4] px-6 py-4 text-center transition-all duration-300 hover:-translate-y-1.5 hover:border-[#E3A526]/50 hover:bg-white hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] dark:border-white/[0.08] dark:bg-[#171717] dark:hover:bg-[#1c1c1c]"
             >
+              <span className="absolute top-[35%] right-4 flex h-8 w-8 items-center justify-center rounded-full border border-black/10 text-black/25 opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:border-[#B41448] group-hover:text-[#B41448] group-hover:opacity-100 dark:border-white/10 dark:text-white/25 dark:group-hover:border-[#E3A526] dark:group-hover:text-[#E3A526]">
+                <ArrowRight size={14} />
+              </span>
 
-              <div className="flex min-w-0 items-center gap-3">
+              <CustomerLogo customer={customer} small={true} />
 
-                <CustomerLogo
-                  customer={customer}
-                  small
-                />
-
-                <span className="truncate text-xs font-semibold text-[#27313D]/70 transition-colors group-hover:text-[#B41448] dark:text-white/65 dark:group-hover:text-[#E3A526]">
-                  {customer.name}
-                </span>
-
-              </div>
-
-
-              <ArrowRight
-                size={14}
-                className="shrink-0 text-black/25 transition-all duration-300 group-hover:translate-x-1 group-hover:text-[#B41448] dark:text-white/25 dark:group-hover:text-[#E3A526]"
-              />
-
+              <span className="text-sm font-semibold text-[#27313D]/80 transition-colors group-hover:text-[#B41448] dark:text-white/75 dark:group-hover:text-[#E3A526]">
+                {customer.name}
+              </span>
             </Link>
           ))}
-
         </div>
-
       </div>
-
     </section>
   );
 }
-
 
 /* ========================================================================== */
 /* PAGE                                                                       */
@@ -368,7 +314,6 @@ export default function CustomerProjectsContent({
   customer,
   customerProjects,
 }: Props) {
-
   /* ------------------------------------------------------------------------ */
   /* FILTER STATE                                                             */
   /* ------------------------------------------------------------------------ */
@@ -378,7 +323,6 @@ export default function CustomerProjectsContent({
   const [industryFilter, setIndustryFilter] = useState(ALL_VALUE);
 
   const [visibleCount, setVisibleCount] = useState(4);
-
 
   /* ------------------------------------------------------------------------ */
   /* FILTER OPTIONS                                                           */
@@ -390,24 +334,17 @@ export default function CustomerProjectsContent({
     ).reverse();
   }, [customerProjects]);
 
-
   const expertiseOptions = useMemo(() => {
     return uniqueSorted(
-      customerProjects.flatMap(
-        (project) => project.expertise,
-      ),
+      customerProjects.flatMap((project) => project.expertise),
     );
   }, [customerProjects]);
-
 
   const industryOptions = useMemo(() => {
     return uniqueSorted(
-      customerProjects.map(
-        (project) => project.industryGroup,
-      ),
+      customerProjects.map((project) => project.industryGroup),
     );
   }, [customerProjects]);
-
 
   /* ------------------------------------------------------------------------ */
   /* FILTERED PROJECTS                                                        */
@@ -415,10 +352,8 @@ export default function CustomerProjectsContent({
 
   const filteredProjects = useMemo(() => {
     return customerProjects.filter((project) => {
-
       const matchesYear =
-        yearFilter === ALL_VALUE ||
-        project.year === yearFilter;
+        yearFilter === ALL_VALUE || project.year === yearFilter;
 
       const matchesExpertise =
         expertiseFilter === ALL_VALUE ||
@@ -428,32 +363,17 @@ export default function CustomerProjectsContent({
         industryFilter === ALL_VALUE ||
         project.industryGroup === industryFilter;
 
-      return (
-        matchesYear &&
-        matchesExpertise &&
-        matchesIndustry
-      );
+      return matchesYear && matchesExpertise && matchesIndustry;
     });
-  }, [
-    customerProjects,
-    yearFilter,
-    expertiseFilter,
-    industryFilter,
-  ]);
-
+  }, [customerProjects, yearFilter, expertiseFilter, industryFilter]);
 
   /* ------------------------------------------------------------------------ */
   /* VISIBLE PROJECTS                                                         */
   /* ------------------------------------------------------------------------ */
 
-  const visibleProjects = filteredProjects.slice(
-    0,
-    visibleCount,
-  );
+  const visibleProjects = filteredProjects.slice(0, visibleCount);
 
-  const hasMoreProjects =
-    visibleCount < filteredProjects.length;
-
+  const hasMoreProjects = visibleCount < filteredProjects.length;
 
   /* ------------------------------------------------------------------------ */
   /* FILTER HANDLERS                                                          */
@@ -464,18 +384,15 @@ export default function CustomerProjectsContent({
     setVisibleCount(4);
   }
 
-
   function handleExpertiseChange(value: string) {
     setExpertiseFilter(value);
     setVisibleCount(4);
   }
 
-
   function handleIndustryChange(value: string) {
     setIndustryFilter(value);
     setVisibleCount(4);
   }
-
 
   function clearFilters() {
     setYearFilter(ALL_VALUE);
@@ -484,188 +401,93 @@ export default function CustomerProjectsContent({
     setVisibleCount(4);
   }
 
-
   const filtersActive =
     yearFilter !== ALL_VALUE ||
     expertiseFilter !== ALL_VALUE ||
     industryFilter !== ALL_VALUE;
 
-
   return (
     <main className="min-h-screen bg-[#F7F7F4] text-[#202020] dark:bg-[#0D0D0D] dark:text-white">
-
-
       {/* ================================================================== */}
       {/* HERO                                                               */}
       {/* ================================================================== */}
 
       <section className="relative overflow-hidden border-b border-black/[0.07] dark:border-white/[0.08]">
 
-        <div className="pointer-events-none absolute inset-0">
-
-          <div className="absolute -top-32 right-[-10%] h-[420px] w-[420px] rounded-full bg-[#E3A526]/[0.07] blur-3xl" />
-
-          <div className="absolute bottom-[-25%] left-[-8%] h-[360px] w-[360px] rounded-full bg-[#B41448]/[0.05] blur-3xl" />
-
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.025)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.025)_1px,transparent_1px)] bg-[size:64px_64px] dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.025)_1px,transparent_1px)]" />
-
-        </div>
-
-
         <div className="relative mx-auto w-full px-5 pt-12 pb-16 sm:px-8 sm:pt-16 sm:pb-20 lg:px-12 lg:pt-20 lg:pb-24 xl:px-16 2xl:px-20">
-
-          {/* Breadcrumb */}
-          <motion.div
-            initial={{
-              opacity: 0,
-              y: 8,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{
-              duration: 0.45,
-            }}
-            className="mb-12"
-          >
-
-            <Link
-              href="/projects/"
-              className="group inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.16em] text-black/40 uppercase transition-colors hover:text-[#B41448] dark:text-white/40 dark:hover:text-[#E3A526]"
-            >
-              <ArrowLeft
-                size={13}
-                className="transition-transform duration-300 group-hover:-translate-x-1"
-              />
-
-              All Projects
-            </Link>
-
-          </motion.div>
-
-
-          <div className="grid items-end gap-10 lg:grid-cols-[1fr_auto]">
-
+          <div className="grid items-start gap-10 lg:grid-cols-[1fr_auto]">
             {/* Heading */}
             <motion.div
-              initial={{
-                opacity: 0,
-                y: 18,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
-              transition={{
-                duration: 0.55,
-                delay: 0.05,
-              }}
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, delay: 0.05 }}
             >
-
               <div className="mb-5 flex items-center gap-3">
                 <span className="h-px w-8 bg-[#E3A526]" />
-
                 <span className="text-[10px] font-bold tracking-[0.2em] text-[#B41448] uppercase dark:text-[#E3A526]">
                   Projects
                 </span>
               </div>
 
-
               <h1 className="max-w-4xl text-4xl leading-[0.98] font-semibold tracking-[-0.045em] text-[#202020] sm:text-5xl lg:text-6xl xl:text-7xl dark:text-white">
                 {customer.name}
               </h1>
 
-
-              <p className="mt-6 max-w-2xl text-sm leading-7 text-black/50 sm:text-base dark:text-white/50">
+              <p className="mt-6 max-w-4xl text-sm leading-7 text-black/50 sm:text-base dark:text-white/50">
                 Engineering assignments delivered by Solvina across power,
                 utilities and energy-intensive industrial environments.
               </p>
-
             </motion.div>
 
-
-            {/* Logo */}
+            {/* Logo — small, in a clean bordered card, right-aligned */}
             <motion.div
-              initial={{
-                opacity: 0,
-                scale: 0.95,
-              }}
-              animate={{
-                opacity: 1,
-                scale: 1,
-              }}
-              transition={{
-                duration: 0.5,
-                delay: 0.15,
-              }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.15 }}
               className="flex justify-start lg:justify-end"
             >
               <CustomerLogo customer={customer} />
             </motion.div>
-
           </div>
 
-
-          {/* Project Count */}
+          {/* Project count — sized to content, not full width */}
           <motion.div
-            initial={{
-              opacity: 0,
-              y: 15,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{
-              duration: 0.5,
-              delay: 0.2,
-            }}
-            className="mt-12 flex items-center justify-between gap-5 border border-black/[0.07] bg-white/70 p-5 backdrop-blur-sm sm:p-6 dark:border-white/[0.08] dark:bg-white/[0.035]"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mt-12 inline-flex w-fit items-center gap-6 border border-black/[0.07] bg-white/70 px-6 py-5 backdrop-blur-sm dark:border-white/[0.08] dark:bg-white/[0.035]"
           >
-
             <div>
               <div className="text-2xl font-semibold tracking-[-0.03em] text-[#202020] dark:text-white">
                 {filteredProjects.length}
               </div>
-
               <div className="mt-1 text-[9px] font-bold tracking-[0.16em] text-black/35 uppercase dark:text-white/35">
-                {filtersActive
-                  ? "Matching Projects"
-                  : "Projects"}
+                {filtersActive ? "Matching Projects" : "Projects"}
               </div>
             </div>
-
 
             {filtersActive && (
               <button
                 type="button"
                 onClick={clearFilters}
-                className="group inline-flex items-center gap-2 text-[10px] font-semibold text-[#B41448] transition-colors hover:text-[#9F103F] dark:text-[#E3A526] dark:hover:text-[#F0B63C]"
+                className="group inline-flex items-center gap-2 border-l border-black/[0.08] pl-6 text-[10px] font-semibold text-[#B41448] transition-colors hover:text-[#9F103F] dark:border-white/[0.08] dark:text-[#E3A526] dark:hover:text-[#F0B63C]"
               >
                 <RotateCcw
                   size={13}
                   className="transition-transform duration-300 group-hover:-rotate-45"
                 />
-
                 Clear filters
               </button>
             )}
-
           </motion.div>
-
         </div>
-
       </section>
-
 
       {/* ================================================================== */}
       {/* PROJECTS                                                           */}
       {/* ================================================================== */}
 
       <section className="mx-auto w-full px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24 xl:px-16 2xl:px-20">
-
-
         {/* ---------------------------------------------------------------- */}
         {/* FILTERS                                                          */}
         {/* ---------------------------------------------------------------- */}
@@ -684,9 +506,7 @@ export default function CustomerProjectsContent({
           }}
           className="mb-10 border border-black/[0.07] bg-white p-5 sm:p-6 lg:p-7 dark:border-white/[0.08] dark:bg-[#151515]"
         >
-
           <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-
             <div>
               <div className="mb-2 text-[9px] font-bold tracking-[0.18em] text-[#B41448] uppercase dark:text-[#E3A526]">
                 Filter Projects
@@ -697,23 +517,18 @@ export default function CustomerProjectsContent({
               </h2>
             </div>
 
-
             <p className="text-xs text-black/35 dark:text-white/35">
               Filter by year, expertise or industry.
             </p>
-
           </div>
 
-
           <div className="grid gap-4 md:grid-cols-3">
-
             <FilterSelect
               label="Year"
               value={yearFilter}
               options={yearOptions}
               onChange={handleYearChange}
             />
-
 
             <FilterSelect
               label="Expertise"
@@ -722,27 +537,21 @@ export default function CustomerProjectsContent({
               onChange={handleExpertiseChange}
             />
 
-
             <FilterSelect
               label="Industry"
               value={industryFilter}
               options={industryOptions}
               onChange={handleIndustryChange}
             />
-
           </div>
-
         </motion.div>
-
 
         {/* ---------------------------------------------------------------- */}
         {/* PROJECT HEADER                                                    */}
         {/* ---------------------------------------------------------------- */}
 
         <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-
           <div>
-
             <div className="mb-3 text-[10px] font-bold tracking-[0.18em] text-[#B41448] uppercase dark:text-[#E3A526]">
               Project Portfolio
             </div>
@@ -750,37 +559,24 @@ export default function CustomerProjectsContent({
             <h2 className="text-2xl font-semibold tracking-[-0.03em] text-[#202020] sm:text-3xl dark:text-white">
               Projects
             </h2>
-
           </div>
-
 
           <p className="text-xs text-black/35 dark:text-white/35">
             Showing {visibleProjects.length} of {filteredProjects.length}
           </p>
-
         </div>
-
 
         {/* ---------------------------------------------------------------- */}
         {/* PROJECT GRID                                                      */}
         {/* ---------------------------------------------------------------- */}
 
         {visibleProjects.length > 0 ? (
-
           <div className="grid gap-5 lg:grid-cols-2">
-
             {visibleProjects.map((project, index) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                index={index}
-              />
+              <ProjectCard key={project.id} project={project} index={index} />
             ))}
-
           </div>
-
         ) : (
-
           /* -------------------------------------------------------------- */
           /* NO FILTER RESULTS                                              */
           /* -------------------------------------------------------------- */
@@ -796,21 +592,17 @@ export default function CustomerProjectsContent({
             }}
             className="border border-black/[0.07] bg-white p-10 text-center sm:p-14 dark:border-white/[0.08] dark:bg-[#151515]"
           >
-
             <div className="mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-[#E3A526]/[0.10] text-[#B41448] dark:text-[#E3A526]">
               <Settings2 size={20} />
             </div>
-
 
             <h3 className="text-xl font-semibold tracking-[-0.025em] text-[#202020] dark:text-white">
               No projects match these filters
             </h3>
 
-
             <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-black/40 dark:text-white/40">
               Try changing the year, expertise or industry selection.
             </p>
-
 
             <button
               type="button"
@@ -820,11 +612,8 @@ export default function CustomerProjectsContent({
               <RotateCcw size={13} />
               Clear filters
             </button>
-
           </motion.div>
-
         )}
-
 
         {/* ---------------------------------------------------------------- */}
         {/* SHOW MORE                                                        */}
@@ -832,50 +621,34 @@ export default function CustomerProjectsContent({
 
         {hasMoreProjects && (
           <div className="mt-10 flex justify-center">
-
             <button
               type="button"
-              onClick={() =>
-                setVisibleCount(
-                  (current) => current + 4,
-                )
-              }
+              onClick={() => setVisibleCount((current) => current + 4)}
               className="group inline-flex items-center gap-3 border border-black/[0.09] bg-white px-7 py-3.5 text-xs font-semibold text-[#202020] transition-all duration-300 hover:border-[#E3A526]/60 hover:bg-[#E3A526]/[0.05] hover:shadow-[0_8px_25px_rgba(0,0,0,0.05)] dark:border-white/[0.1] dark:bg-[#151515] dark:text-white dark:hover:border-[#E3A526]/50"
             >
               Show more
-
               <ArrowDown
                 size={14}
                 className="transition-transform duration-300 group-hover:translate-y-1"
               />
-
             </button>
-
           </div>
         )}
-
       </section>
-
 
       {/* ================================================================== */}
       {/* OTHER CUSTOMERS                                                    */}
       {/* ================================================================== */}
 
-      <OtherCustomers
-        currentCustomerId={customer.id}
-      />
-
+      <OtherCustomers currentCustomerId={customer.id} />
 
       {/* ================================================================== */}
       {/* FOOTER CTA                                                         */}
       {/* ================================================================== */}
 
       <section className="border-t border-black/[0.07] bg-[#F7F7F4] dark:border-white/[0.08] dark:bg-[#0D0D0D]">
-
         <div className="mx-auto flex w-full flex-col items-start justify-between gap-6 px-5 py-10 sm:flex-row sm:items-center sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
-
           <div>
-
             <div className="text-[9px] font-bold tracking-[0.18em] text-black/30 uppercase dark:text-white/30">
               Solvina India
             </div>
@@ -884,31 +657,23 @@ export default function CustomerProjectsContent({
               Engineering experience across complex power and industrial
               systems.
             </p>
-
           </div>
-
 
           <Link
             href="/projects/"
             className="group inline-flex items-center gap-2 text-xs font-semibold text-[#B41448] transition-colors hover:text-[#9F103F] dark:text-[#E3A526] dark:hover:text-[#F0B63C]"
           >
             View all projects
-
             <MoveUpRight
               size={14}
               className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
             />
-
           </Link>
-
         </div>
-
       </section>
-
     </main>
   );
 }
-
 
 /* ========================================================================== */
 /* SHOW MORE ICON                                                             */
