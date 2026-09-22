@@ -132,7 +132,7 @@ export default function HeroSection() {
               className="mt-9 flex flex-col gap-3 sm:flex-row"
             >
               {/* Primary */}
-              <div className="hidden lg:block">
+              <div className="lg:block">
                 <EnquiryCTA
                   label="Discuss Your Engineering Challenge"
                   type="Engineering Challenge"

@@ -22,7 +22,6 @@ const EMAILJS_TEMPLATE_ID =
 
 const MAX_NAME_LENGTH = 80;
 const MAX_EMAIL_LENGTH = 120;
-const MAX_PHONE_LENGTH = 10;
 const MAX_MESSAGE_LENGTH = 1000;
 const MIN_MESSAGE_LENGTH = 10;
 
@@ -132,36 +131,49 @@ export default function EnquiryForm() {
   };
 
   /*
-   * Indian phone number
+   * Phone number input handler
    *
-   * +91 is fixed.
-   *
-   * Only 10 digits are allowed after +91.
+   * Allow international format with + prefix
+   * Prevent improper characters
    */
   const handlePhoneInput = (
     event: React.FormEvent<HTMLInputElement>
   ) => {
     const input = event.currentTarget;
 
-    // Keep only digits
-    const digitsOnly = input.value.replace(/\D/g, "");
+    // Allow +, digits, spaces, hyphens, and parentheses for international format
+    const validChars = input.value.replace(/[^\d\s\-\(\)\+]/g, "");
 
-    if (digitsOnly.length > MAX_PHONE_LENGTH) {
-      input.value = digitsOnly.slice(
-        0,
-        MAX_PHONE_LENGTH
-      );
+    // Ensure + only appears at the beginning
+    let formattedValue = validChars;
+    if (formattedValue.includes('+')) {
+      const plusIndex = formattedValue.indexOf('+');
+      if (plusIndex > 0) {
+        // Remove any + that's not at the beginning
+        formattedValue = formattedValue.substring(0, plusIndex) + formattedValue.substring(plusIndex + 1).replace(/\+/g, '');
+      }
+      // Keep only the first +
+      formattedValue = formattedValue.replace(/\+/g, '');
+      formattedValue = '+' + formattedValue;
+    }
 
-      setErrors((previous) => ({
-        ...previous,
-        contact_number:
-          "Maximum 10 digits allowed.",
-      }));
-
+    // Prevent starting with just + (user must enter something after)
+    if (formattedValue === '+') {
+      input.value = '';
       return;
     }
 
-    input.value = digitsOnly;
+    // Limit to reasonable length (max 20 characters)
+    if (formattedValue.length > 20) {
+      input.value = formattedValue.slice(0, 20);
+      setErrors((previous) => ({
+        ...previous,
+        contact_number: "Phone number too long. Maximum 20 characters allowed.",
+      }));
+      return;
+    }
+
+    input.value = formattedValue;
 
     clearError("contact_number");
   };
@@ -255,10 +267,21 @@ export default function EnquiryForm() {
      */
     if (!phone) {
       newErrors.contact_number =
-        "Please enter your 10-digit mobile number.";
-    } else if (!/^\d{10}$/.test(phone)) {
+        "Please enter your contact number with country code.";
+    } else if (!phone.startsWith('+')) {
       newErrors.contact_number =
-        "Please enter a valid 10-digit mobile number.";
+        "Please enter a valid phone number starting with + (e.g., +91 9876543210).";
+    } else {
+      // Remove formatting characters for validation
+      const cleanPhone = phone.replace(/[\s\-\(\)]/g, '');
+      // Check if it has reasonable length (at least country code + 7 digits, max 20 chars)
+      if (cleanPhone.length < 8 || cleanPhone.length > 20) {
+        newErrors.contact_number =
+          "Please enter a valid phone number with country code (8-20 characters).";
+      } else if (!/^\+\d+$/.test(cleanPhone)) {
+        newErrors.contact_number =
+          "Please enter a valid phone number with only digits after the + sign.";
+      }
     }
 
     /*
@@ -600,30 +623,24 @@ export default function EnquiryForm() {
                   </label>
 
                   <div
-                    className={`flex h-13 w-full overflow-hidden rounded-xl border bg-[#FAFAF9] transition-all duration-300 focus-within:bg-white focus-within:ring-4 ${
+                    className={`h-13 w-full overflow-hidden rounded-xl border bg-[#FAFAF9] transition-all duration-300 focus-within:bg-white focus-within:ring-4 ${
                       errors.contact_number
                         ? "border-red-400 focus-within:border-red-400 focus-within:ring-red-400/10"
                         : "border-slate-200 focus-within:border-[#E3A526] focus-within:ring-[#E3A526]/10"
                     }`}
                   >
-                    {/* Fixed country code */}
-                    <div className="flex shrink-0 items-center border-r border-slate-200 px-4 text-sm font-medium text-slate-700">
-                      +91
-                    </div>
-
-                    {/* Phone number */}
+                    {/* Phone number input */}
                     <input
                       id="contact_number"
                       name="contact_number"
                       type="tel"
                       required
-                      maxLength={MAX_PHONE_LENGTH}
-                      autoComplete="tel-national"
-                      inputMode="numeric"
-                      pattern="[0-9]{10}"
-                      placeholder="9876543210"
+                      maxLength={20}
+                      autoComplete="tel"
+                      inputMode="tel"
+                      placeholder="+91 9876543210"
                       onInput={handlePhoneInput}
-                      className="min-w-0 flex-1 bg-transparent px-4 text-sm text-slate-900 outline-none placeholder:text-slate-400"
+                      className="h-full w-full bg-transparent px-4 text-sm text-slate-900 outline-none placeholder:text-slate-400"
                     />
                   </div>
 

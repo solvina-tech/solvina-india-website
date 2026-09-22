@@ -389,140 +389,6 @@ export default function ProductPageLayout({ product }: ProductPageLayoutProps) {
       </section>
 
       {/* =========================================================
-          ROADMAP
-      ========================================================= */}
-      <section className="bg-[#eef1ef] py-24 dark:bg-[#09131f]">
-        <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
-          <div className="max-w-2xl">
-            <span className="text-sm font-semibold tracking-[0.2em] text-[#e56b2f]">
-              PRODUCT DEVELOPMENT
-            </span>
-
-            <h2 className="mt-4 text-4xl font-semibold tracking-[-0.025em] text-[#102033] sm:text-5xl dark:text-white">
-              Current scope and roadmap
-            </h2>
-          </div>
-
-          <div className="mt-14 grid gap-5 lg:grid-cols-3">
-            {product.roadmap.map((phase, index) => (
-              <motion.div
-                key={phase.phase}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.15 }}
-                variants={fadeUp}
-                transition={{ delay: index * 0.08 }}
-                className={`relative overflow-hidden rounded-2xl border p-7 ${
-                  index === 0
-                    ? "border-[#d8ddd9] bg-white dark:border-white/10 dark:bg-[#102131]"
-                    : "border-[#d8ddd9] bg-[#f7f8f7] dark:border-white/10 dark:bg-[#0d1c29]"
-                }`}
-              >
-                <div className="flex items-center justify-between gap-4">
-                  <span className="text-sm font-semibold text-[#e56b2f]">
-                    {phase.phase}
-                  </span>
-
-                  <span className="rounded-full border border-[#d9dfdc] px-3 py-1 text-xs font-medium text-[#687680] dark:border-white/10 dark:text-[#9eabb5]">
-                    {phase.status}
-                  </span>
-                </div>
-
-                <div className="mt-7 space-y-4">
-                  {phase.items.map((item) => (
-                    <div key={item} className="flex items-start gap-3">
-                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#e56b2f]" />
-
-                      <p className="text-sm leading-6 text-[#53616d] dark:text-[#aebac4]">
-                        {item}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* =========================================================
-          EVIDENCE & GOVERNANCE
-      ========================================================= */}
-      {/* <section className="bg-white py-24 dark:bg-[#0c1824]">
-        <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
-          <div className="grid gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
-            <SectionHeading
-              eyebrow="EVIDENCE & GOVERNANCE"
-              title={product.governance.title}
-              lead={product.governance.lead}
-            />
-
-            <div>
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.1 }}
-                variants={stagger}
-                className="space-y-3"
-              >
-                {product.governance.items?.map((item) => (
-                  <motion.div
-                    key={item}
-                    variants={fadeUp}
-                    className="flex gap-4 rounded-xl border border-[#e1e5e3] bg-[#f8f9f8] p-5 dark:border-white/10 dark:bg-[#101f2d]"
-                  >
-                    <ShieldCheck
-                      size={20}
-                      className="mt-0.5 shrink-0 text-[#e56b2f]"
-                    />
-
-                    <p className="text-sm leading-6 text-[#53616d] dark:text-[#aebac4]">
-                      {item}
-                    </p>
-                  </motion.div>
-                ))}
-              </motion.div>
-
-              <div className="mt-10 rounded-2xl border border-[#e1e5e3] bg-[#f8f9f8] p-7 dark:border-white/10 dark:bg-[#101f2d]">
-                <div className="mb-6 flex items-center gap-3">
-                  <CircleAlert size={19} className="text-[#e56b2f]" />
-
-                  <h3 className="font-semibold">Current validation status</h3>
-                </div>
-
-                <div className="space-y-5">
-                  <ValidationRow
-                    label="Product name"
-                    value={product.validation.productName}
-                  />
-
-                  <ValidationRow
-                    label="Scope"
-                    value={product.validation.scope}
-                  />
-
-                  <ValidationRow
-                    label="Ownership / relationship"
-                    value={product.validation.ownershipRelationship}
-                  />
-
-                  <ValidationRow
-                    label="Reference applications"
-                    value={product.validation.referenceApplications}
-                  />
-
-                  <ValidationRow
-                    label="Commercial status"
-                    value={product.validation.commercialStatus}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section> */}
-
-      {/* =========================================================
           ENGINEERING QUESTION CTA
       ========================================================= */}
       <section
@@ -596,16 +462,14 @@ export default function ProductPageLayout({ product }: ProductPageLayoutProps) {
                 label="Book a Demo"
                 type="Book a Demo"
                 className="group inline-flex items-center justify-center gap-3 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-[#102033] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#eef1f3]"
-              />  
+              />
 
-              <a
-                href="/contact"
+              <EnquiryCTA
+                label={product.hero.secondaryCta}
+                type={product.hero.secondaryCta}
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-7 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/5"
-              >
-                {product.hero.secondaryCta}
-
-                <ExternalLink size={15} />
-              </a>
+              />
+              
             </motion.div>
           </motion.div>
         </div>
