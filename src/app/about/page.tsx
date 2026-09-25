@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { assetPath } from "@/lib/assets";
+import EnquiryCTA from "@/components/forms/EnquiryCTA";
 
 /* -------------------------------------------------------------------------- */
 /*                                   TYPES                                    */
@@ -53,8 +54,7 @@ function ImagePanel({
       <div
         className={`relative flex min-h-[320px] items-center justify-center overflow-hidden rounded-[2rem] bg-[#101514] ${className}`}
       >
-        <div className="absolute inset-0 opacity-30">
-        </div>
+        <div className="absolute inset-0 opacity-30"></div>
 
         <div className="relative text-center">
           <span className="mb-3 block text-[10px] font-medium tracking-[0.28em] text-[#E3A526] uppercase">
@@ -198,7 +198,7 @@ function SimpleProfileCard({ member }: { member: LeadershipMember }) {
           <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/85 via-black/50 to-black/0 p-5 opacity-0 transition-all duration-300 group-hover:opacity-100">
             <div className="translate-y-4 transition-transform duration-300 group-hover:translate-y-0">
               {member.bio && member.bio.length > 0 && (
-                <p className="text-sm leading-6 text-white/85 line-clamp-5">
+                <p className="line-clamp-5 text-sm leading-6 text-white/85">
                   {member.bio[0]}
                 </p>
               )}
@@ -218,7 +218,7 @@ function SimpleProfileCard({ member }: { member: LeadershipMember }) {
           </span>
         )}
 
-        <div className="mt-4 pt-4 border-t border-[#e8ebe7]">
+        <div className="mt-4 border-t border-[#e8ebe7] pt-4">
           <a
             href={member.linkedin}
             target="_blank"
@@ -337,7 +337,7 @@ const boardOfDirectors: LeadershipMember[] = [
   {
     name: "Mohammad Shahzad Alam",
     role: "Managing Director",
-    image: "/images/about/shahzad-alam.png",
+    image: "/images/about/Shahzad Alam.png",
     linkedin: "https://in.linkedin.com/in/shahzad-alam-551598a",
     bio: [
       "Shahzad Alam leads Solvina India as Managing Director, supporting the company's engineering delivery and engagement with customers in India.",
@@ -382,7 +382,7 @@ const leadershipManagement: LeadershipMember[] = [
   {
     name: "Mohammad Shahzad Alam",
     role: "Managing Director",
-    image: "/images/about/shahzad-alam.png",
+    image: "/images/about/Shahzad Alam.png",
     linkedin: "https://in.linkedin.com/in/shahzad-alam-551598a",
     bio: [
       "Shahzad Alam leads Solvina India as Managing Director, supporting the company's engineering delivery and engagement with customers in India.",
@@ -404,7 +404,7 @@ const leadershipManagement: LeadershipMember[] = [
   {
     name: "Saurabh Tripathi",
     role: "Leadership Team",
-    image: "/images/about/saurabh-tripathi.jpg",
+    image: "/images/about/saurabh tripathi.png",
     linkedin: "https://www.linkedin.com/in/saurabh-tripathi225/",
     bio: [
       "Saurabh Tripathi contributes strong technical leadership to the team, with particular expertise in control systems and automation engineering.",
@@ -414,7 +414,7 @@ const leadershipManagement: LeadershipMember[] = [
   {
     name: "Ashish Mishra",
     role: "Leadership Team",
-    image: "/images/about/ashish-mishra.jpg",
+    image: "/images/about/Ashish Mishra.png",
     linkedin: "https://www.linkedin.com/in/ashish-mishra-7a70a42b/",
     bio: [
       "Ashish Mishra brings valuable expertise in process engineering and thermodynamics to the leadership team.",
@@ -425,7 +425,7 @@ const leadershipManagement: LeadershipMember[] = [
     name: "Vineet Saxena",
     role: "Leadership Team",
     image: "/images/about/vineet-saxena.png",
-    linkedin: "https://linkedin.com/in/vineet-saxena",
+    linkedin: "https://www.linkedin.com",
     bio: [
       "Vineet Saxena contributes operational expertise and project management experience to the leadership team.",
       "His background includes leadership roles in engineering organizations and a focus on delivering practical, results-driven solutions.",
@@ -486,13 +486,11 @@ export default function AboutPage() {
                 systems.
               </p>
 
-              <Link
-                href="/solutions/"
+              <EnquiryCTA
+                label="Our Engineering Approach"
+                type="Engineering Approach"
                 className="group inline-flex w-fit shrink-0 items-center gap-3 rounded-full bg-[#b41448] px-6 py-4 text-sm font-semibold text-[#fffff] transition hover:bg-white"
-              >
-                Our Engineering Approach
-                <ArrowUpRight />
-              </Link>
+              />
             </div>
           </div>
         </div>
@@ -511,7 +509,10 @@ export default function AboutPage() {
       {/* INTRO / WHO WE ARE                                                 */}
       {/* ================================================================== */}
 
-      <section id="who-we-are" className="bg-[#f4f5f2] px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
+      <section
+        id="who-we-are"
+        className="bg-[#f4f5f2] px-6 py-24 sm:px-10 lg:px-16 lg:py-32"
+      >
         <div className="mx-auto max-w-[1280px]">
           <div className="grid gap-14 lg:grid-cols-[0.75fr_1.25fr] lg:gap-24">
             <div>
@@ -580,7 +581,10 @@ export default function AboutPage() {
       {/* THE ENGINEERING CHALLENGE                                         */}
       {/* ================================================================== */}
 
-      <section id="engineering-challenge" className="bg-[#111614] px-6 py-24 text-white sm:px-10 lg:px-16 lg:py-32">
+      <section
+        id="engineering-challenge"
+        className="bg-[#111614] px-6 py-24 text-white sm:px-10 lg:px-16 lg:py-32"
+      >
         <div className="mx-auto max-w-[1280px]">
           <div className="grid gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20">
             {/* ============================================================ */}
@@ -996,7 +1000,10 @@ export default function AboutPage() {
       {/* ENGINEERING HERITAGE                                               */}
       {/* ================================================================== */}
 
-      <section id="engineering-heritage" className="bg-[#111614] px-6 py-24 text-white sm:px-10 lg:px-16 lg:py-32">
+      <section
+        id="engineering-heritage"
+        className="bg-[#111614] px-6 py-24 text-white sm:px-10 lg:px-16 lg:py-32"
+      >
         <div className="mx-auto max-w-[1280px]">
           <div className="grid gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-20">
             <ImagePanel
@@ -1124,7 +1131,10 @@ export default function AboutPage() {
       {/* LEADERSHIP                                                         */}
       {/* ================================================================== */}
 
-      <section id="leadership-experts" className="bg-[#e7ebe4] px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
+      <section
+        id="leadership-experts"
+        className="bg-[#e7ebe4] px-6 py-24 sm:px-10 lg:px-16 lg:py-32"
+      >
         <div className="mx-auto max-w-[1280px]">
           <div className="mb-14">
             <span className="text-xs font-semibold tracking-[0.25em] text-[#6f786f] uppercase">
@@ -1154,7 +1164,10 @@ export default function AboutPage() {
             </div> */}
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {boardOfDirectors.map((member) => (
-                <SimpleProfileCard key={`${member.name}-${member.role}`} member={member} />
+                <SimpleProfileCard
+                  key={`${member.name}-${member.role}`}
+                  member={member}
+                />
               ))}
             </div>
           </div>
@@ -1175,7 +1188,10 @@ export default function AboutPage() {
             </div> */}
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {leadershipManagement.map((member) => (
-                <SimpleProfileCard key={`${member.name}-${member.role}`} member={member} />
+                <SimpleProfileCard
+                  key={`${member.name}-${member.role}`}
+                  member={member}
+                />
               ))}
             </div>
           </div>
@@ -1186,7 +1202,10 @@ export default function AboutPage() {
       {/* GLOBAL PRESENCE                                                    */}
       {/* ================================================================== */}
 
-      <section id="global-presence" className="bg-[#111614] px-6 py-24 text-white sm:px-10 lg:px-16 lg:py-32">
+      <section
+        id="global-presence"
+        className="bg-[#111614] px-6 py-24 text-white sm:px-10 lg:px-16 lg:py-32"
+      >
         <div className="mx-auto max-w-[1280px]">
           <div className="grid gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
             <div>
@@ -1252,7 +1271,10 @@ export default function AboutPage() {
       {/* VALUES & GOVERNANCE                                                */}
       {/* ================================================================== */}
 
-      <section id="values-governance" className="bg-[#f4f5f2] px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
+      <section
+        id="values-governance"
+        className="bg-[#f4f5f2] px-6 py-24 sm:px-10 lg:px-16 lg:py-32"
+      >
         <div className="mx-auto max-w-[1280px]">
           <div className="grid gap-14 lg:grid-cols-[0.7fr_1.3fr] lg:gap-24">
             <div>
@@ -1453,13 +1475,11 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <Link
-              href="/contact/"
+            <EnquiryCTA
+              label="Discuss Your Engineering Challenge"
+              type="Engineering Challenge"
               className="group inline-flex w-fit items-center gap-4 rounded-full bg-[#111614] px-7 py-5 text-sm font-semibold text-white transition hover:bg-white hover:text-[#111614]"
-            >
-              Discuss Your Engineering Challenge
-              <ArrowUpRight />
-            </Link>
+            />
           </div>
         </div>
       </section>

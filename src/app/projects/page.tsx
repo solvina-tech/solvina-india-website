@@ -338,14 +338,10 @@ function CaseStudiesSection() {
           {caseStudies.map((caseStudy, index) => (
             <article
               key={caseStudy.id}
-              className={`group relative flex h-full flex-col overflow-hidden rounded-[24px] border border-white/[0.09] bg-[#202420] transition-all duration-500 hover:-translate-y-1 hover:border-[#E3A526]/30 ${
-                index === 0 ? "md:col-span-2 xl:col-span-2" : ""
-              }`}
+              className={`group relative flex h-full flex-col overflow-hidden rounded-[24px] border border-white/[0.09] bg-[#202420] transition-all duration-500 hover:-translate-y-1 hover:border-[#E3A526]/30`}
             >
               <div
-                className={`relative overflow-hidden ${
-                  index === 0 ? "aspect-[16/8]" : "aspect-[16/10]"
-                }`}
+                className={`relative overflow-hidden aspect-[16/10]`}
               >
                 <img
                   src={caseStudy.image}

@@ -31,7 +31,7 @@ export default function Home() {
       <ModelToPlantSection />
       <WhySolvinaSection />
       <IndustriesSection />
-      <CustomerSection />
+      {/* <CustomerSection /> */}
       <CustomerGridSection />
       <TrustSection />
       <CustomerChallengesSection />

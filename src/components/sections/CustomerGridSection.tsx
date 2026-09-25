@@ -51,7 +51,6 @@ function CustomerGridMark({ customer }: { customer: Customer }) {
   );
 }
 
-
 function CustomerGrid({ items }: { items: Customer[] }) {
   return (
     <div className="grid grid-cols-2 bg-black/[0.08] sm:grid-cols-3 lg:grid-cols-4">
@@ -69,13 +68,12 @@ function CustomerGrid({ items }: { items: Customer[] }) {
   );
 }
 
-
 export default function CustomerGridSection() {
   const firstRow = customers.slice(0, 10);
   const secondRow = customers.slice(10, 20);
 
   return (
-    <section className="overflow-hidden bg-[#F7F7F4]">
+    <section id="customers" className="overflow-hidden bg-[#F7F7F4]">
       <div className="mx-auto w-full px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24 xl:px-16 2xl:px-20">
         {/* =====================================================
             SECTION INTRO
@@ -110,10 +108,8 @@ export default function CustomerGridSection() {
 
             <h2 className="max-w-3xl text-2xl leading-tight font-semibold tracking-[-0.03em] text-[#202020] sm:text-3xl lg:text-4xl">
               Engineering experience across
-              <span className="text-black/40">
-                {" "}
-                India's industrial landscape.
-              </span>
+              <br />
+              <span className="text-black/40">industrial landscape.</span>
             </h2>
           </div>
 

@@ -153,6 +153,11 @@ const customerDefinitions: Customer[] = [
     name: "IFFCO",
     logo: "./images/customers/iffco.jpg",
   },
+  {
+    id: "cairn",
+    name: "Cairn",
+    logo: "./images/customers/cairn.png",
+  }
 ];
 
 export const customers = customerDefinitions.map((customer) => ({

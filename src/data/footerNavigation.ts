@@ -59,13 +59,13 @@ export const footerNavigation = {
 
   resources: [
     {
-      label: "Projects & Case Studies",
+      label: "Projects",
       href: "/projects/",
     },
     {
-      label: "Knowledge Centre",
-      href: "/knowledge-centre/",
-    },
+      label: "Case Studies",
+      href: "/projects#case-studies",
+    }
   ],
 
   company: [
@@ -74,16 +74,12 @@ export const footerNavigation = {
       href: "/about#company",
     },
     {
-      label: "Engineering Approach",
-      href: "/about#engineering-intelligence",
+      label: "Leadership & Experts",
+      href: "/about#leadership-experts",
     },
     {
       label: "Global Presence",
       href: "/about#global-presence",
-    },
-    {
-      label: "Contact",
-      href: "/contact",
     },
   ],
 };

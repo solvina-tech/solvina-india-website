@@ -7,20 +7,19 @@ import { footerNavigation } from "@/data/footerNavigation";
 import { assetPath } from "@/lib/assets";
 import EnquiryCTA from "@/components/forms/EnquiryCTA";
 import LinkedInIcon from "@/components/icons/LinkedInIcon";
-import { SimpleFooter } from "./footer/SimpleFooter";
 
 const legalLinks = [
   {
     label: "Privacy Policy",
-    href: "/privacy-policy/",
+    href: "/legal/privacy-policy",
   },
   {
     label: "Cookie Policy",
-    href: "/cookie-policy/",
+    href: "/legal/cookie-policy",
   },
   {
     label: "Terms / Legal Notice",
-    href: "/legal/",
+    href: "/legal/terms-of-service",
   },
 ];
 
@@ -197,7 +196,6 @@ export function Footer() {
           </div>
         </div>
       </footer>
-      <SimpleFooter />
     </>
   );
 }

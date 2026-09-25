@@ -153,7 +153,7 @@ export default function CustomerSection() {
               Engineering experience across
               <span className="text-black/40">
                 {" "}
-                India's industrial landscape.
+                 industrial landscape.
               </span>
             </h2>
           </div>
