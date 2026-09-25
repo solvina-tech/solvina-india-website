@@ -337,7 +337,7 @@ const boardOfDirectors: LeadershipMember[] = [
   {
     name: "Mohammad Shahzad Alam",
     role: "Managing Director",
-    image: "/images/about/Shahzad Alam.png",
+    image: "/images/about/shahzad-alam.png",
     linkedin: "https://in.linkedin.com/in/shahzad-alam-551598a",
     bio: [
       "Shahzad Alam leads Solvina India as Managing Director, supporting the company's engineering delivery and engagement with customers in India.",
@@ -382,7 +382,7 @@ const leadershipManagement: LeadershipMember[] = [
   {
     name: "Mohammad Shahzad Alam",
     role: "Managing Director",
-    image: "/images/about/Shahzad Alam.png",
+    image: "/images/about/shahzad-alam.png",
     linkedin: "https://in.linkedin.com/in/shahzad-alam-551598a",
     bio: [
       "Shahzad Alam leads Solvina India as Managing Director, supporting the company's engineering delivery and engagement with customers in India.",
@@ -404,7 +404,7 @@ const leadershipManagement: LeadershipMember[] = [
   {
     name: "Saurabh Tripathi",
     role: "Leadership Team",
-    image: "/images/about/saurabh tripathi.png",
+    image: "/images/about/saurabh-tripathi.png",
     linkedin: "https://www.linkedin.com/in/saurabh-tripathi225/",
     bio: [
       "Saurabh Tripathi contributes strong technical leadership to the team, with particular expertise in control systems and automation engineering.",
@@ -414,7 +414,7 @@ const leadershipManagement: LeadershipMember[] = [
   {
     name: "Ashish Mishra",
     role: "Leadership Team",
-    image: "/images/about/Ashish Mishra.png",
+    image: "/images/about/ashish-mishra.png",
     linkedin: "https://www.linkedin.com/in/ashish-mishra-7a70a42b/",
     bio: [
       "Ashish Mishra brings valuable expertise in process engineering and thermodynamics to the leadership team.",
