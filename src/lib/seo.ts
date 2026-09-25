@@ -13,7 +13,7 @@ export const siteConfig = {
 
   twitterHandle: "@SolvinaIndia",
 
-  googleVerification: "googlea1b54127dacf1b06.html",
+  googleVerification: "AgMwNbNJ2lyhyz8pH4K9k6zcFAMSuljOw9Sf8bGfeEs",
 } as const;
 
 export function getSiteUrl(): string {
