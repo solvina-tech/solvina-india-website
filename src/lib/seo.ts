@@ -3,23 +3,30 @@ import type { Metadata } from "next";
 export const siteConfig = {
   name: "Solvina India",
   legalName: "Solvina India",
+
   description:
     "Specialist engineering consultancy for complex industrial power, steam, process and control systems in India.",
+
   locale: "en_IN",
+
   defaultOgImage: "/images/solvina-logo.png",
+
   twitterHandle: "@SolvinaIndia",
+
+  googleVerification: "googlea1b54127dacf1b06.html",
 } as const;
 
 export function getSiteUrl(): string {
   const url =
-    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
-    "https://www.solvina.in";
+    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") ??
+    "https://solvina.in";
 
   return url;
 }
 
 export function absoluteUrl(path: string): string {
   const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+
   return `${getSiteUrl()}${normalizedPath}`;
 }
 
@@ -41,7 +48,9 @@ export function createPageMetadata({
   noIndex = false,
 }: PageSeoInput): Metadata {
   const canonicalPath = path.endsWith("/") ? path : `${path}/`;
+
   const canonicalUrl = absoluteUrl(canonicalPath);
+
   const keywordList =
     typeof keywords === "string"
       ? keywords.split(",").map((keyword) => keyword.trim())
@@ -51,11 +60,15 @@ export function createPageMetadata({
     title: {
       absolute: title,
     },
+
     description,
+
     keywords: keywordList,
+
     alternates: {
       canonical: canonicalPath,
     },
+
     robots: noIndex
       ? {
           index: false,
@@ -72,6 +85,7 @@ export function createPageMetadata({
             "max-video-preview": -1,
           },
         },
+
     openGraph: {
       type: "website",
       locale: siteConfig.locale,
@@ -79,6 +93,7 @@ export function createPageMetadata({
       siteName: siteConfig.name,
       title,
       description,
+
       images: [
         {
           url: absoluteUrl(ogImage),
@@ -86,6 +101,7 @@ export function createPageMetadata({
         },
       ],
     },
+
     twitter: {
       card: "summary_large_image",
       title,
@@ -96,31 +112,58 @@ export function createPageMetadata({
 }
 
 export function createDefaultMetadata(): Metadata {
-  const defaultTitle = `${siteConfig.name} | Engineering Intelligence for Complex Industrial Systems`;
+  const defaultTitle =
+    `${siteConfig.name} | Engineering Intelligence for Complex Industrial Systems`;
 
   return {
     metadataBase: new URL(getSiteUrl()),
+
     title: {
       default: defaultTitle,
       template: `%s | ${siteConfig.name}`,
     },
+
     description: siteConfig.description,
+
     applicationName: siteConfig.name,
-    authors: [{ name: siteConfig.legalName }],
+
+    authors: [
+      {
+        name: siteConfig.legalName,
+      },
+    ],
+
     creator: siteConfig.legalName,
+
     publisher: siteConfig.legalName,
+
     formatDetection: {
       email: false,
       address: false,
       telephone: false,
     },
+
     alternates: {
       canonical: "/",
     },
+
     robots: {
       index: true,
       follow: true,
+
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
     },
+
+    verification: {
+      google: siteConfig.googleVerification,
+    },
+
     openGraph: {
       type: "website",
       locale: siteConfig.locale,
@@ -128,6 +171,7 @@ export function createDefaultMetadata(): Metadata {
       siteName: siteConfig.name,
       title: defaultTitle,
       description: siteConfig.description,
+
       images: [
         {
           url: absoluteUrl(siteConfig.defaultOgImage),
@@ -135,6 +179,7 @@ export function createDefaultMetadata(): Metadata {
         },
       ],
     },
+
     twitter: {
       card: "summary_large_image",
       title: defaultTitle,
