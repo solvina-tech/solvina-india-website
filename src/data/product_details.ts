@@ -6,10 +6,30 @@ export interface ProductSection {
   paragraphs?: string[];
 }
 
+export interface ProductCapability {
+  title: string;
+  description: string;
+}
+
+export interface ProductImage {
+  src: string;
+  alt: string;
+}
+
 export interface Product {
   id: string;
   name: string;
   shortName: string;
+  category: string;
+
+  description: string;
+
+  images: string[];
+
+  externalLink?: {
+    label: string;
+    href: string;
+  };
 
   hero: {
     eyebrow: string;
@@ -23,21 +43,9 @@ export interface Product {
   engineeringPurpose: ProductSection;
   workflow: ProductSection;
   technicalScope: ProductSection;
-  governance: ProductSection;
   engineeringQuestionCta: ProductSection;
 
-  capabilities: {
-    title: string;
-    description: string;
-  }[];
-
-  advantage: string[];
-
-  roadmap: {
-    phase: string;
-    status: string;
-    items: string[];
-  }[];
+  capabilities?: ProductCapability[];
 
   validation: {
     productName: string;
@@ -53,48 +61,54 @@ export const products: Product[] = [
     id: "operator-training-simulator",
     name: "Operator Training Simulator",
     shortName: "OTS",
+    category: "Simulation & Training",
+
+    description:
+      "Browser-based, physics-driven operator training simulation for controlled scenario exercises, fault injection and operational readiness.",
+
+    images: [
+      "/images/products/ots/ots1.png",
+      "/images/products/ots/ots2.png",
+      "/images/products/ots/ots3.png",
+      "/images/products/ots/ots4.png",
+      "/images/products/ots/ots5.png",
+      "/images/products/ots/ots6.png",
+      "/images/products/ots/ots7.png",
+    ],
 
     hero: {
       eyebrow: "ENGINEERING INTELLIGENCE",
-
       headline:
-        "Operator Training Simulation with a Defined Engineering Purpose",
-
+        // "Operator Training Simulation with a Defined Engineering Purpose",
+        "Operator Training Simulator",
       supportingCopy:
         "A centralized, browser-based simulation platform designed to build confident, operationally ready personnel through realistic, physics-based training.",
-
-      primaryCta: "Talk to Our Engineers",
-
+      primaryCta: "Book a Demo",
       secondaryCta: "Discuss Your Engineering Challenge",
     },
 
     engineeringProblem: {
       title: "Engineering Problem",
-
       lead:
         "How can operators prepare for critical situations and fault conditions without exposing a live system to operational risk?",
-
       paragraphs: [
-        "Operator training often needs to go beyond classroom instruction and limited hands-on practice. Critical scenarios need to be repeatable, measurable, and safe to exercise before they occur in an operating environment.",
-        "The OTS addresses this training problem through controlled simulation, scenario-based exercises, fault injection, monitoring, and post-session evaluation.",
+        "Training needs to provide repeatable and measurable exposure to situations that may be difficult or unsafe to reproduce on a live system.",
+        "OTS provides a controlled environment for scenario-based exercises, fault injection, operator actions and post-session evaluation.",
       ],
     },
 
     engineeringPurpose: {
       title: "Engineering Purpose",
-
       lead:
-        "OTS provides a centralized, browser-based environment for physics-based operator training and operational readiness exercises.",
-
+        "OTS provides a centralized environment for physics-based operator training and operational readiness exercises.",
       paragraphs: [
-        "The platform combines an FMU-based dynamic simulation engine with a configurable SCADA environment, scenario-based training, real-time monitoring, alarm management, and event logging.",
-        "Training activities can be structured around defined scenarios, controlled events, faults, alarms, operator actions, and system responses. The resulting session information can then be used for evaluation and improvement.",
+        "The platform combines an FMU-based dynamic simulation engine with a configurable SCADA environment, scenario-based training, real-time monitoring, alarm management and event logging.",
+        "Training can be structured around defined scenarios, timed events, faults, alarms, operator actions and system responses.",
       ],
     },
 
     workflow: {
       title: "Typical Workflow",
-
       items: [
         "Define the engineering question",
         "Select or prepare the appropriate model or test configuration",
@@ -106,142 +120,254 @@ export const products: Product[] = [
 
     technicalScope: {
       title: "Technical Scope",
-
       items: [
         "Training objective and target users",
         "Plant/process model scope",
         "Simulation and operator scenarios",
         "Training workflow",
-        "Current commercial and ownership status — validation required",
-      ],
-    },
-
-    governance: {
-      title: "Evidence and Governance",
-
-      lead:
-        "Product information should be presented together with its current engineering and commercial context.",
-
-      items: [
-        "Current product name and scope must be verified",
-        "Ownership or relationship with the product must be verified",
-        "Reference applications must be verified before publication",
-        "Applicable Solvina engineering services must be established for each use case",
-        "Current commercial status must be verified before making offering or demo claims",
-        "Product capabilities and roadmap statements should remain aligned with the current product status",
+        "Dynamic simulation and parameter injection",
+        "SCADA design and monitoring",
+        "Alarm and event logging",
       ],
     },
 
     engineeringQuestionCta: {
-      title:
-        "Use the Tool in the Context of an Engineering Question",
-
+      title: "Use the Tool in the Context of an Engineering Question",
       lead:
-        "Discuss the engineering problem, training objective, process or plant context, and validation requirements with the relevant technical specialist.",
-
+        "Discuss the engineering problem, training objective, process or plant context and validation requirements with the relevant technical specialist.",
       paragraphs: [
-        "The appropriate next step is an engineering discussion rather than a generic product demonstration. A demo CTA should only be introduced when the current offering and commercial status have been verified.",
+        "The appropriate next step is an engineering discussion rather than a generic product demonstration.",
       ],
     },
 
     capabilities: [
       {
-        title: "Dynamic Simulation Engine",
+        title: "Dynamic Simulation",
         description:
-          "FMU-based physics simulation with start, stop, pause, resume, snapshot, and real-time parameter injection.",
+          "FMU-based physics simulation with controlled simulation states and real-time parameter injection.",
       },
-
       {
-        title: "SCADA Design Studio",
+        title: "SCADA Design",
         description:
-          "Drag-and-drop canvas with component library, property mapping, and theme customization.",
+          "Configurable SCADA environment with component mapping and visualization.",
       },
-
       {
-        title: "Scenario-Based Training",
+        title: "Scenario Training",
         description:
-          "Multi-step training sequences with timed events, fault injection, and reusable scenario libraries.",
+          "Multi-step training sequences with timed events, fault injection and reusable scenarios.",
       },
-
       {
-        title: "Real-Time Monitoring",
+        title: "Monitoring & Alarms",
         description:
-          "Live variable graphs, WebSocket updates, and configurable data windows for operational analysis.",
+          "Real-time monitoring, configurable alarms and timestamped operational information.",
       },
-
-      {
-        title: "Alarm Management",
-        description:
-          "Configurable threshold alarms with severity levels, acknowledgement, and timestamped history.",
-      },
-
       {
         title: "Event Logging",
         description:
-          "Complete audit trail of operator actions, sequence events, and system states for post-session review.",
+          "Audit trail of operator actions, sequence events and system states for post-session review.",
       },
-    ],
-
-    advantage: [
-      "Safe, risk-free training with no live system impact",
-      "Physics-based FMU simulation for realism",
-      "Repeatable, measurable scenario exercises",
-      "Advanced SCADA drag-and-drop design",
-      "Alarm and event log with full audit trail",
-      "Role-based Admin and Operator views",
-      "Browser-based with no installation required",
-      "Reusable training libraries",
-    ],
-
-    roadmap: [
       {
-        phase: "Phase 1",
-        status: "Available Now",
-        items: [
-          "Dynamic Simulation",
-          "SCADA Design Studio",
-          "Scenario Training",
-          "Alarm Management",
-          "Event Logging",
-        ],
-      },
-
-      {
-        phase: "Phase 2",
-        status: "Coming Next",
-        items: [
-          "Simulation Replay",
-          "Session Recording",
-          "Training Reports",
-          "Competency Tracking",
-        ],
-      },
-
-      {
-        phase: "Phase 3",
-        status: "Roadmap",
-        items: [
-          "Role-Based Certification",
-          "Analytics Dashboard",
-          "Mobile Monitoring",
-        ],
+        title: "Browser-Based Access",
+        description:
+          "Training environment designed to operate through a browser without local installation.",
       },
     ],
 
     validation: {
       productName: "Operator Training Simulator (OTS)",
-
       scope:
-        "Centralized, browser-based operator training simulation platform with FMU-based physics simulation, SCADA design, scenario training, monitoring, alarm management, and event logging.",
-
-      ownershipRelationship:
-        "Validation required.",
-
+        "Centralized, browser-based operator training simulation platform with FMU-based physics simulation, SCADA design, scenario training, monitoring, alarm management and event logging.",
+      ownershipRelationship: "Validation required.",
       referenceApplications:
         "Not specified in the current product source.",
-
       commercialStatus:
-        "Phase 1 capabilities are identified as Available Now in the supplied product flyer; current commercial/ownership status should be validated before making a commercial offering or demo claim.",
+        "The supplied flyer identifies Phase 1 capabilities as Available Now. Current commercial and ownership status should be validated before making a commercial offering or demo claim.",
+    },
+  },
+
+  {
+    id: "power-quality-energy-measurement",
+    name: "Power Quality & Energy Measurement",
+    shortName: "PQ & Energy",
+    category: "Power Quality & Energy Measurement",
+
+    description:
+      "Measurement equipment for electrical power-quality and energy monitoring across industrial and infrastructure applications.",
+
+    images: [
+      "/images/products/pq-energy-1.png",
+      "/images/products/pq-energy-2.png",
+    ],
+
+    externalLink: {
+      label: "View Product Range at Camille Bauer",
+      href: "https://camillebauer.com/en/products/",
+    },
+
+    hero: {
+      eyebrow: "ENGINEERING MEASUREMENT",
+      headline: "Power Quality & Energy Measurement",
+      supportingCopy:
+        "Electrical measurement equipment supporting power-quality monitoring, energy measurement and reporting across industrial and infrastructure applications.",
+      primaryCta: "Talk to Our Engineers",
+      secondaryCta: "Discuss Your Engineering Challenge",
+    },
+
+    engineeringProblem: {
+      title: "Engineering Problem",
+      lead:
+        "How can electrical systems be measured consistently enough to support power-quality assessment, energy monitoring and engineering decisions?",
+      paragraphs: [
+        "The supplied product information covers electrical measurement, power-quality compliance and communication requirements for connected monitoring applications.",
+      ],
+    },
+
+    engineeringPurpose: {
+      title: "Engineering Purpose",
+      lead:
+        "The product range provides measurement capabilities for electrical networks where power-quality and energy information needs to be captured and communicated.",
+      paragraphs: [
+        "The supplied specifications reference IEC 61000-4-30 Ed.3 Class A, EN 50160 reporting and Class 0.5S energy accuracy.",
+        "The equipment supports direct, CT and Rogowski/LCPT measurement configurations, with communications including Ethernet, RS485, Modbus and REST API options.",
+      ],
+    },
+
+    workflow: {
+      title: "Typical Workflow",
+      items: [
+        "Define the measurement requirement",
+        "Select the appropriate measurement configuration",
+        "Connect and acquire electrical measurements",
+        "Analyse power-quality and energy information",
+        "Connect the results to the engineering application",
+      ],
+    },
+
+    technicalScope: {
+      title: "Technical Scope",
+      items: [
+        "Power-quality and energy measurement",
+        "IEC 61000-4-30 Ed.3 Class A compliance",
+        "EN 50160 reporting",
+        "Class 0.5S energy accuracy",
+        "Direct, CT and Rogowski/LCP measurement",
+        "Ethernet, RS485, Modbus and REST API communications",
+      ],
+    },
+
+    engineeringQuestionCta: {
+      title: "Use the Measurement in the Context of an Engineering Question",
+      lead:
+        "Discuss the electrical measurement requirement, network configuration and intended engineering application with the relevant technical specialist.",
+      paragraphs: [
+        "For detailed product specifications and the manufacturer's current product range, refer to Camille Bauer.",
+      ],
+    },
+
+    validation: {
+      productName: "Power Quality & Energy Measurement",
+      scope:
+        "Electrical measurement equipment covering power-quality and energy measurement, with the specifications shown in the supplied product reference.",
+      ownershipRelationship:
+        "Manufacturer reference: Camille Bauer Metrawatt AG. Solvina relationship requires validation.",
+      referenceApplications:
+        "The supplied reference identifies data centres, critical facilities, utilities, distribution networks, renewables, storage, industrial and E-mobility applications.",
+      commercialStatus:
+        "Current Solvina commercial status and exact product configurations require validation.",
+    },
+  },
+
+  {
+    id: "position-sensors",
+    name: "Position Sensors",
+    shortName: "Position Sensors",
+    category: "Position Measurement",
+
+    description:
+      "Non-contact capacitive and magnetoresistive sensors for angle and inclination measurement across industrial and infrastructure applications.",
+
+    images: [
+      "/images/products/position-sensor-1.png",
+      "/images/products/position-sensor-2.png",
+    ],
+
+    externalLink: {
+      label: "View Product Range at Camille Bauer",
+      href: "https://camillebauer.com/en/products/",
+    },
+
+    hero: {
+      eyebrow: "ENGINEERING MEASUREMENT",
+      headline: "Position Sensors for Industrial Measurement",
+      supportingCopy:
+        "Non-contact capacitive and magnetoresistive sensing for angle and inclination measurement in demanding industrial environments.",
+      primaryCta: "Talk to Our Engineers",
+      secondaryCta: "Discuss Your Engineering Challenge",
+    },
+
+    engineeringProblem: {
+      title: "Engineering Problem",
+      lead:
+        "How can mechanical position, angle or inclination be measured reliably where direct contact may be undesirable?",
+      paragraphs: [
+        "The supplied product reference covers non-contact sensing technologies for angle and inclination measurement, with applications spanning power, water, heavy machinery, mobility and hazardous areas.",
+      ],
+    },
+
+    engineeringPurpose: {
+      title: "Engineering Purpose",
+      lead:
+        "The sensor range provides position feedback for equipment and processes where angular or inclination measurement is required.",
+      paragraphs: [
+        "The supplied specifications reference capacitive and magnetoresistive measuring principles, basic accuracy up to ±0.2°, 14-bit resolution and measurement ranges from 0–5° up to 0–360°.",
+      ],
+    },
+
+    workflow: {
+      title: "Typical Workflow",
+      items: [
+        "Define the required position or angle measurement",
+        "Select the appropriate sensing principle and range",
+        "Install and configure the sensor",
+        "Acquire and assess position feedback",
+        "Connect the measurement to the engineering application",
+      ],
+    },
+
+    technicalScope: {
+      title: "Technical Scope",
+      items: [
+        "Non-contact capacitive and magnetoresistive sensing",
+        "Angle and inclination measurement",
+        "Basic accuracy up to ±0.2°",
+        "14-bit resolution",
+        "Measurement ranges from 0–5° up to 0–360°",
+        "4–20 mA and SSI outputs",
+        "CANopen and HART communication options",
+        "IP66–IP69K housing options",
+        "Operating temperature from −40°C to +85°C",
+      ],
+    },
+
+    engineeringQuestionCta: {
+      title: "Use the Sensor in the Context of an Engineering Question",
+      lead:
+        "Discuss the required measurement range, installation environment, interface and engineering application with the relevant technical specialist.",
+      paragraphs: [
+        "For detailed product specifications and the manufacturer's current product range, refer to Camille Bauer.",
+      ],
+    },
+
+    validation: {
+      productName: "Position Sensors",
+      scope:
+        "Position sensors covering non-contact angle and inclination measurement using capacitive and magnetoresistive principles.",
+      ownershipRelationship:
+        "Manufacturer reference: Camille Bauer Metrawatt AG. Solvina relationship requires validation.",
+      referenceApplications:
+        "The supplied reference identifies power and grid, water and fluid control, heavy machinery and robotics, mobility and hazardous-area applications.",
+      commercialStatus:
+        "Current Solvina commercial status and exact product configurations require validation.",
     },
   },
 ];

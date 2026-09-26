@@ -82,7 +82,7 @@ function ProofCard({
 
 export default function TrustSection() {
   return (
-    <section className="border-b border-black/[0.07] bg-white">
+    <section id="trust" className="border-b border-black/[0.07] bg-white">
       <div className="mx-auto w-full px-5 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
         <div className="-mx-5 flex snap-x snap-mandatory overflow-x-auto sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible lg:grid-cols-4">
           {trustProof.map((item, index) => (

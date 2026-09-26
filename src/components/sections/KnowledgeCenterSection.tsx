@@ -10,60 +10,22 @@ import {
   Gauge,
   Lightbulb,
 } from "lucide-react";
+import { knowledgeOverview } from "@/data/knowledgeSection";
 
-const knowledgeItems = [
-  {
-    id: "01",
-    type: "Technical Article",
-    title:
-      "Why Island Operation Testing Shouldn't Wait for a Blackout",
-    teaser:
-      "What a live, on-grid frequency-control test reveals that a commissioning checklist never will.",
-    icon: Gauge,
-    featured: true,
-  },
-  {
-    id: "02",
-    type: "Standards / Grid Code Update",
-    title:
-      "Reading a Grid Code: What a TSO Actually Tests For",
-    teaser:
-      "A practical walkthrough of FRT, ROCOF and reactive-capability requirements for Indian grid connection.",
-    icon: FileText,
-    featured: false,
-  },
-  {
-    id: "03",
-    type: "Technical Article",
-    title:
-      "The Hidden Cost of an Unvalidated Simulation Model",
-    teaser:
-      "Why a model that was never checked against plant data is a liability, not an asset.",
-    icon: BookOpen,
-    featured: false,
-  },
-  {
-    id: "04",
-    type: "Case Insight",
-    title:
-      "Steam Net Control: The Difference Between Tuned and Guessed",
-    teaser:
-      "How dynamic modelling turns a multi-header steam system from reactive to predictable.",
-    icon: Lightbulb,
-    featured: false,
-  },
-];
+const iconMap = {
+  "Technical Article": Gauge,
+  "Case Study": Lightbulb,
+  "Standards / Grid Code Update": FileText,
+  Whitepaper: BookOpen,
+  Publication: FileText,
+};
 
-function ContentType({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+function ContentType({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex items-center gap-2">
       <span className="h-[2px] w-6 bg-[#E3A526]" />
 
-      <span className="text-[9px] font-bold uppercase tracking-[0.18em] text-[#B41448]">
+      <span className="text-[9px] font-bold tracking-[0.18em] text-[#B41448] uppercase">
         {children}
       </span>
     </div>
@@ -71,13 +33,18 @@ function ContentType({
 }
 
 export default function KnowledgeCentreSection() {
-  const featured = knowledgeItems[0];
-  const articles = knowledgeItems.slice(1);
+  const featured =
+    knowledgeOverview.find((item) => item.featured) || knowledgeOverview[0];
+  const articles = knowledgeOverview.filter((item) => !item.featured);
 
-  const FeaturedIcon = featured.icon;
+  const showSimpleGrid = articles.length === 0;
+  const displayArticles = showSimpleGrid ? knowledgeOverview : articles;
 
   return (
-    <section className="relative overflow-hidden bg-[#F7F7F4]">
+    <section
+      id="knowledge-center"
+      className="relative overflow-hidden bg-[#F7F7F4]"
+    >
       <div className="mx-auto w-full px-5 py-20 sm:px-8 sm:py-24 lg:px-12 lg:py-28 xl:px-16 2xl:px-20">
         {/* =====================================================
             HEADER
@@ -105,12 +72,12 @@ export default function KnowledgeCentreSection() {
             <div className="mb-5 flex items-center gap-3">
               <span className="h-px w-9 bg-[#E3A526]" />
 
-              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#B41448] sm:text-xs">
+              <span className="text-[10px] font-bold tracking-[0.2em] text-[#B41448] uppercase sm:text-xs">
                 Knowledge Centre
               </span>
             </div>
 
-            <h2 className="max-w-2xl text-3xl font-semibold leading-[1.08] tracking-[-0.035em] text-[#202020] sm:text-4xl lg:text-[3.25rem]">
+            <h2 className="max-w-2xl text-3xl leading-[1.08] font-semibold tracking-[-0.035em] text-[#202020] sm:text-4xl lg:text-[3.25rem]">
               Engineering insight for
               <span className="block text-black/40">
                 complex industrial systems.
@@ -121,272 +88,211 @@ export default function KnowledgeCentreSection() {
           <div className="max-w-xl lg:ml-auto">
             <p className="text-sm leading-6 text-black/55 sm:text-base sm:leading-7">
               Technical articles, standards updates and engineering insights
-              that explore the questions behind complex power, process,
-              control and utility systems.
+              that explore the questions behind complex power, process, control
+              and utility systems.
             </p>
           </div>
         </motion.div>
 
         {/* =====================================================
-            FEATURED + ARTICLE LIST
+            SIMPLE GRID (when only one article)
         ===================================================== */}
 
-        <div className="mt-12 grid gap-5 lg:grid-cols-[0.95fr_1.05fr]">
-          {/* ===================================================
-              FEATURED ARTICLE
-          =================================================== */}
-
-          <motion.article
-            initial={{
-              opacity: 0,
-              y: 20,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            viewport={{
-              once: true,
-              margin: "-80px",
-            }}
-            transition={{
-              duration: 0.6,
-            }}
-            className="
-              group
-              relative
-              flex
-              min-h-[430px]
-              flex-col
-              justify-between
-              overflow-hidden
-              bg-[#0D1724]
-              p-7
-              text-white
-              sm:p-9
-              lg:min-h-[500px]
-              lg:p-10
-            "
-          >
-            {/* Ambient accent */}
-
-            <div
-              aria-hidden="true"
-              className="
-                pointer-events-none
-                absolute
-                -right-32
-                -top-32
-                h-80
-                w-80
-                rounded-full
-                bg-[#B41448]/10
-                blur-[100px]
-              "
-            />
-
-            <div
-              aria-hidden="true"
-              className="
-                pointer-events-none
-                absolute
-                bottom-0
-                left-0
-                h-[2px]
-                w-full
-                bg-gradient-to-r
-                from-[#E3A526]
-                via-[#B41448]
-                to-transparent
-              "
-            />
-
-            {/* Top */}
-
-            <div className="relative z-10 flex items-start justify-between">
-              <ContentType>
-                {featured.type}
-              </ContentType>
-
-              <span className="font-mono text-[9px] tracking-[0.16em] text-white/25">
-                FEATURED
-              </span>
-            </div>
-
-            {/* Icon */}
-
-            <div className="relative z-10 mt-14">
-              <div className="flex h-12 w-12 items-center justify-center border border-white/10 bg-white/[0.04]">
-                <FeaturedIcon
-                  size={21}
-                  strokeWidth={1.4}
-                  className="text-[#E3A526]"
-                />
-              </div>
-
-              <h3 className="mt-7 max-w-xl text-2xl font-semibold leading-[1.12] tracking-[-0.03em] sm:text-3xl lg:text-[2.25rem]">
-                {featured.title}
-              </h3>
-
-              <p className="mt-5 max-w-xl text-sm leading-6 text-white/50 sm:text-[15px]">
-                {featured.teaser}
-              </p>
-            </div>
-
-            {/* CTA */}
-
-            <div className="relative z-10 mt-10 border-t border-white/10 pt-5">
-              <Link
-                href="/knowledge-centre"
-                className="
-                  group/link
-                  inline-flex
-                  items-center
-                  gap-2
-                  text-xs
-                  font-semibold
-                  text-white
-                  transition-colors
-                  duration-300
-                  hover:text-[#E3A526]
-                "
-              >
-                Read insight
-
-                <ArrowUpRight
-                  size={15}
-                  className="
-                    transition-transform
-                    duration-300
-                    group-hover/link:-translate-y-0.5
-                    group-hover/link:translate-x-0.5
-                  "
-                />
-              </Link>
-            </div>
-          </motion.article>
-
-          {/* ===================================================
-              ARTICLE LIST
-          =================================================== */}
-
-          <div className="flex flex-col border-y border-black/[0.08]">
-            {articles.map((article, index) => {
-              const Icon = article.icon;
+        {showSimpleGrid ? (
+          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {knowledgeOverview.map((article, index) => {
+              const Icon =
+                iconMap[article.type as keyof typeof iconMap] || FileText;
 
               return (
-                <motion.article
-                  key={article.id}
-                  initial={{
-                    opacity: 0,
-                    x: 18,
-                  }}
-                  whileInView={{
-                    opacity: 1,
-                    x: 0,
-                  }}
-                  viewport={{
-                    once: true,
-                    margin: "-60px",
-                  }}
-                  transition={{
-                    duration: 0.5,
-                    delay: index * 0.1,
-                  }}
-                  className="
-                    group
-                    relative
-                    flex
-                    flex-1
-                    items-start
-                    gap-5
-                    border-b
-                    border-black/[0.08]
-                    bg-white
-                    px-5
-                    py-6
-                    transition-all
-                    duration-300
-                    last:border-b-0
-                    hover:bg-[#FBFBF9]
-                    sm:px-7
-                    sm:py-7
-                  "
-                >
-                  {/* Number */}
-
-                  <span className="hidden pt-1 font-mono text-[9px] tracking-[0.12em] text-black/20 sm:block">
-                    {article.id}
-                  </span>
-
-                  {/* Icon */}
-
-                  <div
-                    className="
-                      mt-0.5
-                      flex
-                      h-10
-                      w-10
-                      shrink-0
-                      items-center
-                      justify-center
-                      border
-                      border-black/[0.08]
-                      bg-[#F7F7F4]
-                      transition-colors
-                      duration-300
-                      group-hover:border-[#E3A526]/50
-                    "
+                <Link key={article.id} href={`/knowledge/${article.slug}`}>
+                  <motion.article
+                    initial={{
+                      opacity: 0,
+                      y: 18,
+                    }}
+                    whileInView={{
+                      opacity: 1,
+                      y: 0,
+                    }}
+                    viewport={{
+                      once: true,
+                      margin: "-60px",
+                    }}
+                    transition={{
+                      duration: 0.5,
+                      delay: index * 0.1,
+                    }}
+                    className="group relative flex min-h-[280px] flex-col justify-between gap-5 border border-black/[0.08] bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#E3A526]/50 hover:shadow-[0_18px_45px_rgba(23,26,24,0.06)] sm:p-7"
                   >
-                    <Icon
-                      size={17}
-                      strokeWidth={1.4}
-                      className="text-[#B41448]"
-                    />
-                  </div>
+                    <div>
+                      <ContentType>{article.type}</ContentType>
 
-                  {/* Content */}
+                      <h3 className="mt-4 text-lg leading-[1.2] font-semibold tracking-[-0.02em] text-[#202020] transition-colors duration-300 group-hover:text-[#B41448] sm:text-xl">
+                        {article.title}
+                      </h3>
 
-                  <div className="min-w-0 flex-1">
-                    <ContentType>
-                      {article.type}
-                    </ContentType>
+                      <p className="mt-3 text-sm leading-6 text-black/45">
+                        {article.teaser}
+                      </p>
+                    </div>
 
-                    <h3 className="mt-3 max-w-xl text-lg font-semibold leading-[1.2] tracking-[-0.02em] text-[#202020] transition-colors duration-300 group-hover:text-[#B41448] sm:text-xl">
-                      {article.title}
-                    </h3>
+                    <div className="flex items-center justify-between">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-black/[0.08] bg-[#F7F7F4] transition-colors duration-300 group-hover:border-[#E3A526]/50">
+                        <Icon
+                          size={17}
+                          strokeWidth={1.4}
+                          className="text-[#B41448]"
+                        />
+                      </div>
 
-                    <p className="mt-2 max-w-xl text-xs leading-5 text-black/45 sm:text-sm sm:leading-6">
-                      {article.teaser}
-                    </p>
-                  </div>
-
-                  {/* Arrow */}
-
-                  <ArrowRight
-                    size={17}
-                    strokeWidth={1.5}
-                    className="
-                      mt-1
-                      shrink-0
-                      text-black/20
-                      transition-all
-                      duration-300
-                      group-hover:translate-x-1
-                      group-hover:text-[#B41448]
-                    "
-                  />
-                </motion.article>
+                      <ArrowRight
+                        size={17}
+                        strokeWidth={1.5}
+                        className="shrink-0 text-black/20 transition-all duration-300 group-hover:translate-x-1 group-hover:text-[#B41448]"
+                      />
+                    </div>
+                  </motion.article>
+                </Link>
               );
             })}
           </div>
-        </div>
+        ) : (
+          <div className="mt-12 grid gap-5 lg:grid-cols-2">
+            <Link href={`/knowledge/${featured.slug}`}>
+              <motion.article
+                initial={{
+                  opacity: 0,
+                  y: 20,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                viewport={{
+                  once: true,
+                  margin: "-80px",
+                }}
+                transition={{
+                  duration: 0.6,
+                  delay: 0.2,
+                }}
+                className="group relative flex min-h-[430px] flex-col justify-between overflow-hidden bg-[#0D1724] p-7 text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(23,26,24,0.06)] sm:p-9 lg:min-h-[420px] lg:p-10"
+              >
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -top-32 -right-32 h-80 w-80 rounded-full bg-[#E3A526]/10 blur-[100px]"
+                />
+
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-[#B41448] via-[#E3A526] to-transparent"
+                />
+
+                <div className="relative z-10 flex items-start justify-between">
+                  <ContentType>{featured.type}</ContentType>
+                </div>
+
+                <div className="relative z-10">
+                  <h3 className="max-w-xl text-2xl leading-[1.12] font-semibold tracking-[-0.03em] transition-colors duration-300 group-hover:text-[#B41448] sm:text-3xl lg:text-[2.25rem]">
+                    {featured.title}
+                  </h3>
+
+                  <p className="mt-5 max-w-xl text-sm leading-6 text-white/55 sm:text-[15px]">
+                    {featured.teaser}
+                  </p>
+                </div>
+
+                {/* CTA */}
+
+                <div className="relative z-10 mt-10 border-t border-white/10 pt-5">
+                  <div className="group/link inline-flex items-center gap-2 text-xs font-semibold text-white transition-colors duration-300 hover:text-[#9F103F]">
+                    Read insight
+                    <ArrowUpRight
+                      size={15}
+                      className="transition-transform duration-300 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
+                    />
+                  </div>
+                </div>
+              </motion.article>
+            </Link>
+
+            {/* ===================================================
+                SECOND ARTICLE (WHITE THEME)
+            =================================================== */}
+
+            {displayArticles.map((article, index) => {
+              const Icon =
+                iconMap[article.type as keyof typeof iconMap] || FileText;
+
+              return (
+                <Link key={article.id} href={`/knowledge/${article.slug}`}>
+                  <motion.article
+                    initial={{
+                      opacity: 0,
+                      y: 20,
+                    }}
+                    whileInView={{
+                      opacity: 1,
+                      y: 0,
+                    }}
+                    viewport={{
+                      once: true,
+                      margin: "-80px",
+                    }}
+                    transition={{
+                      duration: 0.6,
+                      delay: 0.2,
+                    }}
+                    className="group relative flex min-h-[430px] flex-col justify-between overflow-hidden bg-white p-7 text-[#202020] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(23,26,24,0.06)] sm:p-9 lg:min-h-[420px] lg:p-10"
+                  >
+                    <div
+                      aria-hidden="true"
+                      className="pointer-events-none absolute -top-32 -right-32 h-80 w-80 rounded-full bg-[#E3A526]/10 blur-[100px]"
+                    />
+
+                    <div
+                      aria-hidden="true"
+                      className="pointer-events-none absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-[#B41448] via-[#E3A526] to-transparent"
+                    />
+
+                    <div className="relative z-10 flex items-start justify-between">
+                      <ContentType>{article.type}</ContentType>
+                    </div>
+
+                    <div className="relative z-10">
+                      <h3 className="max-w-xl text-2xl leading-[1.12] font-semibold tracking-[-0.03em] transition-colors duration-300 group-hover:text-[#B41448] sm:text-3xl lg:text-[2.25rem]">
+                        {article.title}
+                      </h3>
+
+                      <p className="mt-5 max-w-xl text-sm leading-6 text-black/55 sm:text-[15px]">
+                        {article.teaser}
+                      </p>
+                    </div>
+
+                    {/* CTA */}
+
+                    <div className="relative z-10 mt-10 border-t border-black/[0.08] pt-5">
+                      <div className="group/link inline-flex items-center gap-2 text-xs font-semibold text-[#B41448] transition-colors duration-300 hover:text-[#9F103F]">
+                        Read insight
+                        <ArrowUpRight
+                          size={15}
+                          className="transition-transform duration-300 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
+                        />
+                      </div>
+                    </div>
+                  </motion.article>
+                </Link>
+              );
+            })}
+          </div>
+        )}
 
         {/* =====================================================
             FOOTER CTA
         ===================================================== */}
 
-        <motion.div
+        {/* <motion.div
           initial={{
             opacity: 0,
           }}
@@ -403,7 +309,7 @@ export default function KnowledgeCentreSection() {
           className="mt-7 flex justify-end"
         >
           <Link
-            href="/knowledge-centre"
+            href="/knowledge"
             className="
               group
               inline-flex
@@ -428,7 +334,7 @@ export default function KnowledgeCentreSection() {
               "
             />
           </Link>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );

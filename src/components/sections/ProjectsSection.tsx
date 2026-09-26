@@ -591,7 +591,7 @@ function ProjectCard({
 
 export default function ProjectsAndCaseStudiesSection() {
   return (
-    <section className="bg-white py-16 sm:py-20 lg:py-24">
+    <section id="projects-and-case-studies" className="bg-white py-16 sm:py-20 lg:py-24">
       <div className="mx-auto w-full px-5 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
         {/* Header */}
         <motion.div

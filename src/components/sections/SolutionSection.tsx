@@ -172,7 +172,7 @@ export default function SolutionsSection() {
   const [activeId, setActiveId] = useState<string | null>(null);
 
   return (
-    <section className="bg-[#FAF9F7] py-16 sm:py-20 lg:py-24">
+    <section id="solutions" className="bg-[#FAF9F7] py-16 sm:py-20 lg:py-24">
       <div className="mx-auto w-full px-5 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
         <motion.div
           initial={{ opacity: 0, y: 16 }}

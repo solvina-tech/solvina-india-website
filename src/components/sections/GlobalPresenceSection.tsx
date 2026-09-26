@@ -77,7 +77,7 @@ function ProofCard({
 
 export default function GlobalPresenceSection() {
   return (
-    <section className="relative overflow-hidden bg-[#0D1724] text-white">
+    <section id="global-presence" className="relative overflow-hidden bg-[#0D1724] text-white">
       {/* =====================================================
           BACKGROUND ATMOSPHERE
       ===================================================== */}
@@ -151,7 +151,8 @@ export default function GlobalPresenceSection() {
             </p>
 
             <Link
-              href="/about#global-presence"
+              href="https://solvina.com"
+              target="#blank"
               className="group mt-8 inline-flex items-center gap-1 text-xs font-semibold text-white transition-colors duration-300 hover:text-[#E3A526]"
             >
               About Solvina / Global Presence

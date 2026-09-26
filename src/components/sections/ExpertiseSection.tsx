@@ -8,7 +8,7 @@ import { expertiseFamilies } from "@/data/homepage";
 
 export default function ExpertiseSection() {
   return (
-    <section className="relative overflow-hidden bg-[#F7F7F5]">
+    <section id="expertise" className="relative overflow-hidden bg-[#F7F7F5]">
       <div className="mx-auto w-full px-5 py-20 sm:px-8 sm:py-24 lg:px-12 lg:py-28 xl:px-16 2xl:px-20">
         {/* =====================================================
             SECTION INTRO

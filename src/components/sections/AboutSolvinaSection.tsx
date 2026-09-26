@@ -9,7 +9,7 @@ import { homepageAbout } from "@/data/homepage";
 
 export default function AboutSolvinaSection() {
   return (
-    <section className="relative overflow-hidden bg-white">
+    <section id="about-solvina" className="relative overflow-hidden bg-white">
       <div className="mx-auto w-full px-5 py-20 sm:px-8 sm:py-24 lg:px-12 lg:py-28 xl:px-16 2xl:px-20">
         <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20 xl:gap-24">
           {/* =====================================================

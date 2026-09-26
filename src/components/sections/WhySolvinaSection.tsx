@@ -290,7 +290,7 @@ function VisualDevice({ type }: { type: VisualType }) {
 
 export default function WhySolvinaSection() {
   return (
-    <section className="relative overflow-hidden bg-white">
+    <section id="why-solvina" className="relative overflow-hidden bg-white">
       <div className="mx-auto w-full px-5 py-20 sm:px-8 sm:py-24 lg:px-12 lg:py-28 xl:px-16 2xl:px-20">
         {/* Section intro */}
         <motion.div

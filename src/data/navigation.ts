@@ -20,6 +20,7 @@ import {
   Sun,
   Wind,
   Battery,
+  RadioTower,
 } from "lucide-react";
 
 export const expertiseMenu: MegaMenuData = {
@@ -230,45 +231,42 @@ export const industriesMenu: MegaMenuData = {
 
 export const productsMenu: MegaMenuData = {
   label: "Products",
-  href: "/products/",
+  href: "#products",
   icon: CircuitBoard,
   description:
-    "Engineering tools and platforms that make complex system behaviour visible, testable and easier to understand.",
+    "Engineering tools and measurement solutions that make complex system behaviour visible, testable and easier to understand.",
+
   items: [
     {
       href: "/products/operator-training-simulator/",
-      title: "Operator Training Simulator",
+      title: "SolvOTS",
       description:
-        "Training and simulation capability subject to current product and scope validation.",
+        "Browser-based operator training simulation for controlled scenarios and operational readiness.",
       icon: MonitorCog,
     },
-    // {
-    //   href: "/products/digital-twin-simulation/",
-    //   title: "Digital Twin & Simulation Platforms",
-    //   description:
-    //     "Verified digital models and simulation environments for defined engineering purposes.",
-    //   icon: Cpu,
-    // },
-    // {
-    //   href: "/products/ssps/",
-    //   title: "SSPS Power Plant Testing Equipment",
-    //   description:
-    //     "Power-plant testing and HIL methodologies where supported by current technical material.",
-    //   icon: Gauge,
-    // },
-    // {
-    //   href: "/products/engineering-software/",
-    //   title: "Engineering Products",
-    //   description:
-    //     "Modelling, power-system, process and control tools used within verified engineering workflows.",
-    //   icon: CircuitBoard,
-    // },
+
+    {
+      href: "/products/power-quality-energy-measurement/",
+      title: "Power Quality & Energy Measurement",
+      description:
+        "Electrical measurement equipment for power-quality monitoring and energy measurement.",
+      icon: Gauge,
+    },
+
+    {
+      href: "/products/position-sensors/",
+      title: "Position Sensors",
+      description:
+        "Non-contact sensing for angle and inclination measurement in demanding applications.",
+      icon: RadioTower,
+    },
   ],
+
   feature: {
-    eyebrow: "Digital Engineering",
+    eyebrow: "Products",
     title: "Tools with an engineering purpose.",
     description:
-      "Digital tools support analysis, training, testing, decision support and model-based validation.",
+      "Simulation, measurement and sensing solutions supporting defined engineering applications.",
     href: "/products/",
     cta: "Explore All Products",
   },

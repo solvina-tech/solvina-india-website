@@ -40,7 +40,7 @@ export default function FinalCTASection() {
   const pathname = usePathname();
 
   return (
-    <section className="relative overflow-hidden bg-[#0B1520] text-white">
+    <section id="final-cta" className="relative overflow-hidden bg-[#0B1520] text-white">
       {/* =====================================================
           AMBIENT BACKGROUND
       ===================================================== */}

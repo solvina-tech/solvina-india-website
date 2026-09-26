@@ -1,3 +1,5 @@
+import { label } from "framer-motion/client";
+
 export const footerNavigation = {
   expertise: [
     {
@@ -65,6 +67,10 @@ export const footerNavigation = {
     {
       label: "Case Studies",
       href: "/projects#case-studies",
+    },
+    {
+      label: "Knowledge Center",
+      href: "/#knowledge-center",
     }
   ],
 

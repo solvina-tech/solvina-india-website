@@ -873,6 +873,7 @@ export default function ModelToPlantMethodSweep() {
   return (
     <section
       ref={sectionRef}
+      id="model-to-plant-method"
       className="relative overflow-hidden bg-[#0D1724] py-16 sm:py-20 lg:py-24"
     >
       {/* =====================================================

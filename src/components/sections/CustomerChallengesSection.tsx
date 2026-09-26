@@ -123,7 +123,7 @@ function ChallengeCard({
 
 export default function CustomerChallengesSection() {
   return (
-    <section className="bg-[#FAF9F7] py-16 sm:py-20 lg:py-28">
+    <section id="customer-challenges" className="bg-[#FAF9F7] py-16 sm:py-20 lg:py-28">
       <div className="mx-auto w-full px-5 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
