@@ -12,6 +12,7 @@ import {
   BookOpen,
 } from "lucide-react";
 import type { KnowledgeItem } from "@/data/knowledgeSection";
+import EnquiryCTA from "../forms/EnquiryCTA";
 
 interface KnowledgeArticlePageProps {
   item: KnowledgeItem;
@@ -63,7 +64,7 @@ export default function KnowledgeArticlePage({
               <div className="mb-6 flex items-center gap-3">
                 <span className="h-px w-10 bg-[#B41448]" />
 
-                <span className="text-xs font-medium tracking-[0.22em] text-[#687068] uppercase">
+                <span className="text-xs font-medium tracking-[0.22em] text-[#B41448] uppercase">
                   {item.article.eyebrow || item.type}
                 </span>
               </div>
@@ -163,7 +164,7 @@ export default function KnowledgeArticlePage({
             >
               <div className="mb-4 flex items-center gap-3">
                 <span className="h-px w-8 bg-[#E3A526]" />
-                <span className="text-xs font-medium tracking-[0.2em] text-white/50 uppercase">
+                <span className="text-xs font-medium tracking-[0.2em] text-[#E3A526] uppercase">
                   Abstract
                 </span>
               </div>
@@ -329,9 +330,11 @@ export default function KnowledgeArticlePage({
               transition={{ duration: 0.6 }}
               className="max-w-4xl"
             >
-              <div className="mb-8 flex items-center gap-3">
+
+              <div className="mb-7 flex items-center gap-4">
                 <span className="h-px w-10 bg-[#B41448]" />
-                <span className="text-xs font-medium tracking-[0.2em] text-black/40 uppercase">
+
+                <span className="text-xs font-semibold tracking-[0.25em] text-[#B41448] uppercase">
                   Conclusion
                 </span>
               </div>
@@ -348,7 +351,7 @@ export default function KnowledgeArticlePage({
           CTA
       ================================================================ */}
 
-      <section className="relative overflow-hidden bg-[#E3A526] py-20 lg:py-28">
+      <section className="relative overflow-hidden bg-[#E3A526] py-20">
         <div className="pointer-events-none absolute -right-40 -top-40 h-[520px] w-[520px] rounded-full border-[80px] border-black/[0.035]" />
 
         <div className="pointer-events-none absolute -bottom-48 -left-20 h-[480px] w-[480px] rounded-full border border-black/[0.08]" />
@@ -378,17 +381,11 @@ export default function KnowledgeArticlePage({
             </h2>
 
             <div className="mt-12 flex flex-wrap gap-4">
-              <Link
-                href="/contact/"
-                className="group inline-flex items-center gap-3 rounded-full bg-[#171A18] px-7 py-4 text-sm font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#B41448]"
-              >
-                Get in touch
-
-                <ArrowRight
-                  size={17}
-                  className="transition-transform group-hover:translate-x-1"
-                />
-              </Link>
+              <EnquiryCTA
+                label="Get in touch"
+                type="General Enquiry"
+                className="h-14 group inline-flex items-center gap-3 rounded-full bg-[#171A18] px-7 py-4 text-sm font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#B41448]"
+              />
 
               <Link
                 href="/"
