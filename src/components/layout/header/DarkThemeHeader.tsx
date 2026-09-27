@@ -552,15 +552,6 @@ function ExpertiseMegaMenuDark({
                   {activeGroup.title}
                 </h3>
               </div>
-
-              <Link
-                href={activeGroup.href}
-                onClick={closeMenu}
-                className="group hidden shrink-0 items-center gap-2 text-xs font-semibold text-[#E3A526] transition-colors hover:text-white sm:flex"
-              >
-                Explore all
-                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-              </Link>
             </div>
 
             {/* Capability Cards */}

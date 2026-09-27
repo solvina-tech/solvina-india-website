@@ -307,7 +307,7 @@ const caseStudyDetailDefinitions: CaseStudyDetail[] = [
       {
         heading: "Reference Customers",
         paragraphs: [
-          "Customers include, but is not limited to: Grid India (POSOCO), Reliance, Vedanta, Balco, IFFCO, Alstom, ABB, Vattenfall, E.On, Swedish TSO, Norwegian TSO, Wärtsilä, CNIM, SSAB, SmurfitKappa, NTPC, NHPC, NEEPCO, NLC, DVC, Adani, Tata Power, etc.",
+          "Customers include, but is not limited to: Grid India (POSOCO), Reliance, Vedanta, Balco, IFFCO, NTPC, NHPC, NEEPCO, NLC, DVC, Adani, Tata Power, etc.",
         ],
       },
       {

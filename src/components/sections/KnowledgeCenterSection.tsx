@@ -73,7 +73,7 @@ export default function KnowledgeCentreSection() {
               <span className="h-px w-9 bg-[#E3A526]" />
 
               <span className="text-[10px] font-bold tracking-[0.2em] text-[#B41448] uppercase sm:text-xs">
-                Knowledge Centre
+                Knowledge Center
               </span>
             </div>
 

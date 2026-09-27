@@ -12,6 +12,7 @@ import {
 import { caseStudies } from "@/data/caseStudies";
 import Image from "next/image";
 import { assetPath } from "@/lib/assets";
+import EnquiryCTA from "@/components/forms/EnquiryCTA";
 
 const PROJECTS_PER_LOAD = 3;
 
@@ -298,7 +299,10 @@ function ProjectItem({
 
 function CaseStudiesSection() {
   return (
-    <section id="case-studies" className="relative overflow-hidden border-t border-[#DDE1DC] bg-[#171A18]">
+    <section
+      id="case-studies"
+      className="relative overflow-hidden border-t border-[#DDE1DC] bg-[#171A18]"
+    >
       <div className="pointer-events-none absolute top-20 -right-40 h-[500px] w-[500px] rounded-full bg-[#B41448]/[0.08] blur-[120px]" />
 
       <div className="relative mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-32 lg:px-16">
@@ -336,13 +340,12 @@ function CaseStudiesSection() {
 
         <div className="mt-16 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {caseStudies.map((caseStudy, index) => (
-            <article
+            <Link
               key={caseStudy.id}
-              className={`group relative flex h-full flex-col overflow-hidden rounded-[24px] border border-white/[0.09] bg-[#202420] transition-all duration-500 hover:-translate-y-1 hover:border-[#E3A526]/30`}
+              href={caseStudy.href}
+              className={`group relative cursor-pointer flex h-full flex-col overflow-hidden rounded-[24px] border border-white/[0.09] bg-[#202420] transition-all duration-500 hover:-translate-y-1 hover:border-[#E3A526]/30`}
             >
-              <div
-                className={`relative overflow-hidden aspect-[16/10]`}
-              >
+              <div className={`relative aspect-[16/10] overflow-hidden`}>
                 <img
                   src={caseStudy.image}
                   alt=""
@@ -385,18 +388,17 @@ function CaseStudiesSection() {
 
                 {/* Footer */}
                 <div className="mt-auto border-t border-white/[0.07] pt-5">
-                  <Link
-                    href={caseStudy.href}
+                  <div
                     className="inline-flex items-center gap-3 text-[10px] font-medium tracking-[0.17em] text-[#E3A526] uppercase transition-colors hover:text-white"
                   >
                     Read Case Study
                     <span className="flex h-7 w-7 items-center justify-center rounded-full border border-[#E3A526]/25 transition-all duration-300 group-hover:translate-x-1 group-hover:border-[#E3A526]/60">
                       <ArrowUpRight />
                     </span>
-                  </Link>
+                  </div>
                 </div>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </div>
@@ -658,7 +660,7 @@ export default function ProjectsPage() {
 
         <div className="absolute inset-0 bg-gradient-to-t from-[#111614] via-transparent to-transparent" />
 
-        <div className="relative mx-auto max-w-[1400px] z-10 flex min-h-[76vh] flex-col justify-end px-5 pt-32 pb-16 sm:px-8 md:px-10 lg:px-16 lg:pb-20">
+        <div className="relative z-10 mx-auto flex min-h-[76vh] max-w-[1400px] flex-col justify-end px-5 pt-32 pb-16 sm:px-8 md:px-10 lg:px-16 lg:pb-20">
           <div>
             <div className="max-w-5xl">
               <div className="mb-7 flex items-center gap-3">
@@ -998,7 +1000,7 @@ export default function ProjectsPage() {
 
         <div className="absolute -bottom-48 left-[-100px] h-[500px] w-[500px] rounded-full border border-black/[0.08]" />
 
-        <div className="relative mx-auto max-w-[1400px] px-5 py-20 md:px-10 md:py-28 lg:px-16">
+        <div className="relative mx-auto max-w-[1400px] px-5 py-10 md:px-10 lg:px-16">
           <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
             <div>
               <span className="text-[10px] font-medium tracking-[0.22em] text-black/50 uppercase">
@@ -1016,13 +1018,11 @@ export default function ProjectsPage() {
             </div>
 
             <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-              <Link
-                href="/contact/"
+              <EnquiryCTA
+                label="Discuss Your Engineering Challenge"
+                type="Engineering Challenge"
                 className="inline-flex h-12 items-center justify-center gap-3 rounded-full bg-[#171A18] px-6 text-[10px] font-medium tracking-[0.16em] text-white uppercase transition-transform hover:-translate-y-0.5"
-              >
-                Discuss Your Engineering Challenge
-                <ArrowUpRight />
-              </Link>
+              />
 
               <Link
                 href="/expertise/"

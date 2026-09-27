@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { assetPath } from "@/lib/assets";
 import EnquiryCTA from "@/components/forms/EnquiryCTA";
+import { ArrowUpRight } from "lucide-react";
 
 /* -------------------------------------------------------------------------- */
 /*                                   TYPES                                    */
@@ -81,36 +82,6 @@ function ImagePanel({
   );
 }
 
-/* -------------------------------------------------------------------------- */
-/*                              SMALL COMPONENTS                              */
-/* -------------------------------------------------------------------------- */
-
-function ArrowUpRight() {
-  return (
-    <svg
-      width="18"
-      height="18"
-      viewBox="0 0 24 24"
-      fill="none"
-      aria-hidden="true"
-    >
-      <path
-        d="M7 17L17 7"
-        stroke="currentColor"
-        strokeWidth="1.7"
-        strokeLinecap="round"
-      />
-      <path
-        d="M8 7H17V16"
-        stroke="currentColor"
-        strokeWidth="1.7"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 function PlusIcon({ open }: { open: boolean }) {
   return (
     <span className="relative block h-5 w-5">
@@ -162,7 +133,7 @@ function LeadershipCard({ member }: { member: LeadershipMember }) {
             className="group/link inline-flex items-center gap-2 text-sm font-semibold text-[#111614] transition group-hover/link:text-[#b41448]"
           >
             LinkedIn
-            <ArrowUpRight />
+            <ArrowUpRight size={10} />
           </a>
 
           {member.expertise && member.expertise.length > 0 && (
@@ -226,7 +197,7 @@ function SimpleProfileCard({ member }: { member: LeadershipMember }) {
             className="group/link inline-flex items-center gap-2 text-sm font-semibold text-[#111614] transition group-hover/link:text-[#b41448]"
           >
             LinkedIn
-            <ArrowUpRight />
+            <ArrowUpRight size={18} />
           </a>
         </div>
       </div>
@@ -516,11 +487,13 @@ export default function AboutPage() {
         <div className="mx-auto max-w-[1280px]">
           <div className="grid gap-14 lg:grid-cols-[0.75fr_1.25fr] lg:gap-24">
             <div>
-              <span className="text-xs font-semibold tracking-[0.25em] text-[#6f786f] uppercase">
-                Who we are
-              </span>
+              <div className="mb-7 flex items-center gap-4">
+                <span className="h-px w-10 bg-[#B41448]" />
 
-              <div className="mt-8 h-px w-16 bg-[#111614]" />
+                <span className="text-xs font-semibold tracking-[0.25em] text-[#B41448] uppercase">
+                  Who We Are
+                </span>
+              </div>
 
               <p className="mt-8 max-w-sm text-sm leading-6 text-[#687068]">
                 Specialist engineering for questions that do not fit neatly
@@ -885,9 +858,13 @@ export default function AboutPage() {
         <div className="mx-auto max-w-[1280px]">
           <div className="grid gap-16 lg:grid-cols-[1fr_1fr] lg:gap-24">
             <div>
-              <span className="text-xs font-semibold tracking-[0.25em] text-[#667067] uppercase">
-                Our engineering philosophy
-              </span>
+              <div className="mb-7 flex items-center gap-4">
+                <span className="h-px w-10 bg-[#B41448]" />
+
+                <span className="text-xs font-semibold tracking-[0.25em] text-[#B41448] uppercase">
+                  Our engineering philosophy
+                </span>
+              </div>
 
               <h2 className="mt-8 max-w-2xl text-[clamp(2.7rem,5.5vw,5.8rem)] leading-[0.92] font-medium tracking-[-0.06em]">
                 Integrated
@@ -941,9 +918,13 @@ export default function AboutPage() {
         <div className="mx-auto max-w-[1280px]">
           <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
             <div>
-              <span className="text-xs font-semibold tracking-[0.25em] text-[#6f786f] uppercase">
-                From model to plant
-              </span>
+              <div className="mb-7 flex items-center gap-4">
+                <span className="h-px w-10 bg-[#B41448]" />
+
+                <span className="text-xs font-semibold tracking-[0.25em] text-[#B41448] uppercase">
+                  From model to plant
+                </span>
+              </div>
 
               <h2 className="mt-7 max-w-3xl text-[clamp(2.7rem,5.5vw,6rem)] leading-[0.92] font-medium tracking-[-0.06em]">
                 From understanding
@@ -1066,9 +1047,13 @@ export default function AboutPage() {
       <section className="bg-[#f4f5f2] px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
         <div className="mx-auto max-w-[1280px]">
           <div className="max-w-4xl">
-            <span className="text-xs font-semibold tracking-[0.25em] text-[#6f786f] uppercase">
-              What customers value
-            </span>
+            <div className="mb-7 flex items-center gap-4">
+              <span className="h-px w-10 bg-[#B41448]" />
+
+              <span className="text-xs font-semibold tracking-[0.25em] text-[#B41448] uppercase">
+                What customers value
+              </span>
+            </div>
 
             <h2 className="mt-8 text-[clamp(2.7rem,5vw,5.6rem)] leading-[0.94] font-medium tracking-[-0.06em]">
               Deep engineering.
@@ -1137,9 +1122,13 @@ export default function AboutPage() {
       >
         <div className="mx-auto max-w-[1280px]">
           <div className="mb-14">
-            <span className="text-xs font-semibold tracking-[0.25em] text-[#6f786f] uppercase">
-              Leadership & experts
-            </span>
+            <div className="mb-7 flex items-center gap-4">
+              <span className="h-px w-10 bg-[#B41448]" />
+
+              <span className="text-xs font-semibold tracking-[0.25em] text-[#B41448] uppercase">
+                Leadership & experts
+              </span>
+            </div>
 
             <h2 className="mt-7 text-[clamp(2.7rem,5vw,5.5rem)] leading-[0.94] font-medium tracking-[-0.06em]">
               People behind
@@ -1209,9 +1198,13 @@ export default function AboutPage() {
         <div className="mx-auto max-w-[1280px]">
           <div className="grid gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
             <div>
-              <span className="text-xs font-semibold tracking-[0.25em] text-[#E3A526] uppercase">
-                Global presence
-              </span>
+              <div className="mb-7 flex items-center gap-4">
+                <span className="h-px w-10 bg-[#E3A526]" />
+
+                <span className="text-xs font-semibold tracking-[0.25em] text-[#E3A526] uppercase">
+                  Global presence
+                </span>
+              </div>
 
               <h2 className="mt-8 text-[clamp(2.7rem,5vw,5.5rem)] leading-[0.93] font-medium tracking-[-0.06em]">
                 Local delivery.
@@ -1224,6 +1217,21 @@ export default function AboutPage() {
                 while benefiting from the wider technical knowledge and project
                 experience represented across the Solvina organization.
               </p>
+
+              <Link
+                href="https://solvina.com"
+                target="#blank"
+                className="group mt-8 inline-flex items-center gap-1 text-xs font-semibold text-white transition-colors duration-300 hover:text-[#E3A526]"
+              >
+                About Solvina / Global Presence
+                <span className="flex h-8 w-8 items-center justify-center transition-all duration-300 group-hover:text-[#E3A526]">
+                  <ArrowUpRight
+                    size={15}
+                    strokeWidth={1.6}
+                    className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  />
+                </span>
+              </Link>
             </div>
 
             <div>
@@ -1232,7 +1240,7 @@ export default function AboutPage() {
                 alt="Solvina engineering presence and project regions"
               />
 
-              <div className="mt-6 grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-3">
+              <div className="mt-6 grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-2">
                 {[
                   {
                     region: "India",
@@ -1242,10 +1250,10 @@ export default function AboutPage() {
                     region: "Sweden",
                     label: "Solvina heritage",
                   },
-                  {
-                    region: "Project regions",
-                    label: "Approved project geography",
-                  },
+                  // {
+                  //   region: "Project regions",
+                  //   label: "Approved project geography",
+                  // },
                 ].map((item) => (
                   <div key={item.region} className="bg-[#151a18] p-6">
                     <span className="block text-xs font-semibold tracking-[0.16em] text-[#E3A526] uppercase">
@@ -1257,11 +1265,6 @@ export default function AboutPage() {
                   </div>
                 ))}
               </div>
-
-              <p className="mt-5 text-xs leading-5 text-white/25">
-                Locations and project geography should be kept aligned with
-                current approved corporate information.
-              </p>
             </div>
           </div>
         </div>
@@ -1278,9 +1281,13 @@ export default function AboutPage() {
         <div className="mx-auto max-w-[1280px]">
           <div className="grid gap-14 lg:grid-cols-[0.7fr_1.3fr] lg:gap-24">
             <div>
-              <span className="text-xs font-semibold tracking-[0.25em] text-[#6f786f] uppercase">
-                Values & governance
-              </span>
+              <div className="mb-7 flex items-center gap-4">
+                <span className="h-px w-10 bg-[#B41448]" />
+
+                <span className="text-xs font-semibold tracking-[0.25em] text-[#B41448] uppercase">
+                  Values & governance
+                </span>
+              </div>
 
               <h2 className="mt-8 text-[clamp(2.7rem,5vw,5.2rem)] leading-[0.94] font-medium tracking-[-0.06em]">
                 Engineering
@@ -1320,9 +1327,13 @@ export default function AboutPage() {
       <section className="bg-[#e1e6df] px-6 py-24 sm:px-10 lg:px-16 lg:py-28">
         <div className="mx-auto max-w-[1100px]">
           <div className="mb-12">
-            <span className="text-xs font-semibold tracking-[0.25em] text-[#6f786f] uppercase">
-              Questions
-            </span>
+            <div className="mb-7 flex items-center gap-4">
+              <span className="h-px w-10 bg-[#B41448]" />
+
+              <span className="text-xs font-semibold tracking-[0.25em] text-[#B41448] uppercase">
+                Questions
+              </span>
+            </div>
 
             <h2 className="mt-6 text-[clamp(2.5rem,5vw,5rem)] leading-[0.95] font-medium tracking-[-0.055em]">
               Understanding
@@ -1419,9 +1430,9 @@ export default function AboutPage() {
               },
               {
                 number: "04",
-                title: "Knowledge Centre",
+                title: "Knowledge Center",
                 text: "Explore technical knowledge, insights and resources.",
-                href: "/knowledge-centre/",
+                href: "/#knowledge-center",
               },
             ].map((item) => (
               <Link

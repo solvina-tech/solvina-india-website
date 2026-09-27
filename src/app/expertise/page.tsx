@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { assetPath } from "@/lib/assets";
+import EnquiryCTA from "@/components/forms/EnquiryCTA";
 
 /* ==========================================================================
    ICONS
@@ -10,12 +11,7 @@ import { assetPath } from "@/lib/assets";
 
 function ArrowUpRight() {
   return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      className="h-4 w-4"
-      aria-hidden="true"
-    >
+    <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4" aria-hidden="true">
       <path
         d="M7 17L17 7M8 7h9v9"
         stroke="currentColor"
@@ -29,12 +25,7 @@ function ArrowUpRight() {
 
 function ArrowRight() {
   return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      className="h-4 w-4"
-      aria-hidden="true"
-    >
+    <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4" aria-hidden="true">
       <path
         d="M5 12h13M13 6l6 6-6 6"
         stroke="currentColor"
@@ -164,42 +155,50 @@ function ExpertiseCard({
 }) {
   return (
     <article
-      className={`group relative border-t border-black/[0.08] py-8 md:py-10 ${
-        index === 0 ? "border-t-0 pt-0 md:pt-0" : ""
-      }`}
+      className={`group relative overflow-hidden rounded-[24px] border border-black/[0.08] bg-white p-7 transition-all duration-500 hover:-translate-y-1 hover:border-[#E3A526]/40 hover:shadow-[0_20px_60px_rgba(0,0,0,0.06)] md:p-9 ${index % 2 === 1 ? "lg:translate-y-10" : ""} `}
     >
-      <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_340px] lg:gap-12">
+      {/* Subtle technical background */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(180,20,72,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(180,20,72,.045) 1px, transparent 1px)",
+          backgroundSize: "32px 32px",
+          maskImage: "linear-gradient(to bottom right, black, transparent 70%)",
+          WebkitMaskImage:
+            "linear-gradient(to bottom right, black, transparent 70%)",
+        }}
+      />
+
+      {/* Top accent */}
+      <div className="absolute top-0 left-0 h-1 w-0 bg-gradient-to-r from-[#E3A526] to-[#B41448] transition-all duration-500 group-hover:w-full" />
+
+      <div className="relative z-10 flex flex-col">
+        {/* Number + arrow */}
+        <div className="absolute top-0 right-0">
+          <span className="flex h-9 w-9 items-center justify-center rounded-full border border-black/[0.08] text-black/30 transition-all duration-300 group-hover:border-[#B41448]/30 group-hover:bg-[#B41448] group-hover:text-white">
+            <ArrowUpRight />
+          </span>
+        </div>
+
+        {/* Main content */}
         <div>
-          <div className="flex items-start gap-5">
-            <span className="font-mono text-[10px] tracking-[0.18em] text-[#E3A526] lg:hidden">
-              {area.number}
-            </span>
+          <h3 className="max-w-xl text-2xl leading-[1.08] font-medium tracking-[-0.035em] text-[#202020] transition-colors duration-300 group-hover:text-[#B41448] md:text-3xl">
+            {area.title}
+          </h3>
 
-            <h3 className="text-2xl font-medium leading-[1.1] tracking-[-0.035em] text-[#202020] transition-colors duration-300 group-hover:text-[#B41448] md:text-3xl">
-              {area.title}
-            </h3>
-          </div>
-
-          <p className="mt-5 max-w-2xl text-[14px] leading-7 text-black/55 md:text-[15px]">
+          <p className="mt-5 max-w-xl text-[14px] leading-7 text-black/50 md:text-[15px]">
             {area.short}
           </p>
+        </div>
 
-          <div className="mt-6 flex flex-wrap gap-2">
+        {/* Tags pushed toward bottom */}
+        <div className="mt-auto pt-10">
+          <div className="flex flex-wrap gap-2">
             {area.tags.map((tag) => (
               <span
                 key={tag}
-                className="
-                  rounded-full
-                  border
-                  border-black/[0.08]
-                  bg-black/[0.02]
-                  px-3
-                  py-1.5
-                  text-[9px]
-                  uppercase
-                  tracking-[0.08em]
-                  text-black/45
-                "
+                className="rounded-full border border-black/[0.08] bg-black/[0.02] px-3 py-1.5 text-[9px] tracking-[0.08em] text-black/45 uppercase transition-colors duration-300 group-hover:border-[#B41448]/15"
               >
                 {tag}
               </span>
@@ -208,54 +207,17 @@ function ExpertiseCard({
 
           <Link
             href={`/expertise/${area.slug}/`}
-            className="
-              mt-7
-              inline-flex
-              items-center
-              gap-3
-              text-[10px]
-              font-semibold
-              uppercase
-              tracking-[0.17em]
-              text-[#B41448]
-              transition-colors
-              hover:text-[#9F103F]
-            "
+            className="mt-7 inline-flex items-center gap-3 text-[10px] font-semibold tracking-[0.17em] text-[#B41448] uppercase"
           >
             Explore Expertise
-
             <span className="transition-transform duration-300 group-hover:translate-x-1">
               <ArrowRight />
             </span>
           </Link>
         </div>
-
-        <div className="relative hidden overflow-hidden rounded-[20px] border border-black/[0.08] bg-[#ECEBE6] lg:block">
-          <div className="aspect-[4/3]">
-            <img
-              src={area.image}
-              alt=""
-              className="
-                h-full
-                w-full
-                object-cover
-                opacity-75
-                grayscale
-                transition-all
-                duration-700
-                group-hover:scale-[1.04]
-                group-hover:opacity-100
-                group-hover:grayscale-0
-              "
-            />
-
-            <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/35" />
-
-            <div className="absolute bottom-4 left-4 h-2 w-2 rounded-full bg-[#E3A526]" />
-          </div>
-        </div>
       </div>
 
+      {/* Bottom hover line */}
       <div className="absolute bottom-0 left-0 h-px w-0 bg-gradient-to-r from-[#E3A526] to-[#B41448] transition-all duration-500 group-hover:w-full" />
     </article>
   );
@@ -298,7 +260,7 @@ function SystemsConnection() {
 
   return (
     <section className="relative overflow-hidden bg-[#0d1110] text-white">
-      <div className="pointer-events-none absolute -right-40 top-1/2 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-[#B41448]/[0.08] blur-[130px]" />
+      <div className="pointer-events-none absolute top-1/2 -right-40 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-[#B41448]/[0.08] blur-[130px]" />
 
       <div className="mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-32 lg:px-16">
         <div className="grid gap-16 lg:grid-cols-[0.8fr_1.2fr]">
@@ -306,12 +268,12 @@ function SystemsConnection() {
             <div className="flex items-center gap-3">
               <span className="h-px w-10 bg-[#E3A526]" />
 
-              <span className="text-[10px] uppercase tracking-[0.22em] text-[#E3A526]">
+              <span className="text-[10px] tracking-[0.22em] text-[#E3A526] uppercase">
                 Integrated Systems Intelligence
               </span>
             </div>
 
-            <h2 className="mt-6 max-w-xl text-4xl font-medium leading-[1.02] tracking-[-0.045em] md:text-5xl">
+            <h2 className="mt-6 max-w-xl text-4xl leading-[1.02] font-medium tracking-[-0.045em] md:text-5xl">
               Complex systems don&apos;t respect discipline boundaries.
             </h2>
 
@@ -331,10 +293,10 @@ function SystemsConnection() {
 
           <div>
             <div className="relative">
-              <div className="absolute bottom-6 left-[21px] top-6 hidden w-px bg-white/[0.08] sm:block" />
+              <div className="absolute top-6 bottom-6 left-[21px] hidden w-px bg-white/[0.08] sm:block" />
 
               <div
-                className="absolute left-[21px] top-6 hidden w-px bg-gradient-to-b from-[#E3A526] to-[#B41448] transition-all duration-500 sm:block"
+                className="absolute top-6 left-[21px] hidden w-px bg-gradient-to-b from-[#E3A526] to-[#B41448] transition-all duration-500 sm:block"
                 style={{
                   height: `${active * 25}%`,
                 }}
@@ -357,9 +319,7 @@ function SystemsConnection() {
                   >
                     <span
                       className={`font-mono text-[9px] ${
-                        active === index
-                          ? "text-[#E3A526]"
-                          : "text-white/30"
+                        active === index ? "text-[#E3A526]" : "text-white/30"
                       }`}
                     >
                       {system.number}
@@ -375,16 +335,6 @@ function SystemsConnection() {
                       >
                         {system.title}
                       </h3>
-
-                      <span
-                        className={
-                          active === index
-                            ? "text-[#E3A526]"
-                            : "text-white/20"
-                        }
-                      >
-                        <ArrowRight />
-                      </span>
                     </div>
 
                     <p
@@ -450,19 +400,19 @@ function EngineeringApproach() {
 
   return (
     <section className="relative overflow-hidden bg-[#F7F7F4] text-[#202020]">
-      <div className="pointer-events-none absolute -left-40 top-1/3 h-[450px] w-[450px] rounded-full bg-[#B41448]/[0.035] blur-[120px]" />
+      <div className="pointer-events-none absolute top-1/3 -left-40 h-[450px] w-[450px] rounded-full bg-[#B41448]/[0.035] blur-[120px]" />
 
       <div className="relative mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-32 lg:px-16">
         <div className="max-w-3xl">
           <div className="flex items-center gap-3">
             <span className="h-px w-10 bg-[#E3A526]" />
 
-            <span className="text-[10px] uppercase tracking-[0.22em] text-[#B41448]">
+            <span className="text-[10px] tracking-[0.22em] text-[#B41448] uppercase">
               From Model to Plant
             </span>
           </div>
 
-          <h2 className="mt-6 text-4xl font-medium leading-[1.02] tracking-[-0.045em] md:text-5xl">
+          <h2 className="mt-6 text-4xl leading-[1.02] font-medium tracking-[-0.045em] md:text-5xl">
             Engineering analysis becomes useful when it connects to the plant.
           </h2>
 
@@ -478,17 +428,9 @@ function EngineeringApproach() {
             {steps.map((step, index) => (
               <div
                 key={step.number}
-                className={`group relative border-b border-black/[0.08] p-7 transition-colors duration-300 hover:bg-[#B41448]/[0.025] ${
-                  index % 2 === 0 ? "md:border-r" : ""
-                } ${index < 4 ? "lg:border-r" : ""} ${
-                  index >= 4 ? "lg:border-t" : ""
-                }`}
+                className={`group relative border-b border-black/[0.08] p-7 transition-colors duration-300 hover:bg-[#B41448]/[0.025] md:border-r lg:border-r lg:border-t`}
               >
-                <span className="font-mono text-[10px] tracking-[0.18em] text-[#E3A526]">
-                  {step.number}
-                </span>
-
-                <h3 className="mt-8 text-xl font-medium tracking-[-0.025em] text-[#202020]">
+                <h3 className="text-xl font-medium tracking-[-0.025em] text-[#202020]">
                   {step.title}
                 </h3>
 
@@ -539,19 +481,7 @@ function RelatedContent() {
             <Link
               key={link.label}
               href={link.href}
-              className="
-                group
-                rounded-[20px]
-                border
-                border-black/[0.08]
-                bg-white
-                p-7
-                transition-all
-                duration-300
-                hover:-translate-y-1
-                hover:border-[#E3A526]/50
-                hover:shadow-[0_15px_40px_rgba(0,0,0,0.06)]
-              "
+              className="group rounded-[20px] border border-black/[0.08] bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#E3A526]/50 hover:shadow-[0_15px_40px_rgba(0,0,0,0.06)]"
             >
               <div className="flex items-start justify-between gap-5">
                 <div>
@@ -615,38 +545,38 @@ export default function ExpertisePage() {
 
         {/* Burgundy atmosphere */}
 
-        <div className="pointer-events-none absolute -right-40 top-0 h-[700px] w-[700px] rounded-full bg-[#B41448]/[0.09] blur-[150px]" />
+        <div className="pointer-events-none absolute top-0 -right-40 h-[700px] w-[700px] rounded-full bg-[#B41448]/[0.09] blur-[150px]" />
 
         {/* Gold atmosphere */}
 
-        <div className="pointer-events-none absolute right-[18%] top-[22%] h-[300px] w-[300px] rounded-full bg-[#E3A526]/[0.035] blur-[110px]" />
+        <div className="pointer-events-none absolute top-[22%] right-[18%] h-[300px] w-[300px] rounded-full bg-[#E3A526]/[0.035] blur-[110px]" />
 
         {/* Technical visual */}
 
-        <div className="pointer-events-none absolute bottom-0 right-[-8%] hidden h-[75%] w-[48%] lg:block">
+        <div className="pointer-events-none absolute right-[-8%] bottom-0 hidden h-[75%] w-[48%] lg:block">
           <div className="absolute inset-0 [transform:perspective(900px)_rotateY(-18deg)_rotateX(8deg)] rounded-[50%] border border-white/[0.05]" />
 
           <div className="absolute inset-[12%] [transform:perspective(900px)_rotateY(-18deg)_rotateX(8deg)] rounded-[50%] border border-[#E3A526]/[0.09]" />
 
           <div className="absolute inset-[24%] [transform:perspective(900px)_rotateY(-18deg)_rotateX(8deg)] rounded-[50%] border border-[#B41448]/[0.13]" />
 
-          <div className="absolute left-1/2 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#E3A526]" />
+          <div className="absolute top-1/2 left-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#E3A526]" />
 
-          <div className="absolute left-1/2 top-1/2 h-[55%] w-[55%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#B41448]/[0.08]" />
+          <div className="absolute top-1/2 left-1/2 h-[55%] w-[55%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#B41448]/[0.08]" />
         </div>
 
         <div
-          className={`relative mx-auto flex min-h-[78vh] max-w-[1400px] items-end px-5 pb-20 pt-46 transition-all duration-1000 md:px-10 md:pb-28 lg:px-16 ${
+          className={`relative mx-auto flex min-h-[78vh] max-w-[1400px] items-end px-5 pt-46 pb-20 transition-all duration-1000 md:px-10 md:pb-28 lg:px-16 ${
             heroVisible
               ? "translate-y-0 opacity-100"
               : "translate-y-6 opacity-0"
           }`}
         >
           <div className="max-w-5xl">
-            <h1 className="max-w-5xl text-[clamp(3.2rem,7vw,7rem)] font-medium leading-[0.92] tracking-[-0.06em]">
-              Engineering expertise
+            <h1 className="max-w-5xl text-[clamp(3.2rem,7vw,7rem)] leading-[0.92] font-medium tracking-[-0.06em]">
+              Engineering Expertise
               <br />
-              <span className="text-white/35">for complex systems.</span>
+              <span className="text-white/35">for Complex Systems.</span>
             </h1>
 
             <p className="mt-9 max-w-2xl text-base leading-8 text-white/50 md:text-lg">
@@ -658,19 +588,17 @@ export default function ExpertisePage() {
             <div className="mt-9 flex flex-wrap gap-3">
               <Link
                 href="#expertise"
-                className="inline-flex h-12 items-center gap-3 rounded-full bg-[#E3A526] px-6 text-[10px] font-medium uppercase tracking-[0.16em] text-black transition-transform hover:-translate-y-0.5"
+                className="inline-flex h-12 items-center gap-3 rounded-full bg-[#E3A526] px-6 text-[10px] font-medium tracking-[0.16em] text-black uppercase transition-transform hover:-translate-y-0.5"
               >
                 Explore Expertise
                 <ArrowRight />
               </Link>
 
-              <Link
-                href="/contact/"
-                className="inline-flex h-12 items-center gap-3 rounded-full border border-white/[0.18] px-6 text-[10px] font-medium uppercase tracking-[0.16em] text-white/70 transition-colors hover:border-[#E3A526]/50 hover:text-white"
-              >
-                Discuss Your Challenge
-                <ArrowUpRight />
-              </Link>
+              <EnquiryCTA
+                label="Discuss Your Engineering Challenge"
+                type="Engineering Challenge"
+                className="inline-flex h-12 items-center gap-3 rounded-full border border-white/[0.18] bg-transparent px-6 text-[10px] font-medium tracking-[0.16em] text-white/70 uppercase transition-colors hover:border-[#E3A526]/50 hover:bg-white hover:text-black"
+              />
             </div>
           </div>
         </div>
@@ -686,12 +614,12 @@ export default function ExpertisePage() {
             <div className="flex items-center gap-3">
               <span className="h-px w-10 bg-[#E3A526]" />
 
-              <span className="text-[10px] uppercase tracking-[0.22em] text-[#B41448]">
+              <span className="text-[10px] tracking-[0.22em] text-[#B41448] uppercase">
                 The engineering question
               </span>
             </div>
 
-            <h2 className="mt-5 max-w-xl text-3xl font-medium leading-[1.05] tracking-[-0.04em] md:text-4xl">
+            <h2 className="mt-5 max-w-xl text-3xl leading-[1.05] font-medium tracking-[-0.04em] md:text-4xl">
               The difficult problems are usually at the boundaries.
             </h2>
           </div>
@@ -715,30 +643,42 @@ export default function ExpertisePage() {
       </section>
 
       {/* ==================================================================
-          EXPERTISE AREAS — LIGHT
-      ================================================================== */}
+    EXPERTISE AREAS — LIGHT
+================================================================== */}
 
-      <section id="expertise" className="relative bg-[#F7F7F4]">
-        <div className="pointer-events-none absolute left-0 top-1/3 h-[500px] w-[300px] bg-gradient-to-r from-[#B41448]/[0.035] to-transparent blur-3xl" />
+      <section id="expertise" className="relative overflow-hidden bg-[#F7F7F4]">
+        {/* Ambient background */}
+        <div className="pointer-events-none absolute top-[30%] -left-40 h-[600px] w-[600px] rounded-full bg-[#B41448]/[0.035] blur-[140px]" />
+
+        <div className="pointer-events-none absolute -right-40 bottom-[10%] h-[500px] w-[500px] rounded-full bg-[#E3A526]/[0.025] blur-[140px]" />
 
         <div className="relative mx-auto max-w-[1400px] px-5 py-24 md:px-10 md:py-32 lg:px-16">
-          <div className="mb-16 max-w-3xl">
+          {/* Header */}
+          <div className="mb-16 max-w-3xl md:mb-20">
             <div className="flex items-center gap-3">
               <span className="h-px w-10 bg-[#E3A526]" />
 
-              <span className="text-[10px] uppercase tracking-[0.22em] text-[#B41448]">
+              <span className="text-[10px] tracking-[0.22em] text-[#B41448] uppercase">
                 Areas of expertise
               </span>
             </div>
 
-            <h2 className="mt-6 text-4xl font-medium leading-[1.02] tracking-[-0.045em] md:text-5xl">
+            <h2 className="mt-6 text-4xl leading-[1.02] font-medium tracking-[-0.045em] md:text-5xl">
               Connected disciplines.
               <br />
               <span className="text-black/35">One engineering question.</span>
             </h2>
+
+            <p className="mt-6 max-w-2xl text-[15px] leading-8 text-black/45">
+              Our expertise brings together the disciplines needed to understand
+              complex industrial systems — from generation and process
+              interaction through to controls, protection, simulation and
+              validation.
+            </p>
           </div>
 
-          <div>
+          {/* Expertise grid */}
+          <div className="grid gap-5 md:grid-cols-2 lg:gap-6">
             {expertiseAreas.map((area, index) => (
               <ExpertiseCard key={area.slug} area={area} index={index} />
             ))}
@@ -769,12 +709,12 @@ export default function ExpertisePage() {
               <div className="flex items-center gap-3">
                 <span className="h-px w-10 bg-[#E3A526]" />
 
-                <span className="text-[10px] uppercase tracking-[0.22em] text-[#B41448]">
+                <span className="text-[10px] tracking-[0.22em] text-[#B41448] uppercase">
                   Engineering evidence
                 </span>
               </div>
 
-              <h2 className="mt-6 max-w-2xl text-4xl font-medium leading-[1.02] tracking-[-0.045em] md:text-5xl">
+              <h2 className="mt-6 max-w-2xl text-4xl leading-[1.02] font-medium tracking-[-0.045em] md:text-5xl">
                 Expertise is demonstrated through engineering work.
               </h2>
 
@@ -787,7 +727,7 @@ export default function ExpertisePage() {
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link
                   href="/projects/"
-                  className="inline-flex h-12 items-center gap-3 rounded-full bg-[#B41448] px-6 text-[10px] font-medium uppercase tracking-[0.16em] text-white transition-transform hover:-translate-y-0.5"
+                  className="inline-flex h-12 items-center gap-3 rounded-full bg-[#B41448] px-6 text-[10px] font-medium tracking-[0.16em] text-white uppercase transition-transform hover:-translate-y-0.5"
                 >
                   Explore Projects
                   <ArrowRight />
@@ -795,7 +735,7 @@ export default function ExpertisePage() {
 
                 <Link
                   href="/projects/#case-studies"
-                  className="inline-flex h-12 items-center gap-3 rounded-full border border-black/[0.12] px-6 text-[10px] font-medium uppercase tracking-[0.16em] text-black/60 transition-colors hover:border-[#E3A526] hover:text-[#B41448]"
+                  className="inline-flex h-12 items-center gap-3 rounded-full border border-black/[0.12] px-6 text-[10px] font-medium tracking-[0.16em] text-black/60 uppercase transition-colors hover:border-[#E3A526] hover:text-[#B41448]"
                 >
                   View Case Studies
                   <ArrowUpRight />
@@ -811,7 +751,7 @@ export default function ExpertisePage() {
                   <img
                     src={assetPath("/images/expertise/expertise-evidence.jpg")}
                     alt=""
-                    className="h-full w-full object-cover opacity-65 grayscale"
+                    className="h-full w-full object-cover object-[center_75%]"
                   />
 
                   <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/55" />
@@ -819,7 +759,7 @@ export default function ExpertisePage() {
                   <div className="absolute inset-x-6 bottom-6">
                     <div className="rounded-xl border border-white/20 bg-[#101412]/90 p-5 backdrop-blur-md">
                       <div className="flex items-center justify-between">
-                        <span className="text-[9px] uppercase tracking-[0.16em] text-white/45">
+                        <span className="text-[9px] tracking-[0.16em] text-white/45 uppercase">
                           Engineering evidence
                         </span>
 
@@ -832,27 +772,27 @@ export default function ExpertisePage() {
                             86
                           </span>
 
-                          <p className="mt-1 text-[8px] uppercase tracking-[0.12em] text-white/35">
+                          <p className="mt-1 text-[8px] tracking-[0.12em] text-white/35 uppercase">
                             References
                           </p>
                         </div>
 
                         <div className="rounded-lg border border-white/[0.08] p-3">
                           <span className="font-mono text-lg text-white">
-                            07
+                            19
                           </span>
 
-                          <p className="mt-1 text-[8px] uppercase tracking-[0.12em] text-white/35">
+                          <p className="mt-1 text-[8px] tracking-[0.12em] text-white/35 uppercase">
                             Expertise areas
                           </p>
                         </div>
 
                         <div className="rounded-lg border border-[#B41448]/30 bg-[#B41448]/[0.08] p-3">
                           <span className="font-mono text-lg text-[#E3A526]">
-                            05
+                            03
                           </span>
 
-                          <p className="mt-1 text-[8px] uppercase tracking-[0.12em] text-white/35">
+                          <p className="mt-1 text-[8px] tracking-[0.12em] text-white/35 uppercase">
                             Case studies
                           </p>
                         </div>
@@ -877,16 +817,16 @@ export default function ExpertisePage() {
       ================================================================== */}
 
       <section className="relative overflow-hidden bg-[#B41448] text-white">
-        <div className="pointer-events-none absolute -right-40 -top-40 h-[500px] w-[500px] rounded-full bg-[#E3A526]/[0.12] blur-3xl" />
+        <div className="pointer-events-none absolute -top-40 -right-40 h-[500px] w-[500px] rounded-full bg-[#E3A526]/[0.12] blur-3xl" />
 
-        <div className="relative mx-auto max-w-[1400px] px-5 py-20 md:px-10 md:py-28 lg:px-16">
+        <div className="relative mx-auto max-w-[1400px] px-5 py-20 md:px-10">
           <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
             <div>
-              <span className="text-[10px] font-medium uppercase tracking-[0.22em] text-white/55">
+              <span className="text-[10px] font-medium tracking-[0.22em] text-white/55 uppercase">
                 Start with the engineering question
               </span>
 
-              <h2 className="mt-5 max-w-4xl text-4xl font-medium leading-[1] tracking-[-0.045em] md:text-6xl">
+              <h2 className="mt-5 max-w-4xl text-4xl leading-[1] font-medium tracking-[-0.045em] md:text-6xl">
                 Have a complex system to understand?
               </h2>
 
@@ -897,17 +837,15 @@ export default function ExpertisePage() {
             </div>
 
             <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-              <Link
-                href="/contact/"
-                className="inline-flex h-12 items-center justify-center gap-3 rounded-full bg-[#E3A526] px-6 text-[10px] font-medium uppercase tracking-[0.16em] text-black transition-transform hover:-translate-y-0.5"
-              >
-                Discuss Your Engineering Challenge
-                <ArrowUpRight />
-              </Link>
+              <EnquiryCTA
+                label="Discuss Your Engineering Challenge"
+                type="Engineering Challenge"
+                className="inline-flex h-12 items-center justify-center gap-3 rounded-full bg-[#E3A526] px-6 text-[10px] font-medium tracking-[0.16em] text-black uppercase transition-transform hover:-translate-y-0.5 hover:bg-white hover:text-black"
+              />
 
               <Link
                 href="/projects/"
-                className="inline-flex h-12 items-center justify-center gap-3 rounded-full border border-white/25 px-6 text-[10px] font-medium uppercase tracking-[0.16em] text-white transition-colors hover:border-white/50 hover:bg-white/[0.05]"
+                className="inline-flex h-12 items-center justify-center gap-3 rounded-full border border-white/25 px-6 text-[10px] font-medium tracking-[0.16em] text-white uppercase transition-colors hover:border-white/50 hover:bg-white/[0.05]"
               >
                 See Engineering Evidence
                 <ArrowRight />

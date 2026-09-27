@@ -3,6 +3,7 @@
 import Link from "next/link";
 import type { IndustryPage } from "@/data/industries";
 import { useEffect, useRef, useState } from "react";
+import EnquiryCTA from "@/components/forms/EnquiryCTA";
 
 type Props = {
   industry: IndustryPage;
@@ -176,53 +177,6 @@ export function IndustryDetailLayout({ industry }: Props) {
         </div>
       </section>
 
-      {/* WHERE SOLVINA ADDS VALUE */}
-      <section className="bg-[#faf9f6]">
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-28">
-          <Reveal>
-            <SectionLabel>Where Solvina Adds Value</SectionLabel>
-            <div className="max-w-3xl">
-              <h2 className="text-3xl font-semibold tracking-[-0.025em] sm:text-4xl">
-                Relevant expertise, connected to the industry's real questions
-              </h2>
-              <p className="mt-5 text-lg leading-8 text-black/60">
-                The capabilities below are selected for their relevance to this
-                industry rather than presented as a generic service catalogue.
-              </p>
-            </div>
-          </Reveal>
-
-          <div className="mt-14 grid gap-px overflow-hidden rounded-[2rem] border border-black/10 bg-black/10 md:grid-cols-2">
-            {industry.whereSolvinaAddsValue.map((item, index) => (
-              <Reveal key={item.title} delay={index * 70} className="h-full">
-                <Link
-                  href="/expertise/"
-                  className="group relative block h-full bg-white p-7 transition duration-300 hover:-translate-y-1 hover:bg-[#fffdfa] sm:p-9"
-                >
-
-                  <h3 className="max-w-md text-xl font-semibold leading-7 text-[#1b1b1b]">
-                    {item.title}
-                  </h3>
-
-                  {item.description && (
-                    <p className="mt-3 max-w-md leading-7 text-black/55">
-                      {item.description}
-                    </p>
-                  )}
-
-                  <div className="mt-8 h-1 w-12 overflow-hidden rounded-full bg-[#E3A526] transition-all duration-500 group-hover:w-20" />
-                  <div className="mb-10 absolute bottom-0 right-5 flex items-center justify-between">
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full border border-black/10 text-[#B41448] transition group-hover:border-[#E3A526] group-hover:bg-[#E3A526] group-hover:text-black">
-                      <Arrow />
-                    </span>
-                  </div>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* TYPICAL APPLICATIONS */}
       <section className="bg-white">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-28">
@@ -254,7 +208,7 @@ export function IndustryDetailLayout({ industry }: Props) {
       </section>
 
       {/* EVIDENCE */}
-      <section className="bg-[#f5f2ed]">
+      {/* <section className="bg-[#f5f2ed]">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-28">
           <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
             <Reveal>
@@ -285,7 +239,7 @@ export function IndustryDetailLayout({ industry }: Props) {
             </Reveal>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* TECHNICAL INSIGHT */}
       <section className="bg-white">
@@ -320,7 +274,7 @@ export function IndustryDetailLayout({ industry }: Props) {
       </section>
 
       {/* RELATED EXPERTISE */}
-      <section className="border-t border-black/8 bg-[#faf9f6]">
+      {/* <section className="border-t border-black/8 bg-[#faf9f6]">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-24">
           <Reveal>
             <SectionLabel>Related Expertise</SectionLabel>
@@ -343,14 +297,14 @@ export function IndustryDetailLayout({ industry }: Props) {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* FINAL CTA */}
       <section className="relative overflow-hidden bg-[#B41448] text-white">
         <div className="absolute -right-20 -top-28 h-80 w-80 rounded-full border border-white/10" />
         <div className="absolute -bottom-32 left-[-80px] h-72 w-72 rounded-full border border-[#E3A526]/30" />
 
-        <div className="relative mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-24">
+        <div className="relative mx-auto max-w-7xl px-6 py-10 lg:px-8">
           <Reveal>
             <div className="max-w-4xl">
               <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#E3A526]">
@@ -367,13 +321,11 @@ export function IndustryDetailLayout({ industry }: Props) {
             </div>
 
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/contact/"
-                className="group inline-flex items-center justify-center gap-3 rounded-full bg-[#E3A526] px-7 py-4 text-sm font-bold text-black transition hover:bg-white"
-              >
-                {industry.ctas.secondary}
-                <Arrow />
-              </Link>
+              <EnquiryCTA
+                label={industry.ctas.secondary}
+                type="Engineering Challenge"
+                className="h-14 group inline-flex items-center justify-center gap-3 rounded-full bg-[#E3A526] px-7 py-4 text-sm font-bold text-black transition hover:bg-white"
+              />
 
               <Link
                 href="/expertise/"

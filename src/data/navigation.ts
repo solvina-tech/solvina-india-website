@@ -138,7 +138,7 @@ export const expertiseMenu: MegaMenuData = {
       icon: Wrench,
       children: [
         {
-          href: "/expertise/engineering-consulting-support/",
+          href: "/expertise/specialist-engineering-consulting/",
           title: "Specialist Engineering Consulting",
           description: "Focused project, commissioning and technical support.",
         },
@@ -150,7 +150,7 @@ export const expertiseMenu: MegaMenuData = {
     title: "From system question to validated decision.",
     description:
       "Understand → Model → Simulate → Test → Diagnose → Optimize → Validate.",
-    href: "/about/engineering-intelligence/",
+    href: "/#model-to-plant-method",
     cta: "Explore Our Method",
   },
 };
@@ -204,19 +204,19 @@ export const industriesMenu: MegaMenuData = {
       icon: Sun,
     },
     {
-      href: "/industries/cement-manufacturing/",
+      href: "/industries/epc-project-organizations/",
+      title: "EPC & Project Organizations",
+      description:
+      "Specialist engineering support at technically critical project interfaces.",
+      icon: Wrench,
+    },
+    {
+      href: "https://solvina.com",
       title: "Cement & Manufacturing",
       description:
         "Industrial applications presented where sufficient validated evidence supports the scope.",
       icon: HardHat,
       badge: "Conditional",
-    },
-    {
-      href: "/industries/epc-project-organizations/",
-      title: "EPC & Project Organizations",
-      description:
-        "Specialist engineering support at technically critical project interfaces.",
-      icon: Wrench,
     },
   ],
   feature: {
@@ -231,7 +231,7 @@ export const industriesMenu: MegaMenuData = {
 
 export const productsMenu: MegaMenuData = {
   label: "Products",
-  href: "#products",
+  href: "/#products",
   icon: CircuitBoard,
   description:
     "Engineering tools and measurement solutions that make complex system behaviour visible, testable and easier to understand.",
@@ -267,7 +267,7 @@ export const productsMenu: MegaMenuData = {
     title: "Tools with an engineering purpose.",
     description:
       "Simulation, measurement and sensing solutions supporting defined engineering applications.",
-    href: "/products/",
+    href: "/#products",
     cta: "Explore All Products",
   },
 };

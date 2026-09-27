@@ -12,15 +12,14 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 
-import type { ExpertisePage as ExpertisePageData } from "@/data/expertise";
+import { expertisePages, type ExpertisePage as ExpertisePageData } from "@/data/expertise";
+import EnquiryCTA from "../forms/EnquiryCTA";
 
 interface ExpertisePageProps {
   expertise: ExpertisePageData;
 }
 
-export default function ExpertisePage({
-  expertise,
-}: ExpertisePageProps) {
+export default function ExpertisePage({ expertise }: ExpertisePageProps) {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const hasChallenge = Boolean(expertise.challenge?.trim());
@@ -52,14 +51,13 @@ export default function ExpertisePage({
 
         {/* technical circles */}
 
-        <div className="pointer-events-none absolute -right-40 top-24 hidden h-[520px] w-[520px] rounded-full border border-[#B41448]/10 lg:block" />
+        <div className="pointer-events-none absolute top-24 -right-40 hidden h-[520px] w-[520px] rounded-full border border-[#B41448]/10 lg:block" />
 
-        <div className="pointer-events-none absolute -right-16 top-56 hidden h-[280px] w-[280px] rounded-full border border-[#E3A526]/30 lg:block" />
+        <div className="pointer-events-none absolute top-56 -right-16 hidden h-[280px] w-[280px] rounded-full border border-[#E3A526]/30 lg:block" />
 
-        <div className="pointer-events-none absolute right-24 top-72 hidden h-3 w-3 rounded-full bg-[#E3A526] lg:block" />
+        <div className="pointer-events-none absolute top-72 right-24 hidden h-3 w-3 rounded-full bg-[#E3A526] lg:block" />
 
         <div className="relative mx-auto w-full max-w-7xl px-6 lg:px-10">
-
           <div className="grid items-end gap-16 lg:grid-cols-[1.25fr_0.75fr] lg:gap-24">
             {/* heading */}
 
@@ -102,17 +100,11 @@ export default function ExpertisePage({
                 </p>
 
                 <div className="mt-9 flex flex-wrap gap-3">
-                  <Link
-                    href="/contact/"
+                  <EnquiryCTA
+                    label={expertise.ctas.primary}
+                    type={expertise.ctas.primary}
                     className="group inline-flex items-center gap-3 rounded-full bg-[#B41448] px-6 py-3.5 text-sm font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#94103D] hover:shadow-[0_12px_30px_rgba(180,20,72,0.18)]"
-                  >
-                    {expertise.ctas.primary}
-
-                    <ArrowRight
-                      size={16}
-                      className="transition-transform group-hover:translate-x-1"
-                    />
-                  </Link>
+                  />
 
                   <a
                     href="#scope"
@@ -139,7 +131,6 @@ export default function ExpertisePage({
             <span className="flex h-7 w-7 items-center justify-center rounded-full border border-[#D8DDD7]">
               <ArrowDown size={13} />
             </span>
-
             Explore this expertise
           </motion.div>
         </div>
@@ -193,9 +184,7 @@ export default function ExpertisePage({
                 <h2 className="max-w-4xl text-4xl leading-[1] font-medium tracking-[-0.04em] lg:text-6xl">
                   The engineering problem
                   <br />
-                  <span className="text-[#B41448]">
-                    behind the question.
-                  </span>
+                  <span className="text-[#B41448]">behind the question.</span>
                 </h2>
 
                 <div className="mt-12 grid gap-12 lg:grid-cols-[1fr_220px]">
@@ -214,7 +203,7 @@ export default function ExpertisePage({
                       />
                     </div>
 
-                    <span className="absolute right-6 top-12 h-2 w-2 rounded-full bg-[#E3A526]" />
+                    <span className="absolute top-12 right-6 h-2 w-2 rounded-full bg-[#E3A526]" />
                   </div>
                 </div>
               </motion.div>
@@ -228,10 +217,7 @@ export default function ExpertisePage({
       ================================================================ */}
 
       {hasScope && (
-        <section
-          id="scope"
-          className="bg-[#F7F7F4] py-28 lg:py-36"
-        >
+        <section id="scope" className="bg-[#F7F7F4] py-28 lg:py-36">
           <div className="mx-auto max-w-7xl px-6 lg:px-10">
             <motion.div
               initial={{
@@ -260,9 +246,8 @@ export default function ExpertisePage({
               </div>
 
               <p className="max-w-md leading-relaxed text-[#6B736B]">
-                The scope is shaped around the engineering question,
-                system boundary and operating conditions relevant to
-                the study.
+                The scope is shaped around the engineering question, system
+                boundary and operating conditions relevant to the study.
               </p>
             </motion.div>
 
@@ -364,9 +349,7 @@ export default function ExpertisePage({
                     >
                       <div className="flex flex-col items-center gap-3">
                         <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[#D6DBD5] bg-[#F7F7F4] text-xs font-medium text-[#5C655D] transition-all hover:border-[#E3A526] hover:bg-[#FFF9E9]">
-                          <span className="sr-only">
-                            Step {index + 1}
-                          </span>
+                          <span className="sr-only">Step {index + 1}</span>
 
                           <CircleDot
                             size={15}
@@ -375,9 +358,7 @@ export default function ExpertisePage({
                           />
                         </div>
 
-                        <span className="text-xs text-[#727A72]">
-                          {step}
-                        </span>
+                        <span className="text-xs text-[#727A72]">{step}</span>
                       </div>
 
                       {index < 5 && (
@@ -404,9 +385,9 @@ export default function ExpertisePage({
 
       {hasValue && (
         <section className="relative overflow-hidden bg-[#25201D] py-28 text-white lg:py-36">
-          <div className="pointer-events-none absolute -right-32 top-0 h-[500px] w-[500px] rounded-full border border-[#E3A526]/10" />
+          <div className="pointer-events-none absolute top-0 -right-32 h-[500px] w-[500px] rounded-full border border-[#E3A526]/10" />
 
-          <div className="pointer-events-none absolute -right-16 top-16 h-[300px] w-[300px] rounded-full border border-[#B41448]/20" />
+          <div className="pointer-events-none absolute top-16 -right-16 h-[300px] w-[300px] rounded-full border border-[#B41448]/20" />
 
           <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
             <div className="grid gap-16 lg:grid-cols-[0.4fr_0.6fr] lg:gap-24">
@@ -427,17 +408,12 @@ export default function ExpertisePage({
                   duration: 0.6,
                 }}
               >
-                <SectionLabel
-                  label="Engineering Value"
-                  dark
-                />
+                <SectionLabel label="Engineering Value" dark />
 
                 <h2 className="mt-6 max-w-lg text-4xl leading-none font-medium tracking-[-0.045em] lg:text-6xl">
                   What this work
                   <br />
-                  <span className="text-[#E3A526]">
-                    gives you.
-                  </span>
+                  <span className="text-[#E3A526]">gives you.</span>
                 </h2>
               </motion.div>
 
@@ -545,9 +521,7 @@ export default function ExpertisePage({
                     >
                       <button
                         type="button"
-                        onClick={() =>
-                          setOpenFaq(isOpen ? null : index)
-                        }
+                        onClick={() => setOpenFaq(isOpen ? null : index)}
                         className="flex w-full items-start justify-between gap-8 py-7 text-left lg:py-8"
                         aria-expanded={isOpen}
                       >
@@ -581,7 +555,7 @@ export default function ExpertisePage({
                         }}
                         className="overflow-hidden"
                       >
-                        <p className="max-w-3xl pb-8 pr-8 leading-7 text-[#687068]">
+                        <p className="max-w-3xl pr-8 pb-8 leading-7 text-[#687068]">
                           {faq.answer}
                         </p>
                       </motion.div>
@@ -624,68 +598,64 @@ export default function ExpertisePage({
               <h2 className="mt-5 max-w-3xl text-4xl leading-none font-medium tracking-[-0.04em] lg:text-6xl">
                 Explore adjacent
                 <br />
-                <span className="text-[#B41448]">
-                  engineering areas.
-                </span>
+                <span className="text-[#B41448]">engineering areas.</span>
               </h2>
             </motion.div>
 
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {expertise.relatedPages.map(
-                (relatedTitle, index) => {
-                  const relatedSlug = relatedTitle
-                    .toLowerCase()
-                    .replace(/&/g, "and")
-                    .replace(/[^a-z0-9]+/g, "-")
-                    .replace(/(^-|-$)/g, "");
+              {expertise.relatedPages.map((relatedTitle, index) => {
+                const relatedPage = expertisePages.find(
+                  (page) => page.title === relatedTitle,
+                );
 
-                  return (
-                    <motion.div
-                      key={relatedTitle}
-                      initial={{
-                        opacity: 0,
-                        y: 18,
-                      }}
-                      whileInView={{
-                        opacity: 1,
-                        y: 0,
-                      }}
-                      viewport={{
-                        once: true,
-                        margin: "-60px",
-                      }}
-                      transition={{
-                        duration: 0.45,
-                        delay: index * 0.06,
-                      }}
+                if (!relatedPage) return null;
+
+                return (
+                  <motion.div
+                    key={relatedPage.slug}
+                    initial={{
+                      opacity: 0,
+                      y: 18,
+                    }}
+                    whileInView={{
+                      opacity: 1,
+                      y: 0,
+                    }}
+                    viewport={{
+                      once: true,
+                      margin: "-60px",
+                    }}
+                    transition={{
+                      duration: 0.45,
+                      delay: index * 0.06,
+                    }}
+                  >
+                    <Link
+                      href={`/expertise/${relatedPage.slug}`}
+                      className="group flex min-h-[220px] flex-col justify-between rounded-2xl border border-[#DDE1DC] bg-[#FAFAF7] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#E3A526]/50 hover:bg-white hover:shadow-[0_18px_45px_rgba(23,26,24,0.06)] lg:p-9"
                     >
-                      <Link
-                        href={`/expertise/${relatedSlug}/`}
-                        className="group flex min-h-[220px] flex-col justify-between rounded-2xl border border-[#DDE1DC] bg-[#FAFAF7] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#E3A526]/50 hover:bg-white hover:shadow-[0_18px_45px_rgba(23,26,24,0.06)] lg:p-9"
-                      >
-                        <div className="flex items-center justify-end">
-                          <span className="text-xs tracking-[0.15em] text-[#8A918A] uppercase">
-                            Related expertise
-                          </span>
-                        </div>
+                      <div className="flex items-center justify-end">
+                        <span className="text-xs tracking-[0.15em] text-[#8A918A] uppercase">
+                          Related expertise
+                        </span>
+                      </div>
 
-                        <div className="flex items-end justify-between gap-5">
-                          <h3 className="text-2xl leading-tight tracking-[-0.03em] text-[#242A25] lg:text-3xl">
-                            {relatedTitle}
-                          </h3>
+                      <div className="flex items-end justify-between gap-5">
+                        <h3 className="text-2xl leading-tight tracking-[-0.03em] text-[#242A25] lg:text-3xl">
+                          {relatedTitle}
+                        </h3>
 
-                          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#D5DAD4] text-[#B41448] transition-all duration-300 group-hover:border-[#E3A526] group-hover:bg-[#E3A526] group-hover:text-[#171A18]">
-                            <ArrowRight
-                              size={17}
-                              className="transition-transform group-hover:translate-x-0.5"
-                            />
-                          </span>
-                        </div>
-                      </Link>
-                    </motion.div>
-                  );
-                },
-              )}
+                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#D5DAD4] text-[#B41448] transition-all duration-300 group-hover:border-[#E3A526] group-hover:bg-[#E3A526] group-hover:text-[#171A18]">
+                          <ArrowRight
+                            size={17}
+                            className="transition-transform group-hover:translate-x-0.5"
+                          />
+                        </span>
+                      </div>
+                    </Link>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -695,8 +665,8 @@ export default function ExpertisePage({
           CTA
       ================================================================ */}
 
-      <section className="relative overflow-hidden bg-[#E3A526] py-28 lg:py-40">
-        <div className="pointer-events-none absolute -right-40 -top-40 h-[520px] w-[520px] rounded-full border-[80px] border-black/[0.035]" />
+      <section className="relative overflow-hidden bg-[#E3A526] py-28 lg:py-10">
+        <div className="pointer-events-none absolute -top-40 -right-40 h-[520px] w-[520px] rounded-full border-[80px] border-black/[0.035]" />
 
         <div className="pointer-events-none absolute -bottom-48 -left-20 h-[480px] w-[480px] rounded-full border border-black/[0.08]" />
 
@@ -734,17 +704,11 @@ export default function ExpertisePage({
             </h2>
 
             <div className="mt-12 flex flex-wrap gap-4">
-              <Link
-                href="/contact/"
-                className="group inline-flex items-center gap-3 rounded-full bg-[#171A18] px-7 py-4 text-sm font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#B41448]"
-              >
-                {expertise.ctas.primary}
-
-                <ArrowRight
-                  size={17}
-                  className="transition-transform group-hover:translate-x-1"
-                />
-              </Link>
+              <EnquiryCTA
+                label={expertise.ctas.primary}
+                type={expertise.ctas.primary}
+                className="h-14 group inline-flex items-center gap-3 rounded-full bg-[#171A18] px-7 py-4 text-sm font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#B41448]"
+              />
 
               <Link
                 href="/expertise/"
@@ -773,11 +737,7 @@ function SectionLabel({
 }) {
   return (
     <div className="flex items-center gap-3">
-      <span
-        className={`h-px w-10 ${
-          dark ? "bg-[#E3A526]" : "bg-[#B41448]"
-        }`}
-      />
+      <span className={`h-px w-10 ${dark ? "bg-[#E3A526]" : "bg-[#B41448]"}`} />
 
       <span
         className={`text-xs font-medium tracking-[0.2em] uppercase ${

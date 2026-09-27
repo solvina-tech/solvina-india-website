@@ -1,8 +1,3 @@
-export type IndustryValueItem = {
-  title: string;
-  description?: string;
-};
-
 export type IndustryPage = {
   slug: string;
   title: string;
@@ -20,8 +15,6 @@ export type IndustryPage = {
   };
 
   challenge: string;
-
-  whereSolvinaAddsValue: IndustryValueItem[];
 
   typicalApplications: string[];
 
@@ -113,24 +106,6 @@ export const industryPages: IndustryPage[] = [
       "intro": "As grid codes tighten and the generation mix changes, conventional plant is increasingly expected to respond faster and more predictably than it was originally designed for. Solvina supports generators and utility operators in proving — and improving — that response."
     },
     "challenge": "A generator that met its grid code requirements at commissioning can drift out of alignment as equipment ages, settings are changed informally, or grid conditions evolve. Frequency response, voltage support and fault ride-through are dynamic properties, not one-time certifications, and they need to be revisited as conditions change.",
-    "whereSolvinaAddsValue": [
-      {
-        "title": "Grid Code Compliance & Generator Testing",
-        "description": "evidence-based compliance demonstration"
-      },
-      {
-        "title": "Governor Testing & Tuning and AVR & PSS Testing and Tuning",
-        "description": "validated dynamic response"
-      },
-      {
-        "title": "Island Operation",
-        "description": "proven separation and ride-through capability"
-      },
-      {
-        "title": "Power System Studies",
-        "description": "network-level confidence under contingency"
-      }
-    ],
     "typicalApplications": [
       "Fault-ride-through and frequency-response compliance testing and evidence",
       "Governor and voltage-control tuning ahead of a compliance deadline",
@@ -163,24 +138,6 @@ export const industryPages: IndustryPage[] = [
       "intro": "Integrated steel, metals and mining plants often run captive power alongside heavy, dynamic process loads. When the two systems aren't engineered together, a single disturbance in one can cascade into the other."
     },
     "challenge": "Captive power systems in this sector are frequently tightly coupled — a captive power plant, a top-gas recovery turbine, a coke-dry-quenching unit and the grid connection may all interact during a disturbance. Frequent trips leading to complete blackouts, particularly during transition to island operation, are a recognised risk when this coupling isn't explicitly engineered for.",
-    "whereSolvinaAddsValue": [
-      {
-        "title": "Integrated Steam & Power Systems",
-        "description": "modelling the captive power, steam and process system together"
-      },
-      {
-        "title": "Island Operation",
-        "description": "proven ride-through when the grid connection is lost"
-      },
-      {
-        "title": "Protection Coordination",
-        "description": "settings that reflect the real, interconnected network"
-      },
-      {
-        "title": "Power Quality Studies & Monitoring",
-        "description": "for large nonlinear loads such as arc furnaces and rolling mills"
-      }
-    ],
     "typicalApplications": [
       "Captive power system dynamic studies covering CPP, TRT, CDQ and DG sets",
       "Disturbance and island-operation studies to reduce cascading blackout risk",
@@ -213,20 +170,6 @@ export const industryPages: IndustryPage[] = [
       "intro": "Refining and petrochemical sites typically run steam at several pressure levels, tightly coupled to power generation and safety-critical process trains. A trip in one part of the utility system can propagate through the whole site if the interactions aren't understood in advance."
     },
     "challenge": "New capacity is often tied into an existing steam and power network without fully re-modelling how the combined system will behave in an upset condition — a new plant tripping off, for example, and pulling down HP steam header pressure across the whole site faster than existing controls can respond.",
-    "whereSolvinaAddsValue": [
-      {
-        "title": "Integrated Steam & Power Systems",
-        "description": "multi-header steam net and electrical system modelling"
-      },
-      {
-        "title": "Dynamic Simulation & System Modelling",
-        "description": "transient behaviour of tie-ins and upset conditions"
-      },
-      {
-        "title": "Boiler, Turbine & Process Control",
-        "description": "control-strategy changes validated before implementation"
-      }
-    ],
     "typicalApplications": [
       "Multi-header steam net dynamic modelling across HP, MP and LP levels",
       "Transient studies for new-plant tie-ins, including trip and restart scenarios",
@@ -259,20 +202,6 @@ export const industryPages: IndustryPage[] = [
       "intro": "Continuous chemical and fertilizer processes are highly sensitive to utility interruptions — the steam and power balance directly affects yield, product quality and, in some processes, safety."
     },
     "challenge": "Utility systems in this sector are frequently sized and controlled around a nominal operating point, with limited engineering attention to how they respond to a genuine disturbance — a compressor trip, a boiler upset or a captive generation event — until that disturbance actually occurs.",
-    "whereSolvinaAddsValue": [
-      {
-        "title": "Energy & Utility Optimization",
-        "description": "understanding constraints across the utility system"
-      },
-      {
-        "title": "Integrated Steam & Power Systems",
-        "description": "captive generation modelled together with the process"
-      },
-      {
-        "title": "Protection Coordination",
-        "description": "settings aligned with utility-island operating philosophy"
-      }
-    ],
     "typicalApplications": [
       "Utility balance and dispatch studies across steam, power and process demand",
       "Captive generation dynamic modelling and disturbance-response analysis",
@@ -305,20 +234,6 @@ export const industryPages: IndustryPage[] = [
       "intro": "In pulp and paper production, steam net pressure is directly tied to product quality, not just energy efficiency. Multiple steam headers, recovery boilers and back-pressure turbines all need to be coordinated carefully — especially around new equipment installations."
     },
     "challenge": "Installing a new recovery boiler or turbine changes the dynamic behaviour of the entire steam net, not just the equipment being added. Without dynamic modelling ahead of commissioning, mills risk a difficult startup, or control instability that shows up during the next large load transient — such as a board machine stopping and restarting.",
-    "whereSolvinaAddsValue": [
-      {
-        "title": "Boiler, Turbine & Process Control",
-        "description": "steam net control designed and tuned before commissioning"
-      },
-      {
-        "title": "Integrated Steam & Power Systems",
-        "description": "multi-header steam net modelled as one system"
-      },
-      {
-        "title": "Island Operation",
-        "description": "captive power tested for island-operation capability"
-      }
-    ],
     "typicalApplications": [
       "Steam net control design and tuning ahead of new boiler or turbine installation",
       "Board-machine-stop and restart transient simulation",
@@ -351,20 +266,6 @@ export const industryPages: IndustryPage[] = [
       "intro": "EPCs and project owners often need specialist input at a small number of genuinely high-risk technical interfaces — grid connection, control-system integration, commissioning — without carrying that specialist expertise in-house permanently."
     },
     "challenge": "The interfaces where projects most often lose schedule or budget — a grid connection test that wasn't planned correctly, a control system integration issue discovered at commissioning — are usually specialist, cross-disciplinary problems that a generalist project team isn't resourced to solve alone.",
-    "whereSolvinaAddsValue": [
-      {
-        "title": "Specialist Engineering Consulting",
-        "description": "focused technical support at the interface that matters"
-      },
-      {
-        "title": "Power System Studies and Grid Code Compliance",
-        "description": "de-risking the grid connection milestone"
-      },
-      {
-        "title": "Dynamic Simulation & System Modelling",
-        "description": "testing integration assumptions before commissioning"
-      }
-    ],
     "typicalApplications": [
       "Technical requirement specification support during FEED or detailed design",
       "Independent technical evaluation of bids or equipment offers",
@@ -397,20 +298,6 @@ export const industryPages: IndustryPage[] = [
       "intro": "Solar PV, wind power and battery energy storage systems bring new grid integration challenges — fast inverter dynamics, grid-forming requirements, and hybrid plant coordination. Solvina supports testing, model validation and grid compliance for these evolving technologies."
     },
     "challenge": "Renewable generation and storage systems are often required to demonstrate grid code compliance and dynamic performance capabilities that differ significantly from conventional generation. Inverter-based resources, grid-forming controllers and hybrid plant coordination require specialised testing and validation approaches that go beyond traditional power plant methodologies.",
-    "whereSolvinaAddsValue": [
-      {
-        "title": "Solar, Wind & BESS",
-        "description": "grid code compliance and controller testing for renewable generation and storage"
-      },
-      {
-        "title": "Grid Code Compliance & Generator Testing",
-        "description": "renewable-specific compliance requirements and validation"
-      },
-      {
-        "title": "Dynamic Simulation & System Modelling",
-        "description": "inverter-based resource modelling and validation"
-      }
-    ],
     "typicalApplications": [
       "Solar PV plant controller testing and model validation",
       "Wind turbine generator communication and performance verification",

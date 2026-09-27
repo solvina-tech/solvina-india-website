@@ -68,7 +68,7 @@ export default function KnowledgeListingContent() {
               <span className="h-px w-10 bg-[#B41448]" />
 
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#B41448]">
-                Knowledge Centre
+                Knowledge Center
               </span>
             </div>
 
