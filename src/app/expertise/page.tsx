@@ -469,7 +469,7 @@ function RelatedContent() {
       label: "Knowledge Center",
       description:
         "Read technical perspectives, articles and engineering insights.",
-      href: "/knowledge/",
+      href: "/#knowledge-center",
     },
   ];
 

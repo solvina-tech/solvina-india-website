@@ -11,6 +11,7 @@ import {
   Lightbulb,
 } from "lucide-react";
 import { knowledgeItems } from "@/data/knowledgeSection";
+import EnquiryCTA from "../forms/EnquiryCTA";
 
 const iconMap = {
   "Technical Article": Gauge,
@@ -406,17 +407,11 @@ export default function KnowledgeListingContent() {
             </h2>
 
             <div className="mt-12 flex flex-wrap gap-4">
-              <Link
-                href="/contact/"
-                className="group inline-flex items-center gap-3 rounded-full bg-[#171A18] px-7 py-4 text-sm font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#B41448]"
-              >
-                Get in touch
-
-                <ArrowRight
-                  size={17}
-                  className="transition-transform group-hover:translate-x-1"
-                />
-              </Link>
+              <EnquiryCTA
+                label="Get in touch"
+                type="General Enquiry"
+                className="h-14 group inline-flex items-center gap-3 rounded-full bg-[#171A18] px-7 py-4 text-sm font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#B41448]"
+              />
 
               <Link
                 href="/expertise/"
