@@ -3,33 +3,23 @@
 import { FormEvent, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import emailjs from "@emailjs/browser";
-import {
-  ArrowLeft,
-  ArrowUpRight,
-  Loader2,
-  Send,
-} from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Loader2, Send } from "lucide-react";
 import { toast } from "sonner";
 
-const EMAILJS_PUBLIC_KEY =
-  process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
-const EMAILJS_SERVICE_ID =
-  process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
 
-const EMAILJS_TEMPLATE_ID =
-  process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
 
 const MAX_NAME_LENGTH = 80;
 const MAX_EMAIL_LENGTH = 120;
 const MAX_MESSAGE_LENGTH = 1000;
 const MIN_MESSAGE_LENGTH = 10;
 
-const NAME_REGEX =
-  /^[A-Za-zÀ-ÖØ-öø-ÿ]+(?:[ '.-][A-Za-zÀ-ÖØ-öø-ÿ]+)*$/;
+const NAME_REGEX = /^[A-Za-zÀ-ÖØ-öø-ÿ]+(?:[ '.-][A-Za-zÀ-ÖØ-öø-ÿ]+)*$/;
 
-const EMAIL_REGEX =
-  /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 export default function EnquiryForm() {
   const router = useRouter();
@@ -45,18 +35,14 @@ export default function EnquiryForm() {
     message: "",
   });
 
-  const enquiryType =
-    searchParams.get("type") || "General Enquiry";
+  const enquiryType = searchParams.get("type") || "General Enquiry";
 
-  const sourcePage =
-    searchParams.get("from") || "/";
+  const sourcePage = searchParams.get("from") || "/";
 
   /*
    * Remove error for a field when user starts correcting it.
    */
-  const clearError = (
-    field: keyof typeof errors
-  ) => {
+  const clearError = (field: keyof typeof errors) => {
     if (errors[field]) {
       setErrors((previous) => ({
         ...previous,
@@ -77,9 +63,7 @@ export default function EnquiryForm() {
    *
    * Maximum: 80 characters
    */
-  const handleNameInput = (
-    event: React.FormEvent<HTMLInputElement>
-  ) => {
+  const handleNameInput = (event: React.FormEvent<HTMLInputElement>) => {
     const input = event.currentTarget;
 
     let value = input.value;
@@ -104,18 +88,13 @@ export default function EnquiryForm() {
    * Spaces are removed while typing.
    * Maximum: 120 characters.
    */
-  const handleEmailInput = (
-    event: React.FormEvent<HTMLInputElement>
-  ) => {
+  const handleEmailInput = (event: React.FormEvent<HTMLInputElement>) => {
     const input = event.currentTarget;
 
     const cleanedValue = input.value.replace(/\s/g, "");
 
     if (cleanedValue.length > MAX_EMAIL_LENGTH) {
-      input.value = cleanedValue.slice(
-        0,
-        MAX_EMAIL_LENGTH
-      );
+      input.value = cleanedValue.slice(0, MAX_EMAIL_LENGTH);
 
       setErrors((previous) => ({
         ...previous,
@@ -136,45 +115,36 @@ export default function EnquiryForm() {
    * Allow international format with + prefix
    * Prevent improper characters
    */
-  const handlePhoneInput = (
-    event: React.FormEvent<HTMLInputElement>
-  ) => {
+  const handlePhoneInput = (event: React.FormEvent<HTMLInputElement>) => {
     const input = event.currentTarget;
 
-    // Allow +, digits, spaces, hyphens, and parentheses for international format
-    const validChars = input.value.replace(/[^\d\s\-\(\)\+]/g, "");
+    // Allow +, digits, spaces, hyphens, and parentheses
+    const validChars = input.value.replace(/[^\d\s\-()+]/g, "");
 
     // Ensure + only appears at the beginning
     let formattedValue = validChars;
-    if (formattedValue.includes('+')) {
-      const plusIndex = formattedValue.indexOf('+');
-      if (plusIndex > 0) {
-        // Remove any + that's not at the beginning
-        formattedValue = formattedValue.substring(0, plusIndex) + formattedValue.substring(plusIndex + 1).replace(/\+/g, '');
-      }
-      // Keep only the first +
-      formattedValue = formattedValue.replace(/\+/g, '');
-      formattedValue = '+' + formattedValue;
+
+    if (formattedValue.includes("+")) {
+      // Remove all + characters
+      formattedValue = formattedValue.replace(/\+/g, "");
+
+      // Add + only at the beginning
+      formattedValue = "+" + formattedValue;
     }
 
-    // Prevent starting with just + (user must enter something after)
-    if (formattedValue === '+') {
-      input.value = '';
-      return;
-    }
-
-    // Limit to reasonable length (max 20 characters)
+    // Limit to reasonable length
     if (formattedValue.length > 20) {
       input.value = formattedValue.slice(0, 20);
+
       setErrors((previous) => ({
         ...previous,
         contact_number: "Phone number too long. Maximum 20 characters allowed.",
       }));
+
       return;
     }
 
     input.value = formattedValue;
-
     clearError("contact_number");
   };
 
@@ -183,16 +153,11 @@ export default function EnquiryForm() {
    *
    * Maximum: 1000 characters.
    */
-  const handleMessageInput = (
-    event: React.FormEvent<HTMLTextAreaElement>
-  ) => {
+  const handleMessageInput = (event: React.FormEvent<HTMLTextAreaElement>) => {
     const textarea = event.currentTarget;
 
     if (textarea.value.length > MAX_MESSAGE_LENGTH) {
-      textarea.value = textarea.value.slice(
-        0,
-        MAX_MESSAGE_LENGTH
-      );
+      textarea.value = textarea.value.slice(0, MAX_MESSAGE_LENGTH);
 
       setErrors((previous) => ({
         ...previous,
@@ -208,26 +173,16 @@ export default function EnquiryForm() {
   /*
    * Full validation before EmailJS submission.
    */
-  const validateForm = (
-    form: HTMLFormElement
-  ) => {
+  const validateForm = (form: HTMLFormElement) => {
     const formData = new FormData(form);
 
-    const name = String(
-      formData.get("name") || ""
-    ).trim();
+    const name = String(formData.get("name") || "").trim();
 
-    const email = String(
-      formData.get("email") || ""
-    ).trim();
+    const email = String(formData.get("email") || "").trim();
 
-    const phone = String(
-      formData.get("contact_number") || ""
-    ).trim();
+    const phone = String(formData.get("contact_number") || "").trim();
 
-    const message = String(
-      formData.get("message") || ""
-    ).trim();
+    const message = String(formData.get("message") || "").trim();
 
     const newErrors = {
       name: "",
@@ -240,26 +195,22 @@ export default function EnquiryForm() {
      * Name
      */
     if (!name) {
-      newErrors.name =
-        "Please enter your name.";
+      newErrors.name = "Please enter your name.";
     } else if (name.length > MAX_NAME_LENGTH) {
       newErrors.name = `You can't enter more than ${MAX_NAME_LENGTH} characters.`;
     } else if (!NAME_REGEX.test(name)) {
-      newErrors.name =
-        "Please enter a valid name.";
+      newErrors.name = "Please enter a valid name.";
     }
 
     /*
      * Email
      */
     if (!email) {
-      newErrors.email =
-        "Please enter your email address.";
+      newErrors.email = "Please enter your email address.";
     } else if (email.length > MAX_EMAIL_LENGTH) {
       newErrors.email = `You can't enter more than ${MAX_EMAIL_LENGTH} characters.`;
     } else if (!EMAIL_REGEX.test(email)) {
-      newErrors.email =
-        "Please enter a valid email address.";
+      newErrors.email = "Please enter a valid email address.";
     }
 
     /*
@@ -268,12 +219,12 @@ export default function EnquiryForm() {
     if (!phone) {
       newErrors.contact_number =
         "Please enter your contact number with country code.";
-    } else if (!phone.startsWith('+')) {
+    } else if (!phone.startsWith("+")) {
       newErrors.contact_number =
         "Please enter a valid phone number starting with + (e.g., +91 9876543210).";
     } else {
       // Remove formatting characters for validation
-      const cleanPhone = phone.replace(/[\s\-\(\)]/g, '');
+      const cleanPhone = phone.replace(/[\s\-\(\)]/g, "");
       // Check if it has reasonable length (at least country code + 7 digits, max 20 chars)
       if (cleanPhone.length < 8 || cleanPhone.length > 20) {
         newErrors.contact_number =
@@ -288,46 +239,33 @@ export default function EnquiryForm() {
      * Message
      */
     if (!message) {
-      newErrors.message =
-        "Please provide a brief description of your enquiry.";
+      newErrors.message = "Please provide a brief description of your enquiry.";
     } else if (message.length < MIN_MESSAGE_LENGTH) {
-      newErrors.message =
-        `Please provide at least ${MIN_MESSAGE_LENGTH} characters.`;
-    } else if (
-      message.length > MAX_MESSAGE_LENGTH
-    ) {
+      newErrors.message = `Please provide at least ${MIN_MESSAGE_LENGTH} characters.`;
+    } else if (message.length > MAX_MESSAGE_LENGTH) {
       newErrors.message = `You can't enter more than ${MAX_MESSAGE_LENGTH} characters.`;
     }
 
     setErrors(newErrors);
 
-    return !Object.values(newErrors).some(
-      Boolean
-    );
+    return !Object.values(newErrors).some(Boolean);
   };
 
   /*
    * Submit
    */
-  const handleSubmit = async (
-    event: FormEvent<HTMLFormElement>
-  ) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (!formRef.current) return;
 
-    const isValid = validateForm(
-      formRef.current
-    );
+    const isValid = validateForm(formRef.current);
 
     if (!isValid) {
-      toast.error(
-        "Please check the highlighted fields.",
-        {
-          description:
-            "Some information needs to be corrected before submitting.",
-        }
-      );
+      toast.error("Please check the highlighted fields.", {
+        description:
+          "Some information needs to be corrected before submitting.",
+      });
 
       return;
     }
@@ -335,27 +273,18 @@ export default function EnquiryForm() {
     /*
      * Honeypot spam protection.
      */
-    const websiteField =
-      formRef.current.elements.namedItem(
-        "website"
-      ) as HTMLInputElement | null;
+    const websiteField = formRef.current.elements.namedItem(
+      "website",
+    ) as HTMLInputElement | null;
 
     if (websiteField?.value) {
       return;
     }
 
-    if (
-      !EMAILJS_PUBLIC_KEY ||
-      !EMAILJS_SERVICE_ID ||
-      !EMAILJS_TEMPLATE_ID
-    ) {
-      toast.error(
-        "The enquiry service is not configured yet.",
-        {
-          description:
-            "Please try again later.",
-        }
-      );
+    if (!EMAILJS_PUBLIC_KEY || !EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID) {
+      toast.error("The enquiry service is not configured yet.", {
+        description: "Please try again later.",
+      });
 
       return;
     }
@@ -369,16 +298,12 @@ export default function EnquiryForm() {
         formRef.current,
         {
           publicKey: EMAILJS_PUBLIC_KEY,
-        }
+        },
       );
 
-      toast.success(
-        "Enquiry sent successfully.",
-        {
-          description:
-            "Thank you. Our team will get back to you shortly.",
-        }
-      );
+      toast.success("Enquiry sent successfully.", {
+        description: "Thank you. Our team will get back to you shortly.",
+      });
 
       formRef.current.reset();
 
@@ -397,18 +322,11 @@ export default function EnquiryForm() {
         }
       }, 1200);
     } catch (error) {
-      console.error(
-        "EmailJS submission error:",
-        error
-      );
+      console.error("EmailJS submission error:", error);
 
-      toast.error(
-        "Unable to send your enquiry.",
-        {
-          description:
-            "Please try again in a moment.",
-        }
-      );
+      toast.error("Unable to send your enquiry.", {
+        description: "Please try again in a moment.",
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -418,11 +336,11 @@ export default function EnquiryForm() {
     <main className="relative min-h-screen overflow-hidden bg-[#F8F7F4] text-[#171717]">
       {/* Soft brand atmosphere */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-40 top-10 h-[420px] w-[420px] rounded-full bg-[#E3A526]/10 blur-3xl" />
+        <div className="absolute top-10 -left-40 h-[420px] w-[420px] rounded-full bg-[#E3A526]/10 blur-3xl" />
 
         <div className="absolute -right-40 bottom-0 h-[420px] w-[420px] rounded-full bg-[#B41448]/10 blur-3xl" />
 
-        <div className="absolute left-1/2 top-1/3 h-[300px] w-[300px] -translate-x-1/2 rounded-full bg-[#E3A526]/5 blur-3xl" />
+        <div className="absolute top-1/3 left-1/2 h-[300px] w-[300px] -translate-x-1/2 rounded-full bg-[#E3A526]/5 blur-3xl" />
       </div>
 
       {/* Back */}
@@ -436,54 +354,47 @@ export default function EnquiryForm() {
             size={17}
             className="transition-transform duration-300 group-hover:-translate-x-1"
           />
-
           Back
         </button>
       </div>
 
-      <section className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-20 pt-14 lg:px-10 lg:pb-28 lg:pt-20">
+      <section className="relative z-10 mx-auto w-full max-w-7xl px-6 pt-14 pb-20 lg:px-10 lg:pt-20 lg:pb-28">
         <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start lg:gap-20">
           {/* Left */}
           <div className="lg:sticky lg:top-10">
             <div className="mb-6 flex items-center gap-3">
               <span className="h-px w-10 bg-[#E3A526]" />
 
-              <span className="text-xs font-semibold uppercase tracking-[0.22em] text-[#B41448]">
+              <span className="text-xs font-semibold tracking-[0.22em] text-[#B41448] uppercase">
                 ENGINEERING INTELLIGENCE
               </span>
             </div>
 
-            <h1 className="max-w-xl text-4xl font-semibold leading-[1.08] tracking-[-0.035em] text-slate-950 sm:text-5xl lg:text-[4.25rem]">
+            <h1 className="max-w-xl text-4xl leading-[1.08] font-semibold tracking-[-0.035em] text-slate-950 sm:text-5xl lg:text-[4.25rem]">
               Let&apos;s discuss
-              <span className="block text-slate-400">
-                your requirement.
-              </span>
+              <span className="block text-slate-400">your requirement.</span>
             </h1>
 
             <p className="mt-7 max-w-lg text-base leading-7 text-slate-600 sm:text-lg">
-              Tell us a little about your requirement,
-              engineering challenge, or the opportunity you
-              would like to discuss. Our team will get back to
-              you.
+              Tell us a little about your requirement, engineering challenge, or
+              the opportunity you would like to discuss. Our team will get back
+              to you.
             </p>
 
             <div className="mt-10 inline-flex items-center gap-3 rounded-full border border-slate-200 bg-white/80 px-4 py-2.5 shadow-sm backdrop-blur">
               <span className="h-2 w-2 rounded-full bg-[#E3A526]" />
 
-              <span className="text-sm text-slate-600">
-                {enquiryType}
-              </span>
+              <span className="text-sm text-slate-600">{enquiryType}</span>
             </div>
 
             <div className="mt-12 hidden border-t border-slate-200 pt-6 lg:block">
-              <p className="text-xs uppercase tracking-[0.18em] text-[#B41448]">
+              <p className="text-xs tracking-[0.18em] text-[#B41448] uppercase">
                 SOLVINA INDIA
               </p>
 
               <p className="mt-2 max-w-sm text-sm leading-6 text-slate-500">
-                Engineering expertise for complex power
-                systems, grid integration and energy
-                infrastructure.
+                Engineering expertise for complex power systems, grid
+                integration and energy infrastructure.
               </p>
             </div>
           </div>
@@ -494,7 +405,7 @@ export default function EnquiryForm() {
 
             <div className="relative rounded-[1.75rem] border border-slate-200/80 bg-white p-6 shadow-[0_20px_70px_rgba(15,23,42,0.08)] sm:p-8 lg:p-10">
               <div className="mb-8">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#B41448]">
+                <p className="text-xs font-semibold tracking-[0.18em] text-[#B41448] uppercase">
                   SEND AN ENQUIRY
                 </p>
 
@@ -510,26 +421,16 @@ export default function EnquiryForm() {
                 className="space-y-6"
               >
                 {/* Hidden EmailJS fields */}
-                <input
-                  type="hidden"
-                  name="enquiry_type"
-                  value={enquiryType}
-                />
+                <input type="hidden" name="enquiry_type" value={enquiryType} />
 
-                <input
-                  type="hidden"
-                  name="source_page"
-                  value={sourcePage}
-                />
+                <input type="hidden" name="source_page" value={sourcePage} />
 
                 {/* Honeypot */}
                 <div
                   className="absolute -left-[9999px] h-0 w-0 overflow-hidden"
                   aria-hidden="true"
                 >
-                  <label htmlFor="website">
-                    Website
-                  </label>
+                  <label htmlFor="website">Website</label>
 
                   <input
                     id="website"
@@ -547,9 +448,7 @@ export default function EnquiryForm() {
                     className="mb-2 block text-sm font-medium text-slate-800"
                   >
                     Name
-                    <span className="ml-1 text-[#B41448]">
-                      *
-                    </span>
+                    <span className="ml-1 text-[#B41448]">*</span>
                   </label>
 
                   <input
@@ -561,7 +460,7 @@ export default function EnquiryForm() {
                     autoComplete="name"
                     placeholder="Enter your full name"
                     onInput={handleNameInput}
-                    className={`h-13 w-full rounded-xl border bg-[#FAFAF9] px-4 text-sm text-slate-900 outline-none transition-all duration-300 placeholder:text-slate-400 focus:bg-white focus:ring-4 ${
+                    className={`h-13 w-full rounded-xl border bg-[#FAFAF9] px-4 text-sm text-slate-900 transition-all duration-300 outline-none placeholder:text-slate-400 focus:bg-white focus:ring-4 ${
                       errors.name
                         ? "border-red-400 focus:border-red-400 focus:ring-red-400/10"
                         : "border-slate-200 focus:border-[#E3A526] focus:ring-[#E3A526]/10"
@@ -569,9 +468,7 @@ export default function EnquiryForm() {
                   />
 
                   {errors.name && (
-                    <p className="mt-1.5 text-xs text-red-500">
-                      {errors.name}
-                    </p>
+                    <p className="mt-1.5 text-xs text-red-500">{errors.name}</p>
                   )}
                 </div>
 
@@ -582,9 +479,7 @@ export default function EnquiryForm() {
                     className="mb-2 block text-sm font-medium text-slate-800"
                   >
                     Email ID
-                    <span className="ml-1 text-[#B41448]">
-                      *
-                    </span>
+                    <span className="ml-1 text-[#B41448]">*</span>
                   </label>
 
                   <input
@@ -596,7 +491,7 @@ export default function EnquiryForm() {
                     autoComplete="email"
                     placeholder="Enter your work email address"
                     onInput={handleEmailInput}
-                    className={`h-13 w-full rounded-xl border bg-[#FAFAF9] px-4 text-sm text-slate-900 outline-none transition-all duration-300 placeholder:text-slate-400 focus:bg-white focus:ring-4 ${
+                    className={`h-13 w-full rounded-xl border bg-[#FAFAF9] px-4 text-sm text-slate-900 transition-all duration-300 outline-none placeholder:text-slate-400 focus:bg-white focus:ring-4 ${
                       errors.email
                         ? "border-red-400 focus:border-red-400 focus:ring-red-400/10"
                         : "border-slate-200 focus:border-[#E3A526] focus:ring-[#E3A526]/10"
@@ -617,9 +512,7 @@ export default function EnquiryForm() {
                     className="mb-2 block text-sm font-medium text-slate-800"
                   >
                     Contact Number
-                    <span className="ml-1 text-[#B41448]">
-                      *
-                    </span>
+                    <span className="ml-1 text-[#B41448]">*</span>
                   </label>
 
                   <div
@@ -658,9 +551,7 @@ export default function EnquiryForm() {
                     className="mb-2 block text-sm font-medium text-slate-800"
                   >
                     Enquiry brief description
-                    <span className="ml-1 text-[#B41448]">
-                      *
-                    </span>
+                    <span className="ml-1 text-[#B41448]">*</span>
                   </label>
 
                   <textarea
@@ -672,7 +563,7 @@ export default function EnquiryForm() {
                     maxLength={MAX_MESSAGE_LENGTH}
                     placeholder="Briefly describe your requirement, engineering challenge, or what you would like to discuss..."
                     onInput={handleMessageInput}
-                    className={`w-full resize-none rounded-xl border bg-[#FAFAF9] px-4 py-3.5 text-sm leading-6 text-slate-900 outline-none transition-all duration-300 placeholder:text-slate-400 focus:bg-white focus:ring-4 ${
+                    className={`w-full resize-none rounded-xl border bg-[#FAFAF9] px-4 py-3.5 text-sm leading-6 text-slate-900 transition-all duration-300 outline-none placeholder:text-slate-400 focus:bg-white focus:ring-4 ${
                       errors.message
                         ? "border-red-400 focus:border-red-400 focus:ring-red-400/10"
                         : "border-slate-200 focus:border-[#E3A526] focus:ring-[#E3A526]/10"
@@ -695,22 +586,16 @@ export default function EnquiryForm() {
                   >
                     {isSubmitting ? (
                       <>
-                        <Loader2
-                          size={18}
-                          className="animate-spin"
-                        />
-
+                        <Loader2 size={18} className="animate-spin" />
                         Sending enquiry...
                       </>
                     ) : (
                       <>
                         <Send
                           size={17}
-                          className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                          className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                         />
-
                         Send Enquiry
-
                         <ArrowUpRight
                           size={17}
                           className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
@@ -721,8 +606,8 @@ export default function EnquiryForm() {
                 </div>
 
                 <p className="text-center text-xs leading-5 text-slate-400">
-                  By submitting this form, you agree to be contacted
-                  regarding your enquiry.
+                  By submitting this form, you agree to be contacted regarding
+                  your enquiry.
                 </p>
               </form>
             </div>
